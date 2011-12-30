@@ -30,7 +30,6 @@ class Config {
      * @var string
      */
     public $base_url = 'http://localhost/phpizza/';
-//    public $base_url = 'http://localhost/htdocs/projects/gigamvc/';
 
     /**
      * Templating/Theming
