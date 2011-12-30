@@ -10,8 +10,9 @@ define('AUTOLOAD_CUSTOM_CLASS', 'custom');
 require dirname(__FILE__) . '/pre_script.php';
 // Load Configuaration
 require dirname(__FILE__) . '/config.php';
+require dirname(__FILE__) . '/userconfig.php';
 // Load Core Class
-require dirname(__FILE__) . '/core/class/Core.php';
+require CORE_DIR . 'class/Core.php';
 
 // Start PHPizza
 $phpizza = new PHPizza();
