@@ -187,6 +187,15 @@ class CoreController {
         if (DEBUG_MODE)
             echo '<pre>' . $str . '</pre>';
     }
+    
+    /**
+     * Change/Set a template/theme
+     * @param string $templateName 
+     */
+    
+    public function template($templateName){
+        $this->core->template = $templateName;
+    }
 
 }
 
