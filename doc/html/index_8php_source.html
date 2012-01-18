@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PHPizza: index.php Source File</title>
+<title>PHPizza: /var/www/phpizza/index.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.0.2 Beta</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.5 Beta</span></div>
    <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -94,28 +94,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00010"></a>00010 require dirname(__FILE__) . <span class="stringliteral">&#39;/pre_script.php&#39;</span>;
 <a name="l00011"></a>00011 <span class="comment">// Load Configuaration</span>
 <a name="l00012"></a>00012 require dirname(__FILE__) . <span class="stringliteral">&#39;/config.php&#39;</span>;
-<a name="l00013"></a>00013 <span class="comment">// Load Core Class</span>
-<a name="l00014"></a>00014 require dirname(__FILE__) . <span class="stringliteral">&#39;/core/class/Core.php&#39;</span>;
-<a name="l00015"></a>00015 
-<a name="l00016"></a>00016 <span class="comment">// Start PHPizza</span>
-<a name="l00017"></a>00017 $phpizza = <span class="keyword">new</span> <a class="code" href="class_p_h_pizza.html">PHPizza</a>();
-<a name="l00018"></a>00018 $__viewInstance = null; 
-<a name="l00019"></a>00019 
-<a name="l00020"></a>00020 $page = $phpizza-&gt;validate-&gt;input(<span class="charliteral">&#39;p&#39;</span>, <span class="stringliteral">&quot;&quot;</span>, <span class="keyword">false</span>, LANDING_PAGE);
-<a name="l00021"></a>00021 
-<a name="l00022"></a>00022 <span class="comment">// Remove trailish slash</span>
-<a name="l00023"></a>00023 $page = rtrim($page,<span class="stringliteral">&quot;/&quot;</span>);
-<a name="l00024"></a>00024 <span class="comment">// Load model, view &amp; controller</span>
-<a name="l00025"></a>00025 $phpizza-&gt;loadMVC($page);
-<a name="l00026"></a>00026 require dirname(__FILE__) . <span class="stringliteral">&#39;/post_script.php&#39;</span>;
-<a name="l00027"></a>00027 ?&gt;
-<a name="l00028"></a>00028 
+<a name="l00013"></a>00013 require dirname(__FILE__) . <span class="stringliteral">&#39;/userconfig.php&#39;</span>;
+<a name="l00014"></a>00014 <span class="comment">// Load Core Class</span>
+<a name="l00015"></a>00015 require CORE_DIR . <span class="stringliteral">&#39;class/Core.php&#39;</span>;
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 <span class="comment">// Start PHPizza</span>
+<a name="l00018"></a>00018 $phpizza = <span class="keyword">new</span> <a class="code" href="class_p_h_pizza.html">PHPizza</a>();
+<a name="l00019"></a>00019 $__viewInstance = null; 
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 $page = $phpizza-&gt;validate-&gt;input(<span class="charliteral">&#39;p&#39;</span>, <span class="stringliteral">&quot;&quot;</span>, <span class="keyword">false</span>, LANDING_PAGE);
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023 <span class="comment">// Remove trailish slash</span>
+<a name="l00024"></a>00024 $page = rtrim($page,<span class="stringliteral">&quot;/&quot;</span>);
+<a name="l00025"></a>00025 <span class="comment">// Load model, view &amp; controller</span>
+<a name="l00026"></a>00026 $phpizza-&gt;loadMVC($page);
+<a name="l00027"></a>00027 require dirname(__FILE__) . <span class="stringliteral">&#39;/post_script.php&#39;</span>;
+<a name="l00028"></a>00028 ?&gt;
+<a name="l00029"></a>00029 
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>index.php</b>      </li>
-      <li class="footer">Generated on Fri Dec 30 2011 16:04:34 for PHPizza by&#160;
+      <li class="footer">Generated on Thu Jan 5 2012 22:00:14 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

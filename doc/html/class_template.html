@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.0.2 Beta</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.5 Beta</span></div>
    <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Template Class Reference</div>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Template" --><!-- doxytag: inherits="CoreView" -->
+<!-- doxytag: class="Template" --><!-- doxytag: inherits="CoreView,CoreView" -->
 <p>All VIEW classes should extend this class. All themes/templates should have their own <a class="el" href="class_template.html" title="All VIEW classes should extend this class. All themes/templates should have their own Template class...">Template</a> class.  
  <a href="class_template.html#details">More...</a></p>
 <div class="dynheader">
@@ -98,11 +98,13 @@ Inheritance diagram for Template:</div>
   <img src="class_template.png" usemap="#Template_map" alt=""/>
   <map id="Template_map" name="Template_map">
 <area href="class_core_view.html" title="All view classes should extend this CoreView class!" alt="CoreView" shape="rect" coords="0,0,68,24"/>
+<area href="class_core_view.html" title="All view classes should extend this CoreView class!" alt="CoreView" shape="rect" coords="78,0,146,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template.html#a64585b415473be548941a9f4f12bb8ec">__construct</a> ($core)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template.html#a64585b415473be548941a9f4f12bb8ec">__construct</a> ($core)</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Recommended Functions for the Template class</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>It is highly recommended that a <a class="el" href="class_template.html" title="All VIEW classes should extend this class. All themes/templates should have their own Template class...">Template</a> class should have following functions. These functions are too much common and can be used in almost all websites. So, use following function names &amp; call them appropriately in your template's index.php page.</p>
@@ -113,8 +115,14 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template.html#a4fdfdd184adfc8b317652650926bb21a">mainContent</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template.html#ac588dd5f4716e1e53c380dc05d9d96e9">sidebar</a> ($alignment)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template.html#ae5058e5b790e8cea2dd33c1c9bbcbbd4">footer</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template.html#aafc568a720a06040aa70083c38435804">header</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template.html#a4fdfdd184adfc8b317652650926bb21a">mainContent</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template.html#ac588dd5f4716e1e53c380dc05d9d96e9">sidebar</a> ($alignment)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template.html#ae5058e5b790e8cea2dd33c1c9bbcbbd4">footer</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad83e5cb80f1d7ee29561fc76c093ff73"></a><!-- doxytag: member="Template::$headerMenu" ref="ad83e5cb80f1d7ee29561fc76c093ff73" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><b>$headerMenu</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a196169be7715d466e3310388b096598c"></a><!-- doxytag: member="Template::$heading" ref="a196169be7715d466e3310388b096598c" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template.html#a196169be7715d466e3310388b096598c">$heading</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A custom (template-specific) variable. For setting the Headline of the page. <br/></td></tr>
@@ -132,10 +140,18 @@ Put your name here!</dd></dl>
 <p>!!! Functions of this class is called in the template's index.php page !!!</p>
 <p>All view classes (classes in VIEW/pages folder) should extend this class &amp; implement the abstract functions defined in this class.</p>
 <p>You should define additional functions in this class, to generate necessary HTML for your pages.</p>
+<p>You should call these functions in appropriate places in the theme's layout file (index.php). For example, see <a class="el" href="templates_2_white_love_2index_8php_source.html">templates/WhiteLove/index.php</a> (the default template file)</p>
+<p>You should define these functions abstract &amp; implement in your VIEW classes.</p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Shafiul Azam </dd>
+<dd>
+Put your name here!</dd></dl>
+<p>!!! Functions of this class is called in the template's index.php page !!!</p>
+<p>All view classes (classes in VIEW/pages folder) should extend this class &amp; implement the abstract functions defined in this class.</p>
+<p>You should define additional functions in this class, to generate necessary HTML for your pages.</p>
 <p>You should call these functions in appropriate places in your template file. For example, see <a class="el" href="templates_2_white_love_2index_8php_source.html">templates/WhiteLove/index.php</a> (the default template file)</p>
 <p>You should define these functions abstract &amp; implement in your VIEW classes. </p>
 
-<p>Definition at line <a class="el" href="_template_8php_source.html#l00020">20</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
+<p>Definition at line <a class="el" href="plainclean_2_template_8php_source.html#l00020">20</a> of file <a class="el" href="plainclean_2_template_8php_source.html">Template.php</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a64585b415473be548941a9f4f12bb8ec"></a><!-- doxytag: member="Template::__construct" ref="a64585b415473be548941a9f4f12bb8ec" args="($core)" -->
 <div class="memitem">
@@ -159,7 +175,33 @@ Put your name here!</dd></dl>
 
 <p>Reimplemented from <a class="el" href="class_core_view.html">CoreView</a>.</p>
 
-<p>Definition at line <a class="el" href="_template_8php_source.html#l00033">33</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
+<p>Definition at line <a class="el" href="plainclean_2_template_8php_source.html#l00031">31</a> of file <a class="el" href="plainclean_2_template_8php_source.html">Template.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a64585b415473be548941a9f4f12bb8ec"></a><!-- doxytag: member="Template::__construct" ref="a64585b415473be548941a9f4f12bb8ec" args="($core)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__construct </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>core</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Perorms some routine tasks:</p>
+<ul>
+<li>Sets default CSS &amp; JavaScript files for all pages</li>
+<li>Loads the custom "Blocks" class for your convenience. </li>
+</ul>
+
+<p>Reimplemented from <a class="el" href="class_core_view.html">CoreView</a>.</p>
+
+<p>Definition at line <a class="el" href="_white_love_2_template_8php_source.html#l00033">33</a> of file <a class="el" href="_white_love_2_template_8php_source.html">Template.php</a>.</p>
 
 </div>
 </div>
@@ -179,7 +221,26 @@ Put your name here!</dd></dl>
 <div class="memdoc">
 <p>Footer of the template. Footers does not normally change in Views. So, you can staticly determine the page footer here. </p>
 
-<p>Definition at line <a class="el" href="_template_8php_source.html#l00108">108</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
+<p>Definition at line <a class="el" href="plainclean_2_template_8php_source.html#l00141">141</a> of file <a class="el" href="plainclean_2_template_8php_source.html">Template.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae5058e5b790e8cea2dd33c1c9bbcbbd4"></a><!-- doxytag: member="Template::footer" ref="ae5058e5b790e8cea2dd33c1c9bbcbbd4" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">footer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Footer of the template. Footers does not normally change in Views. So, you can staticly determine the page footer here. </p>
+
+<p>Definition at line <a class="el" href="_white_love_2_template_8php_source.html#l00108">108</a> of file <a class="el" href="_white_love_2_template_8php_source.html">Template.php</a>.</p>
 
 </div>
 </div>
@@ -198,7 +259,44 @@ Put your name here!</dd></dl>
 <div class="memdoc">
 <p>Called inside template file to print the headings body of the HTML document Can leave as a abstract function, or you can implement the body of the function here, if suitable. </p>
 
-<p>Definition at line <a class="el" href="_template_8php_source.html#l00067">67</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
+<p>Definition at line <a class="el" href="plainclean_2_template_8php_source.html#l00070">70</a> of file <a class="el" href="plainclean_2_template_8php_source.html">Template.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aafc568a720a06040aa70083c38435804"></a><!-- doxytag: member="Template::header" ref="aafc568a720a06040aa70083c38435804" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">header </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Called inside template file to print the headings body of the HTML document Can leave as a abstract function, or you can implement the body of the function here, if suitable. </p>
+
+<p>Definition at line <a class="el" href="_white_love_2_template_8php_source.html#l00067">67</a> of file <a class="el" href="_white_love_2_template_8php_source.html">Template.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4fdfdd184adfc8b317652650926bb21a"></a><!-- doxytag: member="Template::mainContent" ref="a4fdfdd184adfc8b317652650926bb21a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">mainContent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [abstract]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Function for the "main entry" of the page. Since this is totally page-dependant, this function should be left as Abstract, to be implemented in the view of the page.</p>
+<p>Called inside template file to print the "main" body of the HTML document </p>
 
 </div>
 </div>
@@ -242,19 +340,46 @@ Put your name here!</dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_template_8php_source.html#l00088">88</a> of file <a class="el" href="_template_8php_source.html">Template.php</a>.</p>
+<p>Definition at line <a class="el" href="plainclean_2_template_8php_source.html#l00098">98</a> of file <a class="el" href="plainclean_2_template_8php_source.html">Template.php</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>templates/WhiteLove/<a class="el" href="_template_8php_source.html">Template.php</a></li>
+<a class="anchor" id="ac588dd5f4716e1e53c380dc05d9d96e9"></a><!-- doxytag: member="Template::sidebar" ref="ac588dd5f4716e1e53c380dc05d9d96e9" args="($alignment)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sidebar </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>alignment</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>General purpose function for printing sidebars. In the following function, you can implement the "default" sidebars applicable to all views. However, if you need custom sidebar in any view, you can easily override this function. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$alignment</td><td>- possible values: "left","right" </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_white_love_2_template_8php_source.html#l00088">88</a> of file <a class="el" href="_white_love_2_template_8php_source.html">Template.php</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/var/www/phpizza/templates/plainclean/<a class="el" href="plainclean_2_template_8php_source.html">Template.php</a></li>
+<li>/var/www/phpizza/templates/WhiteLove/<a class="el" href="_white_love_2_template_8php_source.html">Template.php</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_template.html">Template</a>      </li>
-      <li class="footer">Generated on Fri Dec 30 2011 16:04:35 for PHPizza by&#160;
+      <li class="footer">Generated on Thu Jan 5 2012 22:00:14 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

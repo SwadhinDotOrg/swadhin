@@ -1,14 +1,5 @@
 <?php
 
-/**
- * Description of guiForms
- * This class simply draws HTML forms for different pages
- * coded in oop way in the sense that Forms may be re-used
- * @author Shafiul Azam
- * ishafiul@gmail.com
- * Project Manager
- */
-
 // Constants
 
 define("FORM_RESULT", 0);
@@ -24,7 +15,9 @@ define("PIZZA_FORM_HTML_FUNCNAME",3);
 define("PIZZA_FORM_HTML_FUNC_ARGS",4);
 
 /**
- * \brief Create, submit & validate web-forms
+ * \brief Create, submit & validate web-forms easily! Your Forms should extend this class.
+ * 
+ * \see Complete Tutorial: http://pizzamvc.com/phpizza?page=29
  * 
  * This class provides opportunities for:
  * - Creating web forms easily, withtout writing any %HTML: within your %Controller
@@ -36,21 +29,28 @@ define("PIZZA_FORM_HTML_FUNC_ARGS",4);
 abstract class CoreForm{
     
 
-    public $action = '';    ///<    for form attribute "action"
-    public $method = 'post';    ///<    for form attribute "method"
-    public $target = '';        ///<    for Form attribute "target"
-    public $onSubmit = '';  ///<    for Form attribute "onsubmit"
+    public $action = '';    ///<    Form attribute "action"
+    public $method = 'post';    ///<    Form attribute "method"
+    public $target = '';        ///<    Form attribute "target"
+    public $onSubmit = '';  ///<    Form attribute "onsubmit"
+    
     private $elements = array(); ///<    Key-value array for storing form elements
-    public $submitButtonText = '';  ///<    Text displayed at form submit button
-    public $tableBorder = '0';  ///<    for Table attribute "border"
-    public $tableCellSpacing = '';  ///<    for Table attribute "cellspacing"
-    public $tableCellPadding = '';  ///<    for table attribute "cellpadding"
-    public $arbritaryHTML = ''; ///<    This %HTML string is placed after form elements
-    public $fileUpload = false; ///<    Set true if you're uploading file(s) by this form
-    public $id = "";    ///<    for Form attribute "id"
-    public $submitButtonId = "";    ///<    for Form's submit button's attribute "id"
-    public $class = ""; ///<    for Form attribute "class"
+    
+    public $submitButtonText = '';  ///<    Text displayed at <b>submit button</b>
+    public $tableBorder = '0';  ///<    Table attribute "border"
+    public $tableCellSpacing = '';  ///<    Table attribute "cellspacing"
+    public $tableCellPadding = '';  ///<    Table attribute "cellpadding"
+    
+    public $arbritaryHTML = ''; ///<    This %HTML string is printed after form elements
+    
+    public $fileUpload = false; ///<    Set true if you're uploading file(s) in this form
+    
+    public $id = "";    ///<    Form attribute "id"
+    public $submitButtonId = "";    ///<    Form's submit button's attribute "id"
+    public $class = ""; ///<    Form attribute "class"
+    
     public $displaySubmissionErrors = true; ///< Set to true if you want to display error messages when form validation fails
+    
     public $currentElementName = "";    ///< "name" attribute of currently processing form element - available while validating form
     public $validators = null;      ///< Key-value array, key is "name" attribute or an alement, value is List of validators.
     public $noErrorFormatting = false;
@@ -65,11 +65,12 @@ abstract class CoreForm{
     private $core = null;   ///<    A reference to the global $core
     private $formName = ""; ///<    Name of the class which extended me ( CoreClass )
     private $isSubmissionValid = null;  ///< Indicator whether form submission validated
+    
     // Public & private Methods
     
     /**
-     * Generally, you extend CoreForm class when you're creating a form class (See example child class: Registration form in VIEW/forms directory)
-     * In your Form class's constructor, you should call this function. (see the example classed mentioned)
+     * Constructor
+     * 
      * @param object $ob should be always "$this" - reference to the child class.
      * @param Core $core a reference to the global $core 
      */
@@ -113,14 +114,15 @@ abstract class CoreForm{
     }
     
     /**
-     * \brief Important function to call within your Controller classes.
+     * \brief Generates the form's %HTML & passes it to View classes. 
      * 
-     * Call this function within your Controller classes to automatically send the generated %HTML of the form to your View class.
+     * Call this function in your Controller classes to automatically send the generated %HTML of the form to your View class.
      * 
-     * Next, within your view class, you can call CoreView::form($id) to get the generated html, where $id is the class name of the form
+     * Later, in your view class, you can call CoreView::form($id) to get the generated html, where $id is the class name of the form
+     * 
      * @param $returnOnly bool
-     *  - is false by default
-     *  - if true, returns the generated %HTML, also does not pass validation errors as \a status \a messages
+     *  - is false (default) does not return the generated %HTML. The %HTML is available in your View classes.
+     *  - if true, <b>returns</b> the generated %HTML. Also does <b>not</b> pass validation errors as <i>status messages</i>
      */
     
     public function sendToView($returnOnly = false){
@@ -143,20 +145,16 @@ abstract class CoreForm{
     }
     
     /**
-     * \brief Important Function  - After a user has submitted the form, call it within your controller to start form validation
+     * \brief Used to validate the form after user submits it.
      * 
-     * Call this function within your controller to start validation of the form. Validation functions already defined using element() functions 
-     * are applied one after another on each element of the form.
+     * Important Function  - After a user has submitted the form, call it in your controller to start form validation process
      * 
-     * WARNING: return type got changed. update doc
-     * @return array | You will need to check only the 0th element of the array, if you are using sendToView()
-     * - 0th element of the array: boolean, true if all validation functions successful, false if one or more validation functions failed. 
-     * - 1st element of the array: string, error message if validation failed
-     * - 2nd element of the array: string, re-generated %html of the form, with user submitted values :-)
+     * Validation functions are applied one after another on each element of the form.
+     *
+     * @return bool - true if all validation tests were successful. False otherwise.
      */ 
     
     public function validate(){
-        // When form submitted, used this to validate the form.
         $this->validate = true;
         $this->error = array();
         // Run validation
@@ -176,11 +174,11 @@ abstract class CoreForm{
     // Element related
     
     /**
-     * \brief Important function  - use it to get user-submitted value for element of the form!
+     * \brief Returns valid, user-submitted data of a form element.
      * 
-     * Call this function within your constructor to get VALIDATED user-submitted value for a single element.
-     * @param string $name the "name" attribute of the element
-     * @return string | validated user submitted value 
+     * Call this function within your constructor to get valid, user-submitted value for a single element.
+     * @param string $name -  the "name" attribute of the element
+     * @return string | validated user submitted data 
      */
     
     public function get($name){
@@ -195,8 +193,9 @@ abstract class CoreForm{
     }
     
     /**
+     * Returns errors (if any) created while validating the form.
      * 
-     * @return string | Error string, if the form submission failed.
+     * @return string | Error string. Generated only if form submission failed.
      */
     
     public function getError(){
@@ -205,8 +204,12 @@ abstract class CoreForm{
 
 
     /**
-     * Use this function to set the elements created for your form.
-     * @param array $elem is a mixed array. Each element of the form will contribute an element of this $elem array. 
+     * Call this function passing your form elements as argument.
+     * 
+     * @param array $elem is a mixed array. Each element of the form will contribute an element to this array. 
+     * 
+     * <b>Optional Reading: You can avoid reading following section if you're not interested how the framework works!</b>
+     * 
      * For each element, we need an array (key-value) of following format:
      *  - key is: string, "name" attribute of the form element.
      *  - value is: array (mixed) of following type:
@@ -251,8 +254,10 @@ abstract class CoreForm{
 
 
     /**
-     * Call this function within your constructor to get VALIDATED user-submitted value for all form elements.
-     * @return array | key-value array where key is the "name" attribute of the element. 
+     * \brief Returns all user-submitted <b>valid</b> data in a key-value array.
+     * 
+     * Call this function within your constructor to get VALIDATED user-submitted value of <b>all</b> form elements.
+     * @return array | key-value array where key is the "name" attribute of the element & value is the user-submitted valid data.
      */
     
     public function getAll(){
@@ -340,16 +345,20 @@ abstract class CoreForm{
     //@{
     
     /**
-     * Within this function: build an array for your form-elements. Then set the elements 
-     * using setElements() function.
+     * \brief Constructs the form
      * 
-     * For example, see Registration class
+     * Your Form classes should override (implement) this function. Within this function, build an array for 
+     * your form-elements. Then call setElements() function, passing the array as argument of setElements()
+     * 
+     * \see Example: https://github.com/pizzamvc/phpizza/blob/master/VIEW/forms/Registration.php 
      */
     
     abstract public function createElements();  //  To be implemented
+    
     public function createValidators(){
         // To be implemented in forms
     }
+    
     //@}
     
     

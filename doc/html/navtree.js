@@ -33,6 +33,7 @@ var NAVTREE =
         [ "Validator", "class_validator.html", null ]
       ] ],
       [ "CoreView", "class_core_view.html", [
+        [ "Template", "class_template.html", null ],
         [ "Template", "class_template.html", null ]
       ] ],
       [ "Files", "class_files.html", null ],
@@ -48,43 +49,52 @@ var NAVTREE =
     ] ],
     [ "Data Fields", "functions.html", null ],
     [ "File List", "files.html", [
-      [ "config.php", null, null ],
-      [ "index.php", null, null ],
-      [ "post_script.php", "post__script_8php.html", null ],
-      [ "pre_script.php", "pre__script_8php.html", null ],
-      [ "userconfig.php", null, null ],
-      [ "core/class/Core.php", null, null ],
-      [ "core/class/CoreController.php", null, null ],
-      [ "core/class/CoreForm.php", null, null ],
-      [ "core/class/CoreModel.php", null, null ],
-      [ "core/class/CoreValidator.php", null, null ],
-      [ "core/class/CoreView.php", null, null ],
-      [ "core/class/Funcs.php", null, null ],
-      [ "core/class/Html.php", null, null ],
-      [ "core/class/db/GenericDB.php", null, null ],
-      [ "core/class/db/MySQL.php", null, null ],
-      [ "core/funcs/form.php", "form_8php.html", null ],
-      [ "core/funcs/general.php", "general_8php.html", null ],
-      [ "custom/class/Authentication.php", null, null ],
-      [ "custom/class/Blocks.php", null, null ],
-      [ "custom/class/Files.php", null, null ],
-      [ "custom/class/MaliciousClass.php", null, null ],
-      [ "custom/class/Validator.php", null, null ],
-      [ "templates/WhiteLove/index.php", null, null ],
-      [ "templates/WhiteLove/Template.php", null, null ]
+      [ "/var/www/phpizza/config.php", null, null ],
+      [ "/var/www/phpizza/index.php", null, null ],
+      [ "/var/www/phpizza/post_script.php", "post__script_8php.html", null ],
+      [ "/var/www/phpizza/pre_script.php", "pre__script_8php.html", null ],
+      [ "/var/www/phpizza/userconfig.php", null, null ],
+      [ "/var/www/phpizza/core/class/Core.php", null, null ],
+      [ "/var/www/phpizza/core/class/CoreController.php", null, null ],
+      [ "/var/www/phpizza/core/class/CoreForm.php", null, null ],
+      [ "/var/www/phpizza/core/class/CoreModel.php", null, null ],
+      [ "/var/www/phpizza/core/class/CoreValidator.php", null, null ],
+      [ "/var/www/phpizza/core/class/CoreView.php", null, null ],
+      [ "/var/www/phpizza/core/class/Funcs.php", null, null ],
+      [ "/var/www/phpizza/core/class/Html.php", null, null ],
+      [ "/var/www/phpizza/core/class/db/GenericDB.php", null, null ],
+      [ "/var/www/phpizza/core/class/db/MySQL.php", null, null ],
+      [ "/var/www/phpizza/core/funcs/form.php", "form_8php.html", null ],
+      [ "/var/www/phpizza/core/funcs/general.php", "general_8php.html", null ],
+      [ "/var/www/phpizza/custom/class/Authentication.php", null, null ],
+      [ "/var/www/phpizza/custom/class/Blocks.php", null, null ],
+      [ "/var/www/phpizza/custom/class/Files.php", null, null ],
+      [ "/var/www/phpizza/custom/class/MaliciousClass.php", null, null ],
+      [ "/var/www/phpizza/custom/class/Validator.php", null, null ],
+      [ "/var/www/phpizza/templates/plainclean/index.php", null, null ],
+      [ "/var/www/phpizza/templates/plainclean/Template.php", null, null ],
+      [ "/var/www/phpizza/templates/WhiteLove/index.php", null, null ],
+      [ "/var/www/phpizza/templates/WhiteLove/Template.php", null, null ]
     ] ],
     [ "Directories", "dirs.html", [
-      [ "core", "dir_a75af976d1a462a513ef450ae5a6ac44.html", [
-        [ "class", "dir_27c51e58273c65a7b9beb6e341c153fe.html", [
-          [ "db", "dir_04c859e399aa73607ddecc4ba0346483.html", null ]
-        ] ],
-        [ "funcs", "dir_7adad406ed1268bb18b11aea3b4cf796.html", null ]
-      ] ],
-      [ "custom", "dir_f77d15040423d00a335e9c0c2e0504cb.html", [
-        [ "class", "dir_b0602b087c1d217a0278d05e42ca8be0.html", null ]
-      ] ],
-      [ "templates", "dir_24a36ed97f6cfd5e99cc9aa4aa6824b7.html", [
-        [ "WhiteLove", "dir_bdaee5cc0deb19e7d163bd2a26b0f319.html", null ]
+      [ "var", "dir_2d402fa29e6cd3b6ca13957b8f90c436.html", [
+        [ "www", "dir_cbe856ff790c9ba5208811309bdf168b.html", [
+          [ "phpizza", "dir_e014d60dfd7b82ef66a09d55f195acd0.html", [
+            [ "core", "dir_adea2bacead95b7cbf1951608a9cba71.html", [
+              [ "class", "dir_67b7e7d80aafcfcf3e314ec9dc170f2e.html", [
+                [ "db", "dir_68812f5fb6dc500923e9fda17f45c165.html", null ]
+              ] ],
+              [ "funcs", "dir_734dea5a8bd07137d9c809440dfc3e32.html", null ]
+            ] ],
+            [ "custom", "dir_ecad2b0105aefe7a75814651a260ca56.html", [
+              [ "class", "dir_487c188c2efa01502a62fb4e76b67626.html", null ]
+            ] ],
+            [ "templates", "dir_5ba0d10a9b4b224fe109ef89215a2270.html", [
+              [ "plainclean", "dir_73791019e900f464cd24098e439f401e.html", null ],
+              [ "WhiteLove", "dir_a548f04aff1ace85a311ca4c2581ec6a.html", null ]
+            ] ]
+          ] ]
+        ] ]
       ] ]
     ] ],
     [ "Globals", "globals.html", null ]

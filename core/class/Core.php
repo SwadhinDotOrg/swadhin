@@ -84,7 +84,6 @@ class Core {
     public $autoloadedData;
     private $__version;                 ///< Core Version
     private $__dbconfig;                ///< Database Credentials
-    private $__alconfig;                ///< Auto-load configuartion
     // Internal
     private $oneModelLoaded = false;    ///< Whether CoreModel & DB driver already loaded
 
@@ -98,7 +97,7 @@ class Core {
      * @return None
      */
     public function __construct() {
-        $this->__version = "1.1.0.2 beta";
+        $this->__version = "1.1.4 beta";
         // Acquire info from global configuration
         $this->loadConfig();
         // Create other members

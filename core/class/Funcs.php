@@ -31,13 +31,10 @@ class Funcs {
      * @param string $pageURL URL to which the page will be redirected
      */
     public function messageExit($message, $type=MSGBOX_ERROR, $pageURL='') {
-
-//            die("$message");
         if (empty($pageURL)) {
             $pageURL = (isset($_SERVER['HTTP_REFERER'])) ? ($_SERVER['HTTP_REFERER']) : ('');
         }
         $this->setStatusMsg($message, $type);
-//            redirect($pageURL . "&message=$message&type=$type");
         redirect($pageURL);
     }
 

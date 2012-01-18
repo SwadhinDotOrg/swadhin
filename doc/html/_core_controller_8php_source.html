@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PHPizza: core/class/CoreController.php Source File</title>
+<title>PHPizza: /var/www/phpizza/core/class/CoreController.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.0.2 Beta</span></div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.5 Beta</span></div>
    <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -178,16 +178,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00187"></a>00187         <span class="keywordflow">if</span> (DEBUG_MODE)
 <a name="l00188"></a>00188             echo <span class="stringliteral">&#39;&lt;pre&gt;&#39;</span> . $str . <span class="stringliteral">&#39;&lt;/pre&gt;&#39;</span>;
 <a name="l00189"></a>00189     }
-<a name="l00190"></a>00190 
-<a name="l00191"></a>00191 }
-<a name="l00192"></a>00192 
-<a name="l00193"></a>00193 ?&gt;
+<a name="l00190"></a>00190     
+<a name="l00196"></a><a class="code" href="class_core_controller.html#a0fd8a4f2b09362e7d22444abe351db0d">00196</a>     <span class="keyword">public</span> function <span class="keyword">template</span>($templateName){
+<a name="l00197"></a>00197         $this-&gt;core-&gt;template = $templateName;
+<a name="l00198"></a>00198     }
+<a name="l00199"></a>00199 
+<a name="l00200"></a>00200 }
+<a name="l00201"></a>00201 
+<a name="l00202"></a>00202 ?&gt;
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>CoreController.php</b>      </li>
-      <li class="footer">Generated on Fri Dec 30 2011 16:04:34 for PHPizza by&#160;
+      <li class="footer">Generated on Thu Jan 5 2012 22:00:14 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>
