@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * @file
  * \brief Custom scripting to run before %PHPizza starts running
@@ -16,6 +15,9 @@
 
 error_reporting(E_ALL);             // Turning on error reporting
 ini_set('display_errors', '1');
+
+if(TESTING_PHPIZZA)
+    session_start();
 
 
 

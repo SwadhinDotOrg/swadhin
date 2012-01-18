@@ -35,8 +35,12 @@ final class PHPizza {
     /**
      * Fire up PHPizza Core!
      */
-    function __construct() {
-        $this->core = new Core();
+    function __construct($config=false) {
+        if(!$config)
+            $config = Config::getInstance();
+        
+        $this->core = new Core($config);
+        
         $this->view = $this->core->view;
         $this->validate = $this->core->validate;
     }
@@ -96,8 +100,9 @@ class Core {
      * @param None
      * @return None
      */
-    public function __construct() {
+    public function __construct($config) {
         $this->__version = "1.1.4 beta";
+        $this->config = $config;
         // Acquire info from global configuration
         $this->loadConfig();
         // Create other members
@@ -118,12 +123,10 @@ class Core {
      * Load configurations/settings from global config.php
      */
     private function loadConfig() {
-        // Load DB configuration
-        $config = Config::getInstance();
-        $this->__dbconfig = $config->db;
-        $config->db = null;
-        // Assign to self
-        $this->config = $config;
+        $this->__dbconfig = $this->config->db;
+        if(!TESTING_PHPIZZA)
+            $this->config->db = null;
+        
         // Generate some constants
         define('BASE_URL', $this->config->base_url);
         
@@ -533,7 +536,10 @@ class Core {
      * Generate FATAL Errors - terminates execution immediately printing the error message.
      * @param type $msg 
      */
-    public function fatal($msg) {
+    public function fatal($msg,$triggerError=true) {
+        if($triggerError){
+            trigger_error($msg, E_USER_ERROR);
+        }
         echo '<html><head><title>Fatal Framework Error</title></head><body>';
         echo Html::msgbox($msg, MSGBOX_ERROR);
         echo '</body></html>';

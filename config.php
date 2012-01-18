@@ -1,5 +1,12 @@
 <?php
 
+// define some constants
+
+define('AUTOLOAD_MODEL','model');
+define('AUTOLOAD_GENERAL_FUNCS', 'generalfuncs');
+define('AUTOLOAD_CUSTOM_FUNCS', 'customfuncs');
+define('AUTOLOAD_CUSTOM_CLASS', 'custom');
+
 /**
  * Configuration
  * **************
@@ -134,7 +141,7 @@ class Config {
      */
 
     public static function getInstance() {
-        if (self::$instanceCounter === 0) {
+        if (self::$instanceCounter === 0 || TESTING_PHPIZZA) {
             self::$instanceCounter++;
             self::$instance = new Config();
             return self::$instance;

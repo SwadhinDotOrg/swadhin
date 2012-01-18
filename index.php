@@ -1,11 +1,7 @@
 <?php
 
-// define some constants
 
-define('AUTOLOAD_MODEL','model');
-define('AUTOLOAD_GENERAL_FUNCS', 'generalfuncs');
-define('AUTOLOAD_CUSTOM_FUNCS', 'customfuncs');
-define('AUTOLOAD_CUSTOM_CLASS', 'custom');
+define('TESTING_PHPIZZA', true);    // Set true when unit testing PHPizza. Must be turned off in all other cases.
 
 require dirname(__FILE__) . '/pre_script.php';
 // Load Configuaration
