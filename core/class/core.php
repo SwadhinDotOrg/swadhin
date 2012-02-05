@@ -132,7 +132,7 @@ class Core {
      * @return None
      */
     public function __construct($config) {
-        $this->__version = "1.1.4 beta";
+        $this->__version = "1.2.1 beta";
         $this->config = $config;
         // Acquire info from global configuration
         $this->loadConfig();
