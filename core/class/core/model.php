@@ -7,6 +7,10 @@
  */
 
 class CoreModel {
+    
+    /**
+     * @var Core
+     */
     public $core;
     public $db;        ///<    object for database
     

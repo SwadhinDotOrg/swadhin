@@ -54,8 +54,6 @@ class CoreController {
      * @return object of newly created class
      */
     public function loadForm($formName) {
-        // First include core form
-        require_once CORE_DIR . 'class/CoreForm.php';
         // Now include particular form
         $classPath = FORMS_DIR . $formName. '.php';
         require $classPath;

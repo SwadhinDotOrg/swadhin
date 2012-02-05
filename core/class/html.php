@@ -1,11 +1,7 @@
 <?php
 
 // Constants
-// MsgBox Status related
-define('MSGBOX_INFO', 0);
-define('MSGBOX_SUCCESS', 1);
-define('MSGBOX_WARNING', 2);
-define('MSGBOX_ERROR', 3);
+
 
 /**
  * \brief Generate %HTML strings easily
@@ -14,6 +10,10 @@ define('MSGBOX_ERROR', 3);
  * 
  */
 class Html {
+    
+    public $title;      ///< Title of the document
+    public $head;       ///< Any string you want to appear in the <head></head> section
+    public $body;       ///< Any string you want to appear in the <body></body> section
 
     /**
      * Generate a single Table Row ( <tr> element)
@@ -166,9 +166,7 @@ class Html {
         // Does nothing!
     }
 
-//    public static function checkbox($name,$options,$value='',$attrArr=null,$breakStr = '<br />'){
-//        $str = 
-//    }
+
     //@}
 
     /**
@@ -210,6 +208,56 @@ class Html {
         $html .= "<div style = 'display:$display;' class = 'toggledDivs' id = '$divId'>";
         $html .= "$content</div><br />";
         return $html;
+    }
+    
+    
+    /**
+     * When echoing object of this class, generate the %HTML output!
+     */
+    
+    public function __toString(){
+        $html = $this->getHead();
+        
+        $html .= '<body>' . PHP_EOL;
+        $html .= $this->body . PHP_EOL;
+        $html .= '</body>' . PHP_EOL;
+        $html .= '</html>' . PHP_EOL;
+        
+        return $html;
+    }
+    
+    
+    /**
+     * returns just the <head></head> section.
+     */
+    
+    public function getHead(){
+        $html = '<html>' . PHP_EOL;
+        $html .= '<head>' . PHP_EOL;
+        $html .= '<title>' . $this->title . '</title>' . PHP_EOL;
+        $html .= $this->head . PHP_EOL;
+        $html .= '</head>' . PHP_EOL;
+        
+        return $html;
+    }
+    
+    /**
+     * Prints <head></head> section, and opens the <body> tag.
+     */
+    
+    public function startBody(){
+        echo $this->getHead() . PHP_EOL;
+        echo '<body>' . PHP_EOL;
+    }
+    
+    
+    /**
+     * Exits, closing the </body> and rest of the tags!
+     */
+    
+    public function done(){
+        echo '</body></html>';
+        exit();
     }
 
 }

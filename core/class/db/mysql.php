@@ -13,7 +13,7 @@
  * @author Shafiul Azam
  */
 
-class MySQL extends GenericDB{
+class DbMysql extends DbGeneric{
     
     
     /**
@@ -83,19 +83,6 @@ class MySQL extends GenericDB{
         }
     }
     
-    public function updateArraySingleIdentifier($identifier_column, $identifier_value) {
-        $fields = $values = array();
-        $this->query = "UPDATE `" . $this->table . "` SET ";
-        foreach (array_keys($this->data) as $key) {
-            $this->query .= "`$key` = ";
-            $this->query .= "'" . mysql_real_escape_string($this->data[$key]) . "', ";
-        }
-        $this->query = substr($this->query, 0, strlen($this->query) - 2);
-        $this->query .= " WHERE `$identifier_column` = '" . $identifier_value . "'";
-        $result = mysql_query($this->query);
-        $this->debug();
-        return $result;
-    }
     
     public function updateArray($columnToEncrypt = "", $valueToEncrypt = "") {
         $fields = $values = array();

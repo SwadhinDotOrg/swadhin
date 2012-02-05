@@ -1,6 +1,6 @@
 <?php
 
-// define some constants
+// Define some constants
 
 define('AUTOLOAD_MODEL','model');
 define('AUTOLOAD_GENERAL_FUNCS', 'generalfuncs');
@@ -20,7 +20,7 @@ class Config {
      * @var mixed - Key-Value pair Array. 
      */
     public $db = array(
-        'driver' => 'MySQL',
+        'driver' => 'mysql',            ///< Possible values: 'mysql'
         'host' => 'localhost',
         'username' => 'root',
         'password' => '',
@@ -191,4 +191,16 @@ define('FORMS_DIR', VIEW_DIR . "forms/");   //  Directory where your HTML forms 
 define('THIRDPARTY_DIR', PROJECT_DIR . '3rdparty/');
 
 //@}
+
+
+// Other Constants
+
+// MsgBox Status related
+
+define('MSGBOX_INFO', 0);
+define('MSGBOX_SUCCESS', 1);
+define('MSGBOX_WARNING', 2);
+define('MSGBOX_ERROR', 3);
+
+
 ?>

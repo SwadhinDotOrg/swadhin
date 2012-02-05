@@ -16,9 +16,10 @@
 error_reporting(E_ALL);             // Turning on error reporting
 ini_set('display_errors', '1');
 
+define('TESTING_PHPIZZA', true);    // Set true when Unit Testing PHPizza. Must be set to FALSE in all other cases!
+
 if(TESTING_PHPIZZA)
     session_start();
-
 
 
 // Calculation of time taken to generate the page

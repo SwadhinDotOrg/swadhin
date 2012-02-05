@@ -2,45 +2,48 @@
 
 // define some paths
 // Include required Classes
-require CORE_DIR . 'class/Html.php';
-require CORE_DIR . 'class/Funcs.php';
-
-require CORE_DIR . 'class/CoreValidator.php';
-
 // Helper Functions
 require CORE_DIR . 'funcs/general.php';
 
-// Required Custom Classes
-require CUSTOM_DIR . 'class/Validator.php';
-
-// Autoloader
-
-/**
- * Autoloading Custom Classes - custom classes exist in custom/class directory.
- * @param type $className 
- */
-function __autoload($className) {
-    require CUSTOM_DIR . "class/$className.php";
-}
+// Include Error Handler
+require 'error.php';
 
 /**
  * Initiates Pizza!
  */
 final class PHPizza {
 
+    /**
+     * @var Core 
+     */
     private $core;
+    protected $errorHandler;
     public $view;
     public $validate;
 
     /**
-     * Fire up PHPizza Core!
+     * Set up necessary environments & fire-up PHPizza Core!
      */
     function __construct($config=false) {
-        if(!$config)
+
+        // set Error & Exception Handler
+
+        $this->errorHandler = new Error();
+
+        set_exception_handler(array($this->errorHandler, 'exceptionHandler'));
+        set_error_handler(array($this->errorHandler, 'errorHandler'), E_ERROR | E_WARNING | E_PARSE);
+
+        // Set up autoload function
+
+        spl_autoload_register(array($this, 'autoloadHandler'));
+
+        // Create configurations
+
+        if (!$config)
             $config = Config::getInstance();
-        
+
         $this->core = new Core($config);
-        
+
         $this->view = $this->core->view;
         $this->validate = $this->core->validate;
     }
@@ -50,6 +53,16 @@ final class PHPizza {
      */
     public function loadMVC($page) {
         $this->core->loadMVC($page);
+    }
+
+    /**
+     *
+     * @param type $classname 
+     */
+    public function autoloadHandler($classname) {
+        $path = strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $classname));
+//        echo 'Trying to ' . $classname . ' |FOR| ' . $path . '<br />';
+        require $path . '.php';
     }
 
 }
@@ -64,10 +77,24 @@ final class PHPizza {
  */
 class Core {
 
+    /**
+     * @var Funcs 
+     */
     public $funcs;  ///<    An object of class: Funcs
-//    public $html;   ///<    An object of class: HTML
+    /**
+     *
+     * @var Validator
+     */
     public $validate;   ///<    An object of class:  Validator 
+    /**
+     *
+     * @var View
+     */
     public $view;   ///<    An object of class: CustomView
+    /**
+     *
+     * @var Controller
+     */
     public $controller; ///<    An object of class: Controller
     public $page;   ///<    cotains "The Page" - see documentation for more details
     public $functionToCall; ///<  contains the name of the function of constructor to call.
@@ -78,9 +105,13 @@ class Core {
     public $data;  ///<    Key-value array for containing variables.
     public $cData; ///<    data passing from Controller to View class
     public $isStatic; ///< true if the page is static: no controller to load, view automatically called.
-    // Load sttus
+    // Load staus
     public $controllerLoaded = false;   ///<    Boolean, true if controller class loaded.
-    public $viewLoaded = false;         ///<    Boolean, true if view class loaded.   
+    public $viewLoaded = false;         ///<    Boolean, true if view class loaded.  
+    /**
+     *
+     * @var Config
+     */
     private $config = null;
     // vars for internal use. Don't use/depend on any of these in your code
 
@@ -124,18 +155,18 @@ class Core {
      */
     private function loadConfig() {
         $this->__dbconfig = $this->config->db;
-        if(!TESTING_PHPIZZA)
+        if (!TESTING_PHPIZZA)
             $this->config->db = null;
-        
+
         // Generate some constants
         define('BASE_URL', $this->config->base_url);
-        
+
         define('TEMPLATE_DIR', PROJECT_DIR . 'templates/');
         define('TEMPLATE_URL', BASE_URL . 'templates/');    // Used for generateing CSS, JS, Images etc. locations
         define('JS_URL', BASE_URL . 'client/js/');
         define('FILES_DIR', PROJECT_DIR . 'files/');
         define('FILES_URL', BASE_URL . 'files/');
-        
+
         define('SITE_THEME', $this->config->site_theme);
         define('DEBUG_MODE', $this->config->debug_mode);
         define('NICE_URL_ENABLED', $this->config->nice_url_enabled);
@@ -198,8 +229,6 @@ class Core {
      * @param string $controller name of the controller class
      */
     private function loadController($controller) {
-        // Load Core Controller
-        require CORE_DIR . 'class/CoreController.php';
         // Load this specific controller
         $filename = CONTROL_DIR . $controller . '.php';
         $this->controllerLoaded = true;
@@ -223,8 +252,6 @@ class Core {
     public function loadView($view='') {
         if (empty($view))
             $view = $this->page;
-        // First, load the CoreView Class
-        require CORE_DIR . 'class/CoreView.php';
         // Next, load template class from template folder
         $template = $this->template;
         require TEMPLATE_DIR . $template . '/Template.php';
@@ -258,9 +285,6 @@ class Core {
      * @param string $driver name of the database driver, i.e MySQL
      */
     public function loadDatabaseDriver() {
-        require_once CORE_DIR . 'class/db/GenericDB.php';   //  Generic database loaded
-        // Load implemented driver
-        require_once CORE_DIR . 'class/db/' . $this->__dbconfig['driver'] . '.php';
     }
 
     /* Template Related */
@@ -513,8 +537,6 @@ class Core {
         }
         // MODELS
         if (isset($this->config->autoloads[AUTOLOAD_MODEL])) {
-            // First include once core model class
-            require_once CORE_DIR . 'class/CoreModel.php';
             // Load DB driver
             $this->loadDatabaseDriver();
             $this->oneModelLoaded = true;
@@ -536,13 +558,14 @@ class Core {
      * Generate FATAL Errors - terminates execution immediately printing the error message.
      * @param type $msg 
      */
-    public function fatal($msg,$triggerError=true) {
-        if($triggerError){
-            trigger_error($msg, E_USER_ERROR);
-        }
-        echo '<html><head><title>Fatal Framework Error</title></head><body>';
-        echo Html::msgbox($msg, MSGBOX_ERROR);
-        echo '</body></html>';
+    public function fatal($msg, $triggerError=true) {
+        throw new Exception($msg);
+//        if ($triggerError) {
+//            trigger_error($msg, E_USER_ERROR);
+//        }
+//        echo '<html><head><title>Fatal Framework Error</title></head><body>';
+//        echo Html::msgbox($msg, MSGBOX_ERROR);
+//        echo '</body></html>';
         exit();
     }
 
@@ -551,7 +574,7 @@ class Core {
      * @return object - implementation of GenericDB i.e. MySQL
      */
     public function getDb() {
-        $driver = $this->__dbconfig['driver'];
+        $driver = 'Db' . ucfirst($this->__dbconfig['driver']);
         $db = new $driver($this->__dbconfig);
         return $db;
     }

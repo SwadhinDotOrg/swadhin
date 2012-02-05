@@ -7,7 +7,7 @@
  */
 
 
-abstract class GenericDB{
+abstract class DbGeneric{
     
     public $table = "";  ///< Name of the table (schema) on which db operation will take place
     public $data = null;   ///<  Key-value pair of Data to insert/update
