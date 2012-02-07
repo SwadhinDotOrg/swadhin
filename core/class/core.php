@@ -1,7 +1,5 @@
 <?php
 
-// define some paths
-// Include required Classes
 // Helper Functions
 require CORE_DIR . 'funcs/general.php';
 
@@ -31,7 +29,7 @@ final class PHPizza {
         $this->errorHandler = new Error();
 
         set_exception_handler(array($this->errorHandler, 'exceptionHandler'));
-        set_error_handler(array($this->errorHandler, 'errorHandler'), E_ERROR | E_WARNING | E_PARSE);
+        set_error_handler(array($this->errorHandler, 'errorHandler'), (E_ALL | E_STRICT) & ~E_NOTICE );
 
         // Set up autoload function
 
@@ -185,24 +183,18 @@ class Core {
     /* Loaders */
 
     /**
-     * Use this function to Load a Model class. You can load any number of model classes.
+     * Use this function to Load a Model class. You can load any number of model classes by calling this function 
+     * many times.
      * 
-     * Call this function within your constructor. If not called, the default Model gets loaded automatically.
      * @param string $model name of the Model class. This class must reside under MODEL directory.
+     * \note If your model class is located in "MODEL/camel/case/class.php" use "CamelCaseClass" as this argument. Class name should be also "CamelCaseClass" 
      * @return object of newly loaded model.
      */
     public function loadModel($model) {
-        if (!$this->oneModelLoaded) {
-            // First include once core model class
-            require_once CORE_DIR . "class/CoreModel.php";
-            // Load DB driver
-            $this->loadDatabaseDriver();
-            $this->oneModelLoaded = true;
-        }
-
-        $filename = MODEL_DIR . $model . '.php';
+        $filename = MODEL_DIR . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $model)) . '.php';
         require_once $filename;
-        $className = end(explode('/', $model));
+        $tempVar = explode('/', $model);
+        $className = end($tempVar);
         $var = new $className($this);
         return $var;
     }
@@ -213,11 +205,13 @@ class Core {
      * @param string $block name of the file. This file must reside in VIEW/blocks/ directory. 
      * @return object of newly created block.
      */
+    
     public function loadBlock($block) {
 //        require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Blocks.php";
         $filename = VIEW_DIR . 'blocks/' . $block . '.php';
         require $filename;
-        $className = end(explode('/', $block));
+        $tempVar = explode('/', $block);
+        $className = end($tempVar);
         $var = new $className($this);
         return $var;
     }
@@ -237,7 +231,7 @@ class Core {
             // Also, generate the controller object & call "functionToCall"
             $this->generateControllerObject();  // Controller Called!
         } else {
-            $this->fatal('Error 404: Page Not Found');
+            throw new Exception('Error 404 - Page Not Found!');
         }
     }
 
@@ -267,9 +261,11 @@ class Core {
     }
 
     /**
-     * Call this from your controller to load a "Custom Class"
-     * THIS FUNCTION IS DEPRECATED - YOU DO NOT NEED TO CALL ANYTHING TO LOAD A CUSTOM CLASS, 
+     * Call this from your controller to load a class from custom/class directory. 
+     * 
+     * \note WARNING - YOU DO NOT NEED TO CALL ANYTHING TO LOAD A CUSTOM CLASS, 
      * THEY ARE AUTOMATICALLY LOADED!
+     * 
      * @param string $className name of the class. This class must reside in CUSTOM/class directory.
      * @return bool true in success, false otherwise 
      */
@@ -284,6 +280,7 @@ class Core {
      * Demo code is available at CustomModel class. So if your model class extends CustomModel, you do not need to call this function explicitly!
      * @param string $driver name of the database driver, i.e MySQL
      */
+    
     public function loadDatabaseDriver() {
     }
 
@@ -297,9 +294,11 @@ class Core {
      * @param string $theme name of the template
      * @return None
      */
+    
 //    public function setTemplate($theme){
 //        $this->template = $theme;
 //    }
+//    
     // Data passing across controller-view 
 
     /**
@@ -319,6 +318,7 @@ class Core {
      * @return variable you passed using setData() - if you provide valid ID
      * @return bool false - if you provide invalid ID
      */
+    
     public function getData($id) {
         if (isset($this->data[$id]))
             return $this->data[$id];
@@ -531,7 +531,7 @@ class Core {
         // Custom classes
         if (isset($this->config->autoloads[AUTOLOAD_CUSTOM_CLASS])) {
             foreach ($this->config->autoloads[AUTOLOAD_CUSTOM_CLASS] as $className) {
-                require CUSTOM_DIR . 'class/' . $className . '.php';
+                require CUSTOM_DIR . 'class/' . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $className)) . '.php';
                 $this->autoloadedData['custom'][$className] = new $className($this);
             }
         }
@@ -542,7 +542,7 @@ class Core {
             $this->oneModelLoaded = true;
             // Include all models
             foreach ($this->config->autoloads[AUTOLOAD_MODEL] as $className) {
-                require MODEL_DIR . $className . '.php';
+                require MODEL_DIR . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $className)) . '.php';
                 $this->autoloadedData['model'][$className] = new $className($this);
             }
         }

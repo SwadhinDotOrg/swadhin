@@ -27,7 +27,7 @@
  * In this class, you should then set $sessionVarName to 'my_auth' for example.
  */
 
-class Authentication{
+class LibAuthentication{
     public $core;
     public $urls;
     public $data = false;

@@ -1,21 +1,13 @@
 <?php
 
-/* Common MySQL usage class
-  Author: Shafiul Azam
-  ishafiul@gmail.com
- * Version: 1.0
- * Status: Development, buggy
- */
-
 /**
- * \brief database functionality class for MySQL
+ * \brief database functionality class for "mysql"
  * 
  * @author Shafiul Azam
  */
 
-class DbMysql extends DbGeneric{
-    
-    
+class DbMysql extends DbMysql_query_builder{
+        
     /**
      * Constructor, just calls connect()
      */
@@ -26,26 +18,24 @@ class DbMysql extends DbGeneric{
     }
     
     public function setError() {
-        $this->errorNo = mysql_errno($this->connectionID);
-        $this->errorMsg = mysql_error($this->connectionID);
+        $this->errorNo = mysql_errno($this->connection);
+        $this->errorMsg = mysql_error($this->connection);
     }
     
     public function connect($dbConfig) {
-        $this->connectionID = mysql_connect($dbConfig['host'], $dbConfig['username'], $dbConfig['password']);
-        if(!$this->connectionID){
+        $this->connection = mysql_connect($dbConfig['host'], $dbConfig['username'], $dbConfig['password']);
+        if(!$this->connection){
             $this->errorNo = 0;
             $this->errorMsg = "Connection Failed!";
 //            $this->debug();
-            echo "Database Error! For more information, set DEBUG on";
-            exit();
+            throw new Exception('Database Error: ' . $this->errorMsg);
         }
-        if($dbConfig['database'] && !mysql_select_db($dbConfig['database'], $this->connectionID)){
+        if($dbConfig['database'] && !mysql_select_db($dbConfig['database'], $this->connection)){
             $this->setError();
 //            $this->debug();
-            echo "Database Error! For more information, set DEBUG on";
-            exit();
+            throw new Exception('Database Error: ' . $this->errorMsg);
         }
-        return $this->connectionID;
+        return $this->connection;
     }
     
     /**
@@ -57,23 +47,9 @@ class DbMysql extends DbGeneric{
      *  - bool false for failure
      */
     
-    public function insertArray($columnToEncrypt = "", $valueToEncrypt = "") {
-        $table = $this->table;
-        $fields = $values = array();
-
-        foreach ($this->data as $key => $val) {
-            $fields[] = "`$key`";
-            $values[] = "'" . mysql_real_escape_string($val) . "'";
-        }
-
-        $fields = implode(",", $fields);
-        $values = implode(",", $values);
-        // Check for password types
-        if ($columnToEncrypt && $valueToEncrypt) {
-            $fields = $fields . ", $columnToEncrypt";
-            $values = $values . ", " . $this->encryptionFunction . "('" . mysql_real_escape_string($valueToEncrypt) . "')"; // stored using secured hash algorithm
-        }
-        $this->query = "INSERT INTO `$table` ($fields) VALUES ($values)";
+    public function insertArray() {
+        // Prepare Query
+        $this->insertArrayQuery();
         $result = mysql_query($this->query);
 //        $this->debug();
         if ($result) {
@@ -84,27 +60,10 @@ class DbMysql extends DbGeneric{
     }
     
     
-    public function updateArray($columnToEncrypt = "", $valueToEncrypt = "") {
-        $fields = $values = array();
-        $this->query = "UPDATE `" . $this->table . "` SET ";
-        foreach (array_keys($this->data) as $key) {
-            $this->query .= "`$key` = ";
-            $this->query .= "'" . mysql_real_escape_string($this->data[$key]) . "', ";
-        }
-        $this->query = substr($this->query, 0, strlen($this->query) - 2);
-        if($columnToEncrypt && $valueToEncrypt){
-            $this->query .= ', `' . $columnToEncrypt . '` = ' . $this->encryptionFunction . '(\'' . mysql_real_escape_string($valueToEncrypt) . '\')';
-        }
-        if($this->identifier){
-            $this->query .= " WHERE ";
-            $where = array();
-            foreach ($this->identifier as $k => $v) {
-                $where[] = "`$k` = '" . mysql_real_escape_string($v) . "'";
-            }
-            $this->query .= implode(" " . $this->joiner . " ", $where);
-        }
+    public function updateArray() {
+        // Generate Query
+        $this->updateArrayQuery();
         
-        $this->query .= " " . $this->rest;
         $result = mysql_query($this->query);
 //        $this->debug();
         return $result;
@@ -120,42 +79,9 @@ class DbMysql extends DbGeneric{
      */
     
     public function selectArray() {
-        $this->query = "SELECT ";
-        if (!$this->select) {
-            $this->query .= "*";
-        } else {
-            $this->query .= implode($this->select, ", ");
-        }
-        if(is_array($this->table)){
-            $tables = implode(', ', $this->table);
-            $this->query .= ' FROM ' . $tables;
-        }else{
-            $this->query .= " FROM `" . $this->table . "`";
-        }
+        // Generate Query
+        $this->selectArrayQuery();
         
-        if ($this->identifier) {
-            $this->query .= " WHERE ";
-            $sqll = "";
-            foreach ($this->identifier as $key => $i) {
-                $sqll[] = "$key = '" . mysql_real_escape_string($i) . "'";
-            }
-            $this->query .= implode($sqll, " " . $this->joiner . " ");
-        }
-        
-        if ($this->tableJoinIdentifier) {
-            if($this->identifier){
-                $this->query .= ' ' . $this->joiner . ' ';
-            }else{
-                $this->query .= " WHERE ";
-            }
-            $sqll = "";
-            foreach ($this->tableJoinIdentifier as $key => $i) {
-                $sqll[] = "$key = " . mysql_real_escape_string($i) . "";
-            }
-            $this->query .= implode($sqll, " " . $this->joiner . " ");
-        }
-        if ($this->rest)
-            $this->query .= " " . $this->rest;
         $result = mysql_query($this->query);
 //        $this->debug();
         if ($this->returnPointer) {
@@ -171,12 +97,9 @@ class DbMysql extends DbGeneric{
         // Must provide an identifier. 
         if(!$this->identifier)
             return false;
-        $this->query = "DELETE FROM `" . $this->table . "` WHERE";
-        $where = array();
-        foreach($this->identifier as $k=>$v){
-            $where[] = "`$k` = '" . mysql_real_escape_string($v) . "'";
-        }
-        $this->query .= implode($this->joiner, $where) . $this->rest;
+        
+        // Generate Query
+        $this->deleteQuery();
 
         $result = mysql_query($this->query);
 //        $this->debug();
@@ -187,15 +110,15 @@ class DbMysql extends DbGeneric{
         $this->query = 'SELECT COUNT(*) as pizzadbtotal FROM 
             `' . $this->table .'` ';
         if ($this->identifier) {
-            $this->query .= " WHERE ";
-            $sqll = "";
+            $this->query .= ' WHERE ';
+            $partialQuery = '';
             foreach ($this->identifier as $key => $i) {
-                $sqll[] = "$key = '" . mysql_real_escape_string($i) . "'";
+                $partialQuery[] = $key . ' = \'' . mysql_real_escape_string($i) . '\'';
             }
-            $this->query .= implode($sqll, " " . $this->joiner . " ");
+            $this->query .= implode($partialQuery, ' ' . $this->joiner . ' ');
         }
         if ($this->rest)
-            $this->query .= " " . $this->rest;
+            $this->query .= ' ' . $this->rest;
         $result = mysql_query($this->query);
         $row = mysql_fetch_assoc($result);
         return $row['pizzadbtotal'];

@@ -16,9 +16,11 @@
 error_reporting(E_ALL);             // Turning on error reporting
 ini_set('display_errors', '1');
 
-define('TESTING_PHPIZZA', true);    // Set true when Unit Testing PHPizza. Must be set to FALSE in all other cases!
+//ini_set('xdebug.auto_trace', 1);
 
-if(TESTING_PHPIZZA)
+define('TESTING_PHPIZZA', false);    // Set true when Unit Testing PHPizza. Must be set to FALSE in all other cases!
+
+if(TESTING_PHPIZZA && !session_id())
     session_start();
 
 

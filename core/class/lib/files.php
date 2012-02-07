@@ -23,7 +23,7 @@ define('FILE_MULEXT_FILTER',9);     ///< Delete all extentions but the last one.
  */
 
 
-class Files{
+class LibFiles{
     
     public $name;                       ///< "name" attribute of the <input> tag used for the file
     public $targetDir;                  ///< directory to which the file would be copied, WITHOUT ANY TRAILING SLASH (/)

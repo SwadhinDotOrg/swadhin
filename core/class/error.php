@@ -1,40 +1,51 @@
 <?php
 
-
 /**
  * Error & Exception Handler
  */
+class Error {
 
-class Error{
-    
     public function exceptionHandler($e) {
-        echo 'PizzaError: ' . $e->getMessage();
+        $errorMsg = 'Uncaught Exception ' . $e->getCode() . ': <b style="color:red;">' . $e->getMessage() . '</b>
+            <br /> 
+            in <i>' . $e->getFile() . ' (Line ' . $e->getLine() . ')</i>';
+        
+        $this->output('Uncaught Exception', $errorMsg);
     }
 
     public function errorHandler($errno, $errstr, $errfile, $errline) {
+        $errorMsg = 'Error ' . $errno . ': <b style="color:red;">' . $errstr . '</b> 
+            <br />
+            in <i>' . $errfile . ' (Line ' . $errline . ') </i>';
         
+        $this->output('Error', $errorMsg);
+    }
+
+    public function output($title, $msg) {
+
         $html = new Html();
-        $html->title = 'Oops!';
+        $html->title = $title . ' | PHPizza';
         $html->startBody();
+
+        echo '<div>';
+        echo $msg;
+        echo '</div>';
         
-        $errorMsg = 'Error ' . $errno . ': ' . $errstr . ' <br />in ' . $errfile . ' (Line ' . $errline . ')';
-        echo $errorMsg;
         echo '<br /><br />';
-        
-        if(function_exists('xdebug_print_function_stack')){
+        echo '<textarea style="background:#FFF380; color:blue;" cols="150" rows = "20">';
+
+        if (function_exists('xdebug_print_function_stack')) {
             ini_set('xdebug.trace_format', 2);
-            
-            echo '<textarea cols="150" rows = "20">';
             xdebug_print_function_stack();
-            echo '</textarea>';
-        }else{
+        } else {
             debug_print_backtrace();
-            echo '<br /><br />';
-            echo HTML::a('http://xdebug.org/', 'You can optionally install XDebug!');
         }
-        
+
+        echo '</textarea>';
+
         $html->done();
     }
+
 }
 
 ?>

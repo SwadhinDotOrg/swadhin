@@ -13,9 +13,6 @@
 
 class Validator extends CoreValidator {
     
-    
-    
-    
 }
 
 ?>

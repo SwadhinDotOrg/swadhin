@@ -48,7 +48,7 @@ class UserModel extends CoreModel{
         if($this->ifExist($identifier)){
             return false;
         }else{
-            return $this->insertWithPassword($data, 'password', $password);
+            return $this->insert($data, array('password' => $password));
         }
     }
     

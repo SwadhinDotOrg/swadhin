@@ -20,7 +20,8 @@ class Config {
      * @var mixed - Key-Value pair Array. 
      */
     public $db = array(
-        'driver' => 'mysql',            ///< Possible values: 'mysql'
+//        'driver' => 'mysql',            ///< Possible values: 'mysql' 'pdo_mysql'
+        'driver' => 'pdo_mysql',            ///< Possible values: 'mysql' 'pdo_mysql'
         'host' => 'localhost',
         'username' => 'root',
         'password' => '',

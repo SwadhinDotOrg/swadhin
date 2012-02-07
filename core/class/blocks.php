@@ -1,21 +1,20 @@
 <?php
 
 /**
- * \brief Custom Class: For generating common-styled %HTML blocks.
+ * \brief Generate %HTML blocks.
  * 
  * Use this function to generate %HTML blocks - mostly to use in your Template 's sidebars.
  * 
- * Generally, this class creates generated %HTML when calling the create() function. Generated %HTML contains:
+ * \note To override this class, simply copy this file to custom/class/ directory and make any 
+ * changes you want.
+ * 
+ * This class is helpful to generate common-style %HTML. Call $this->create() function to get generated %HTML. 
+ * Generated %HTML contains:
  *  - A title for the block
  *  - Arbitrary (optional) html
- *  - A list with items (mostly, links)
+ *  - %HTML list
  *  - Arbitrary (optional) html 
  * 
- * @author Shafiul Azam
- * 
- * Not important. Just create block-htmls to be printed in your page. In sidebars, for example?
- * 
- * This class can generate %HTML: A heading, list of clickable items, and arbritary %HTML
  */
 
 class Blocks extends Html {

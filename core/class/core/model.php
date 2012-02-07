@@ -9,10 +9,13 @@
 class CoreModel {
     
     /**
-     * @var Core
+     * @var $core Core
      */
     public $core;
-    public $db;        ///<    object for database
+    
+    /** @var $db DbGeneric */
+    
+    public $db;       ///<    object for database
     
     /**
      * You should call this function as the first line within your MODEL class's constructor.
@@ -54,8 +57,10 @@ class CoreModel {
      * @return type 
      */
     
-    public function insert($data){
+    public function insert($data, $encryptedData=null){
         $this->db->data = $data;
+        $this->db->encryptedData = $encryptedData;
+        
         return $this->db->insertArray();
     }
     
