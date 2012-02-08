@@ -16,6 +16,8 @@
 error_reporting(E_ALL);             // Turning on error reporting
 ini_set('display_errors', '1');
 
+
+
 //ini_set('xdebug.auto_trace', 1);
 
 define('TESTING_PHPIZZA', false);    // Set true when Unit Testing PHPizza. Must be set to FALSE in all other cases!

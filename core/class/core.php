@@ -208,7 +208,7 @@ class Core {
     
     public function loadBlock($block) {
 //        require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Blocks.php";
-        $filename = VIEW_DIR . 'blocks/' . $block . '.php';
+        $filename = VIEW_DIR . 'blocks/' . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $block)) . '.php';
         require $filename;
         $tempVar = explode('/', $block);
         $className = end($tempVar);
@@ -248,7 +248,7 @@ class Core {
             $view = $this->page;
         // Next, load template class from template folder
         $template = $this->template;
-        require TEMPLATE_DIR . $template . '/Template.php';
+        require TEMPLATE_DIR . $template . '/template.php';
         // Load the specific VIEW class.
         $filename = VIEW_DIR . 'pages/' . $view . '.php';
         $this->viewLoaded = true;

@@ -38,7 +38,8 @@ abstract class Template extends CoreView {
 
         // Set some other parameters
         $this->defaultCssArray = array('style', 'msg_styles');
-        $this->defaultJsArray = array('jquery/jquery_latest');
+//        $this->defaultJsArray = array('jquery/jquery_latest');
+        
         // a dummy headline
         $this->heading = "A dummy headline";
     }
@@ -92,10 +93,10 @@ abstract class Template extends CoreView {
                 break;
             case 'right':
                 // print general links
-                $i = $this->core->loadBlock("GeneralLinks");
+                $i = $this->core->loadBlock('General_links');
                 echo $i->get();
                 // print links to forms
-                $i = $this->core->loadBlock("FormLinks");
+                $i = $this->core->loadBlock('ExternalLinks');
                 echo $i->get();
                 break;
         }

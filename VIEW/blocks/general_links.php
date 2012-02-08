@@ -19,7 +19,7 @@
  * A demonstration-purpose class for presenting how to write a class to create blocks.
  */
 
-class FormLinks{
+class General_links{
     
     private $block; ///< ///< An instance of the custom class "Blocks" - created in the constructor for your convenience.
     
@@ -28,13 +28,29 @@ class FormLinks{
      */
     
     public function __construct() {
-        $this->block = new Blocks("Help Links");
+        $this->block = new Blocks("Examples");
         // Construct the Block! First construct links...
-        $linksArr = array(
-            anchor("doc/html", "Class Documentation"),
-            anchor("http://pizzamvc.com", "Project Homepage")
+        // Static links (nested)
+        $staticPages = $this->block->li(array(
+            anchor_static("sample/demo2", "sample/demo2"),
+            anchor_static("demo1", "demo1")
+        ));
+        $generalPages = $this->block->li(array(
+            anchor("index", "home"),
+            anchor("sample/demo1", "sample/demo1"),
+            anchor("simple_validator","Simple Validator"),
+            anchor("many_views","Dynamic views")
+        ));
+        $formPages = $this->block->li(array(
+            anchor("registration", "Registration (automatic form process)"),
+            anchor("login", "login (manual form process)"),
+        ));
+        // Finally, set the items
+        $this->block->items = array(
+            "General pages $generalPages",
+            "Static Pages $staticPages",
+            "Forms $formPages"
         );
-        $this->block->items = $linksArr;
     }
     
     /**

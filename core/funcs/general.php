@@ -119,7 +119,13 @@ function filePath($filePath) {
  */
 
 function anchor($url, $text) {
-    return '<a href = "' . url($url). '">' . $text . '</a>';
+    
+    
+    
+    if(!preg_match('@^(https?|ftp)://@', $url))
+            $url = url($url);
+    
+    return '<a href = "' . $url. '">' . $text . '</a>';
 }
 
 /**
