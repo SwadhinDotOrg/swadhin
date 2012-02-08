@@ -23,8 +23,9 @@ abstract class DbGeneric {
     public $returnPointer = true;  ///<     Return pointer/single data from "select" operations. If set to false, only a single row of database will be returned in the form of an associative array.  
     public $returnInsertID = true;  ///< Boolean, whether returns "Insert ID" for select command. 
     public $connection = null;    ///<    Connection identifier after successful database connection
-    public $statement = null; ///< For using in drivers which support statements. \see http://www.php.net/manual/en/class.pdostatement.php
     
+    public $statement = null; ///< For using in drivers which support statements. \see http://www.php.net/manual/en/class.pdostatement.php
+    public $result  = null;     ///< For storing result-pointer after executing various instructions.
     public $fetchCallback = null;       ///< Callback for fetching each row, iteratively
     public $fetchArg1 = null;           ///< 1st Argument/Parameter to $fetchCallback
     // Functions to implement
@@ -67,7 +68,7 @@ abstract class DbGeneric {
      * DELETE row(s) from schema $this->table WHERE $this->identifier are joined by $this->joiner followed by $this->rest
      * @return bool true for success, false for failure
      */
-    abstract public function delete();
+    abstract public function deleteArray();
     
     /**
      * @name Fetching Rows after selectArray()

@@ -20,8 +20,7 @@ class DbPdo_mysql extends DbMysql_query_builder {
         // set escape callback
 //        $this->escapeCallback = array($this->connection, 'quote');  // Found some problems regarding implementing in DbMysql_query_builder class.
         $this->escapeCallback = 'addslashes';  // Use this method instead.
-        // set row-fetch callback
-        $this->fetchCallback = array($this->statement, 'fetch');
+        // set row-fetch callback parameter
         $this->fetchArg1 = $this->fetchStyle;
     }
 
@@ -59,7 +58,7 @@ class DbPdo_mysql extends DbMysql_query_builder {
         $this->selectArrayQuery();
         $this->statement = $this->connection->query($this->query);
         if ($this->statement === false)
-            throw new Exception('[PHPizza] Error occured in selecting from database');
+            throw new Exception('[PHPizza] Error occured in SELECTing from database');
 
         // Set fetch callbacks
         $this->fetchCallback = array($this->statement, 'fetch');
@@ -71,11 +70,11 @@ class DbPdo_mysql extends DbMysql_query_builder {
             return $this->statement->fetch($this->fetchStyle);
     }
 
-    public function delete() {
+    public function deleteArray() {
         // Must provide an identifier. 
         if (!$this->identifier)
             return false;
-        $this->deleteQuery();
+        $this->deleteArrayQuery();
         return $this->affectedRows = $this->connection->exec($this->query);
     }
     

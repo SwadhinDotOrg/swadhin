@@ -32,7 +32,7 @@ class Error {
         echo '</div>';
         
         echo '<br /><br />';
-        echo '<textarea style="background:#FFF380; color:blue;" cols="150" rows = "20">';
+//        echo '<textarea style="background:#FFF380; color:blue;" cols="150" rows = "20">';
 
         if (function_exists('xdebug_print_function_stack')) {
             ini_set('xdebug.trace_format', 2);
@@ -41,7 +41,7 @@ class Error {
             debug_print_backtrace();
         }
 
-        echo '</textarea>';
+//        echo '</textarea>';
 
         $html->done();
     }

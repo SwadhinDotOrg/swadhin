@@ -7,7 +7,6 @@
 abstract class DbMysql_query_builder extends DbGeneric {
 
     public $dbengine;       ///< Probably "mysql" or "pdo" etc.
-    
     protected $escapeCallback = null;       ///< Which callback to use for escaping inputs
 
     /**
@@ -33,7 +32,7 @@ abstract class DbMysql_query_builder extends DbGeneric {
 
         $fields = implode(",", $fields);
         $values = implode(",", $values);
-        
+
         $this->query = 'INSERT INTO `' . $this->table . '` (' . $fields . ') VALUES (' . $values . ')';
     }
 
@@ -44,7 +43,7 @@ abstract class DbMysql_query_builder extends DbGeneric {
         $fields = $values = array();
         $this->query = 'UPDATE `' . $this->table . '` SET ';
 
-        foreach ($this->data as $key=>$val) {
+        foreach ($this->data as $key => $val) {
             $this->query .= '`' . $key . '` = ';
             $this->query .= '\'' . mysql_real_escape_string($val) . '\', ';
         }
@@ -115,13 +114,31 @@ abstract class DbMysql_query_builder extends DbGeneric {
     /**
      * Generate query delete()
      */
-    public function deleteQuery() {
+    public function deleteArrayQuery() {
         $this->query = 'DELETE FROM `' . $this->table . '` WHERE';
         $where = array();
         foreach ($this->identifier as $k => $v) {
             $where[] = '`' . $k . '` = \'' . call_user_func_array($this->escapeCallback, array($v)) . '\'';
         }
         $this->query .= implode($this->joiner, $where) . $this->rest;
+    }
+
+    /**
+     * Generate query for: counting number of rows for a select statement.
+     */
+    public function countAllQuery() {
+        $this->query = 'SELECT COUNT(*) as pizzadbtotal FROM 
+            `' . $this->table . '` ';
+        if ($this->identifier) {
+            $this->query .= ' WHERE ';
+            $partialQuery = '';
+            foreach ($this->identifier as $key => $i) {
+                $partialQuery[] = $key . ' = \'' . call_user_func_array($this->escapeCallback, array($i)) . '\'';
+            }
+            $this->query .= implode($partialQuery, ' ' . $this->joiner . ' ');
+        }
+        if ($this->rest)
+            $this->query .= ' ' . $this->rest;
     }
 
     /**
