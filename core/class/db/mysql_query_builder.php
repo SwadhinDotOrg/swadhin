@@ -7,6 +7,8 @@
 abstract class DbMysql_query_builder extends DbGeneric {
 
     public $dbengine;       ///< Probably "mysql" or "pdo" etc.
+    
+    protected $escapeCallback = null;       ///< Which callback to use for escaping inputs
 
     /**
      * Generates Query for insertArray()
@@ -19,19 +21,19 @@ abstract class DbMysql_query_builder extends DbGeneric {
 
         foreach ($this->data as $key => $val) {
             $fields[] = '`' . $key . '`';
-            $values[] = '\'' . mysql_real_escape_string($val) . '\'';
+            $values[] = '\'' . call_user_func_array($this->escapeCallback, array($val)) . '\'';
         }
 
         if ($this->encryptedData) {
             foreach ($this->encryptedData as $key => $val) {
                 $fields[] = '`' . $key . '`';
-                $values[] = $this->encryptionFunction . '(\'' . mysql_real_escape_string($val) . '\')';
+                $values[] = $this->encryptionFunction . '(\'' . call_user_func_array($this->escapeCallback, array($val)) . '\')';
             }
         }
 
         $fields = implode(",", $fields);
         $values = implode(",", $values);
-
+        
         $this->query = 'INSERT INTO `' . $this->table . '` (' . $fields . ') VALUES (' . $values . ')';
     }
 
@@ -50,7 +52,7 @@ abstract class DbMysql_query_builder extends DbGeneric {
         if ($this->encryptedData) {
             foreach ($this->encryptedData as $key => $val) {
                 $this->query .= '`' . $key . '` = ';
-                $this->query .= $this->encryptionFunction . '(\'' . mysql_real_escape_string($val) . '\')';
+                $this->query .= $this->encryptionFunction . '(\'' . call_user_func_array($this->escapeCallback, array($val)) . '\')';
             }
         }
 
@@ -60,7 +62,7 @@ abstract class DbMysql_query_builder extends DbGeneric {
             $this->query .= ' WHERE ';
             $where = array();
             foreach ($this->identifier as $k => $v) {
-                $where[] = '`$k` = \'' . mysql_real_escape_string($v) . '\'';
+                $where[] = '`$k` = \'' . call_user_func_array($this->escapeCallback, array($v)) . '\'';
             }
             $this->query .= implode(' ' . $this->joiner . ' ', $where);
         }
@@ -89,7 +91,7 @@ abstract class DbMysql_query_builder extends DbGeneric {
             $this->query .= ' WHERE ';
             $partialQuery = '';
             foreach ($this->identifier as $key => $i) {
-                $partialQuery[] = $key . ' = \'' . mysql_real_escape_string($i) . '\'';
+                $partialQuery[] = $key . ' = \'' . call_user_func_array($this->escapeCallback, array($i)) . '\'';
             }
             $this->query .= implode($partialQuery, ' ' . $this->joiner . ' ');
         }
@@ -102,7 +104,7 @@ abstract class DbMysql_query_builder extends DbGeneric {
             }
             $partialQuery = '';
             foreach ($this->tableJoinIdentifier as $key => $i) {
-                $partialQuery[] = $key . ' = ' . mysql_real_escape_string($i) . '';
+                $partialQuery[] = $key . ' = ' . call_user_func_array($this->escapeCallback, array($i)) . '';
             }
             $this->query .= implode($partialQuery, ' ' . $this->joiner . ' ');
         }
@@ -117,7 +119,7 @@ abstract class DbMysql_query_builder extends DbGeneric {
         $this->query = 'DELETE FROM `' . $this->table . '` WHERE';
         $where = array();
         foreach ($this->identifier as $k => $v) {
-            $where[] = '`' . $k . '` = \'' . mysql_real_escape_string($v) . '\'';
+            $where[] = '`' . $k . '` = \'' . call_user_func_array($this->escapeCallback, array($v)) . '\'';
         }
         $this->query .= implode($this->joiner, $where) . $this->rest;
     }

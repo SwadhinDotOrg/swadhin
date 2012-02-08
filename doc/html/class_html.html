@@ -26,8 +26,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.5 Beta</span></div>
-   <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework for Professional PHP Programmers</div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.2.1 Beta</span></div>
+   <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework written in PHP</div>
   </td>
  </tr>
  </tbody>
@@ -81,7 +81,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
 <div class="title">Html Class Reference</div>  </div>
 </div>
@@ -95,10 +97,16 @@ Inheritance diagram for Html:</div>
  <div class="center">
   <img src="class_html.png" usemap="#Html_map" alt=""/>
   <map id="Html_map" name="Html_map">
-<area href="class_blocks.html" title="Custom Class: For generating common-styled HTML blocks." alt="Blocks" shape="rect" coords="0,56,49,80"/>
+<area href="class_blocks.html" title="Generate HTML blocks." alt="Blocks" shape="rect" coords="0,56,49,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_html.html#a7516ca30af0db3cdbf9a7739b48ce91d">__toString</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_html.html#a8f8ff3b7f03a1da8a373eba211099939">getHead</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_html.html#ab8e8c47ea1a5df86db753df28cc294da">startBody</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_html.html#af4152c13a06d002f268af780c0433c3a">done</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_html.html#aec5a705ad11741d4e741910ebff8c52d">tr</a> ($td_array, $type='tr')</td></tr>
@@ -114,13 +122,62 @@ static&#160;</td><td class="memItemRight" valign="bottom"><b>a</b> ($url, $text)
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_html.html#a3fa36717fedce1058e47efb8e4094f05">select</a> ($name, $options, $selectedValue=&quot;&quot;, $attrArr=null)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_html.html#adacd575a4c22b9953e783d3be88e91c7">textarea</a> ($name, $attrArr=null, $value=&quot;&quot;)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_html.html#a857f1e1f6b54da299c24c32a3b540c21">dummy</a> ($name, $attrArr=null, $value='')</td></tr>
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada57e7bb7c152edad18fe2f166188691"></a><!-- doxytag: member="Html::$title" ref="ada57e7bb7c152edad18fe2f166188691" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_html.html#ada57e7bb7c152edad18fe2f166188691">$title</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Title of the document. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a687ea7fcd78263867b5bd34ed56b6379"></a><!-- doxytag: member="Html::$head" ref="a687ea7fcd78263867b5bd34ed56b6379" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_html.html#a687ea7fcd78263867b5bd34ed56b6379">$head</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Any string you want to appear in the &lt;head&gt;&lt;/head&gt; section. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26b9f9373f7bb79dfcf8a86dff086b45"></a><!-- doxytag: member="Html::$body" ref="a26b9f9373f7bb79dfcf8a86dff086b45" args="" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_html.html#a26b9f9373f7bb79dfcf8a86dff086b45">$body</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Any string you want to appear in the &lt;body&gt;&lt;/body&gt; section. <br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Generate HTML strings easily. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Shafiul Azam </dd></dl>
 
-<p>Definition at line <a class="el" href="_html_8php_source.html#l00016">16</a> of file <a class="el" href="_html_8php_source.html">Html.php</a>.</p>
+<p>Definition at line <a class="el" href="html_8php_source.html#l00012">12</a> of file <a class="el" href="html_8php_source.html">html.php</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a7516ca30af0db3cdbf9a7739b48ce91d"></a><!-- doxytag: member="Html::__toString" ref="a7516ca30af0db3cdbf9a7739b48ce91d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__toString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>When echoing object of this class, generate the HTML output! </p>
+
+<p>Definition at line <a class="el" href="html_8php_source.html#l00218">218</a> of file <a class="el" href="html_8php_source.html">html.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af4152c13a06d002f268af780c0433c3a"></a><!-- doxytag: member="Html::done" ref="af4152c13a06d002f268af780c0433c3a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">done </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Exits, closing the &lt;/body&gt; and rest of the tags! </p>
+
+<p>Definition at line <a class="el" href="html_8php_source.html#l00258">258</a> of file <a class="el" href="html_8php_source.html">html.php</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a857f1e1f6b54da299c24c32a3b540c21"></a><!-- doxytag: member="Html::dummy" ref="a857f1e1f6b54da299c24c32a3b540c21" args="($name, $attrArr=null, $value='')" -->
 <div class="memitem">
 <div class="memproto">
@@ -161,7 +218,26 @@ static&#160;</td><td class="memItemRight" valign="bottom"><b>a</b> ($url, $text)
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_html_8php_source.html#l00165">165</a> of file <a class="el" href="_html_8php_source.html">Html.php</a>.</p>
+<p>Definition at line <a class="el" href="html_8php_source.html#l00165">165</a> of file <a class="el" href="html_8php_source.html">html.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8f8ff3b7f03a1da8a373eba211099939"></a><!-- doxytag: member="Html::getHead" ref="a8f8ff3b7f03a1da8a373eba211099939" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">getHead </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>returns just the &lt;head&gt;&lt;/head&gt; section. </p>
+
+<p>Definition at line <a class="el" href="html_8php_source.html#l00234">234</a> of file <a class="el" href="html_8php_source.html">html.php</a>.</p>
 
 </div>
 </div>
@@ -213,7 +289,7 @@ static&#160;</td><td class="memItemRight" valign="bottom"><b>a</b> ($url, $text)
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated html </dd></dl>
 
-<p>Definition at line <a class="el" href="_html_8php_source.html#l00092">92</a> of file <a class="el" href="_html_8php_source.html">Html.php</a>.</p>
+<p>Definition at line <a class="el" href="html_8php_source.html#l00092">92</a> of file <a class="el" href="html_8php_source.html">html.php</a>.</p>
 
 </div>
 </div>
@@ -258,7 +334,7 @@ static&#160;</td><td class="memItemRight" valign="bottom"><b>a</b> ($url, $text)
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="class_html.html" title="Generate HTML strings easily.">Html</a> | generated html </dd></dl>
 
-<p>Definition at line <a class="el" href="_html_8php_source.html#l00061">61</a> of file <a class="el" href="_html_8php_source.html">Html.php</a>.</p>
+<p>Definition at line <a class="el" href="html_8php_source.html#l00061">61</a> of file <a class="el" href="html_8php_source.html">html.php</a>.</p>
 
 </div>
 </div>
@@ -313,7 +389,7 @@ static&#160;</td><td class="memItemRight" valign="bottom"><b>a</b> ($url, $text)
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated html </dd></dl>
 
-<p>Definition at line <a class="el" href="_html_8php_source.html#l00183">183</a> of file <a class="el" href="_html_8php_source.html">Html.php</a>.</p>
+<p>Definition at line <a class="el" href="html_8php_source.html#l00181">181</a> of file <a class="el" href="html_8php_source.html">html.php</a>.</p>
 
 </div>
 </div>
@@ -369,7 +445,26 @@ static&#160;</td><td class="memItemRight" valign="bottom"><b>a</b> ($url, $text)
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated html </dd></dl>
 
-<p>Definition at line <a class="el" href="_html_8php_source.html#l00112">112</a> of file <a class="el" href="_html_8php_source.html">Html.php</a>.</p>
+<p>Definition at line <a class="el" href="html_8php_source.html#l00112">112</a> of file <a class="el" href="html_8php_source.html">html.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab8e8c47ea1a5df86db753df28cc294da"></a><!-- doxytag: member="Html::startBody" ref="ab8e8c47ea1a5df86db753df28cc294da" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">startBody </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Prints &lt;head&gt;&lt;/head&gt; section, and opens the &lt;body&gt; tag. </p>
+
+<p>Definition at line <a class="el" href="html_8php_source.html#l00248">248</a> of file <a class="el" href="html_8php_source.html">html.php</a>.</p>
 
 </div>
 </div>
@@ -414,7 +509,7 @@ static&#160;</td><td class="memItemRight" valign="bottom"><b>a</b> ($url, $text)
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated html </dd></dl>
 
-<p>Definition at line <a class="el" href="_html_8php_source.html#l00148">148</a> of file <a class="el" href="_html_8php_source.html">Html.php</a>.</p>
+<p>Definition at line <a class="el" href="html_8php_source.html#l00148">148</a> of file <a class="el" href="html_8php_source.html">html.php</a>.</p>
 
 </div>
 </div>
@@ -473,7 +568,7 @@ static&#160;</td><td class="memItemRight" valign="bottom"><b>a</b> ($url, $text)
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string Generated HTML string for the toggable div (with $title as heading) </dd></dl>
 
-<p>Definition at line <a class="el" href="_html_8php_source.html#l00205">205</a> of file <a class="el" href="_html_8php_source.html">Html.php</a>.</p>
+<p>Definition at line <a class="el" href="html_8php_source.html#l00203">203</a> of file <a class="el" href="html_8php_source.html">html.php</a>.</p>
 
 </div>
 </div>
@@ -512,19 +607,19 @@ static&#160;</td><td class="memItemRight" valign="bottom"><b>a</b> ($url, $text)
 <p>element) </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | Generated html </dd></dl>
 
-<p>Definition at line <a class="el" href="_html_8php_source.html#l00023">23</a> of file <a class="el" href="_html_8php_source.html">Html.php</a>.</p>
+<p>Definition at line <a class="el" href="html_8php_source.html#l00023">23</a> of file <a class="el" href="html_8php_source.html">html.php</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/var/www/phpizza/core/class/<a class="el" href="_html_8php_source.html">Html.php</a></li>
+<li>/var/www/phpizza/core/class/<a class="el" href="html_8php_source.html">html.php</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_html.html">Html</a>      </li>
-      <li class="footer">Generated on Thu Jan 5 2012 22:00:14 for PHPizza by&#160;
+      <li class="footer">Generated on Wed Feb 8 2012 18:18:08 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

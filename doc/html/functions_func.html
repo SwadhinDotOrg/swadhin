@@ -26,8 +26,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.5 Beta</span></div>
-   <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework for Professional PHP Programmers</div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.2.1 Beta</span></div>
+   <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework written in PHP</div>
   </td>
  </tr>
  </tbody>
@@ -115,40 +115,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index__"></a>- _ -</h3><ul>
 <li>__construct()
 : <a class="el" href="class_config.html#a095c5d389db211932136b53f25f39685">Config</a>
-, <a class="el" href="class_template.html#a64585b415473be548941a9f4f12bb8ec">Template</a>
 , <a class="el" href="class_blocks.html#ac68dc278d7c57fbcbb675550c5a17fb6">Blocks</a>
-, <a class="el" href="class_authentication.html#a64585b415473be548941a9f4f12bb8ec">Authentication</a>
+, <a class="el" href="class_template.html#a64585b415473be548941a9f4f12bb8ec">Template</a>
+, <a class="el" href="class_lib_files.html#a095c5d389db211932136b53f25f39685">LibFiles</a>
+, <a class="el" href="class_lib_authentication.html#a64585b415473be548941a9f4f12bb8ec">LibAuthentication</a>
 , <a class="el" href="class_funcs.html#a64585b415473be548941a9f4f12bb8ec">Funcs</a>
-, <a class="el" href="class_my_s_q_l.html#a5a11a216c16de6f94c212ed68ffe493d">MySQL</a>
+, <a class="el" href="class_db_mysql.html#a5a11a216c16de6f94c212ed68ffe493d">DbMysql</a>
+, <a class="el" href="class_core_form.html#a2dbc5baa6b594a250153c161b2ed0177">CoreForm</a>
+, <a class="el" href="class_p_h_pizza.html#abb61736d097676e87ccfb94cb6d453f1">PHPizza</a>
 , <a class="el" href="class_core_validator.html#ab44ae4fc4025d16351e785929d2995e9">CoreValidator</a>
 , <a class="el" href="class_core_model.html#a64585b415473be548941a9f4f12bb8ec">CoreModel</a>
-, <a class="el" href="class_core_form.html#a2dbc5baa6b594a250153c161b2ed0177">CoreForm</a>
+, <a class="el" href="class_core.html#acf2ad978657d47ceab41038dc7d95737">Core</a>
 , <a class="el" href="class_core_controller.html#a64585b415473be548941a9f4f12bb8ec">CoreController</a>
-, <a class="el" href="class_core.html#a095c5d389db211932136b53f25f39685">Core</a>
-, <a class="el" href="class_p_h_pizza.html#a095c5d389db211932136b53f25f39685">PHPizza</a>
+</li>
+<li>__toString()
+: <a class="el" href="class_html.html#a7516ca30af0db3cdbf9a7739b48ce91d">Html</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
 <li>autoload()
-: <a class="el" href="class_core.html#ad37a5193b147f6d1c1dd4e8f4e1a7c2b">Core</a>
-, <a class="el" href="class_core_controller.html#a4664339838cbc76590f9b4408db9db8b">CoreController</a>
+: <a class="el" href="class_core_controller.html#a4664339838cbc76590f9b4408db9db8b">CoreController</a>
+, <a class="el" href="class_core.html#ad37a5193b147f6d1c1dd4e8f4e1a7c2b">Core</a>
 </li>
 <li>autoloadFromConfig()
 : <a class="el" href="class_core.html#ac6dba0f364a23c38b2a6fa78615a6f24">Core</a>
+</li>
+<li>autoloadHandler()
+: <a class="el" href="class_p_h_pizza.html#a4aa513a7b68226e84eab461651473dab">PHPizza</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
 <li>clear()
-: <a class="el" href="class_generic_d_b.html#aa821bec12eaa7e0f649397c9675ff505">GenericDB</a>
-, <a class="el" href="class_my_s_q_l.html#aa821bec12eaa7e0f649397c9675ff505">MySQL</a>
+: <a class="el" href="class_db_generic.html#aa821bec12eaa7e0f649397c9675ff505">DbGeneric</a>
 </li>
 <li>connect()
-: <a class="el" href="class_my_s_q_l.html#a81210588f20902bdb56c11141d2c97b8">MySQL</a>
-, <a class="el" href="class_generic_d_b.html#a81210588f20902bdb56c11141d2c97b8">GenericDB</a>
+: <a class="el" href="class_db_generic.html#a81210588f20902bdb56c11141d2c97b8">DbGeneric</a>
+, <a class="el" href="class_db_pdo__mysql.html#a81210588f20902bdb56c11141d2c97b8">DbPdo_mysql</a>
+, <a class="el" href="class_db_mysql.html#a81210588f20902bdb56c11141d2c97b8">DbMysql</a>
 </li>
 <li>create()
 : <a class="el" href="class_blocks.html#a435e7d7525d4bcd0ed5e34a469f3adf6">Blocks</a>
@@ -167,13 +174,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_funcs.html#a2872c585b25af93c5f01c8d31e1bfcd1">Funcs</a>
 </li>
 <li>debug()
-: <a class="el" href="class_core_controller.html#a3a56d16c16a5bea2ad3076829e652078">CoreController</a>
-, <a class="el" href="class_generic_d_b.html#aaed74f7942d3fc56582e99324500e87b">GenericDB</a>
-, <a class="el" href="class_core.html#a3a56d16c16a5bea2ad3076829e652078">Core</a>
+: <a class="el" href="class_core.html#a3a56d16c16a5bea2ad3076829e652078">Core</a>
+, <a class="el" href="class_db_generic.html#a33ab18b59ee26e6d9885487215f1390a">DbGeneric</a>
+, <a class="el" href="class_core_controller.html#a3a56d16c16a5bea2ad3076829e652078">CoreController</a>
 </li>
 <li>delete()
-: <a class="el" href="class_generic_d_b.html#a13bdffdd926f26b825ea57066334ff01">GenericDB</a>
-, <a class="el" href="class_my_s_q_l.html#a13bdffdd926f26b825ea57066334ff01">MySQL</a>
+: <a class="el" href="class_db_pdo__mysql.html#a13bdffdd926f26b825ea57066334ff01">DbPdo_mysql</a>
+, <a class="el" href="class_lib_files.html#a15820b1d46b29b55c8e5609ff7e67dc1">LibFiles</a>
+, <a class="el" href="class_db_generic.html#a13bdffdd926f26b825ea57066334ff01">DbGeneric</a>
+, <a class="el" href="class_db_mysql.html#a13bdffdd926f26b825ea57066334ff01">DbMysql</a>
+</li>
+<li>deleteQuery()
+: <a class="el" href="class_db_mysql__query__builder.html#a989448fa8ca962d6c1349688ae9d49d6">DbMysql_query_builder</a>
+</li>
+<li>done()
+: <a class="el" href="class_html.html#af4152c13a06d002f268af780c0433c3a">Html</a>
 </li>
 <li>doValidation()
 : <a class="el" href="class_core_form.html#a4a48be1dd6b79814f35bb8c6c88d7dee">CoreForm</a>
@@ -206,7 +221,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
 <li>fatal()
-: <a class="el" href="class_core.html#a1d9cccc0c0e5a06c4c1559a4df2215fa">Core</a>
+: <a class="el" href="class_core.html#a1aeb4327df8770fb4e38e7baa4940062">Core</a>
+</li>
+<li>fetch()
+: <a class="el" href="class_core_model.html#ad8567683f2e37b9ebb0618b333629501">CoreModel</a>
+, <a class="el" href="class_db_mysql.html#ae48cc10bd727774bb36203986ce3b176">DbMysql</a>
+, <a class="el" href="class_db_pdo__mysql.html#ae48cc10bd727774bb36203986ce3b176">DbPdo_mysql</a>
+, <a class="el" href="class_db_generic.html#ae48cc10bd727774bb36203986ce3b176">DbGeneric</a>
 </li>
 <li>findPage()
 : <a class="el" href="class_core.html#ae8187871ea55e2646ddc7f76f3483cc2">Core</a>
@@ -254,6 +275,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_core_form.html#a24ada5decce3d1b79cd82f5a90ccf404">CoreForm</a>
 , <a class="el" href="class_core_validator.html#a4ef66168963955e778acb341ba01deae">CoreValidator</a>
 </li>
+<li>getHead()
+: <a class="el" href="class_html.html#a8f8ff3b7f03a1da8a373eba211099939">Html</a>
+</li>
 <li>getInstance()
 : <a class="el" href="class_config.html#ac93fbec81f07e5d15f80db907e63dc10">Config</a>
 </li>
@@ -271,7 +295,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_core.html#afa8e7a3a646144eab50188b7a805a389">Core</a>
 </li>
 <li>globalValidation()
-: <a class="el" href="class_authentication.html#a64c110585cdbd98fb52699f0f5e5de3f">Authentication</a>
+: <a class="el" href="class_lib_authentication.html#a64c110585cdbd98fb52699f0f5e5de3f">LibAuthentication</a>
 </li>
 </ul>
 
@@ -295,20 +319,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="class_html.html#ab1fef8fd0c4bdb64f63c69c6866d9eb8">Html</a>
 </li>
 <li>insert()
-: <a class="el" href="class_core_model.html#a2e355627d2f4a96559f022c4ab82df3c">CoreModel</a>
+: <a class="el" href="class_core_model.html#a1857ff9857d7e680741dc2bc5a982098">CoreModel</a>
 </li>
 <li>insertArray()
-: <a class="el" href="class_generic_d_b.html#a8fddda94e9dcdd15d83dd5fae01e8292">GenericDB</a>
-, <a class="el" href="class_my_s_q_l.html#a8fddda94e9dcdd15d83dd5fae01e8292">MySQL</a>
+: <a class="el" href="class_db_pdo__mysql.html#a51d857c606eefa5a04b31bc7af7c8ada">DbPdo_mysql</a>
+, <a class="el" href="class_db_generic.html#a51d857c606eefa5a04b31bc7af7c8ada">DbGeneric</a>
+, <a class="el" href="class_db_mysql.html#a51d857c606eefa5a04b31bc7af7c8ada">DbMysql</a>
+</li>
+<li>insertArrayQuery()
+: <a class="el" href="class_db_mysql__query__builder.html#ad0e5675f4ce4018948373a4b47652236">DbMysql_query_builder</a>
 </li>
 <li>insertOnce()
 : <a class="el" href="class_core_model.html#a2da3860cc7158f00a8db322d7515dc4e">CoreModel</a>
 </li>
 <li>insertOrUpdate()
 : <a class="el" href="class_core_model.html#acc4429d2eef713bbc944c3a7a449e8d7">CoreModel</a>
-</li>
-<li>insertWithPassword()
-: <a class="el" href="class_core_model.html#ada3a2848b32e5e6879b4a39ae0eb5816">CoreModel</a>
 </li>
 </ul>
 
@@ -331,8 +356,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_core_controller.html#a4b5eef38ddaeac8b0a208e29bf3d81d4">CoreController</a>
 </li>
 <li>loadBlock()
-: <a class="el" href="class_core.html#af9cba21ff909ef91bf2a4ebad4daf7ae">Core</a>
-, <a class="el" href="class_core_controller.html#af9cba21ff909ef91bf2a4ebad4daf7ae">CoreController</a>
+: <a class="el" href="class_core_controller.html#af9cba21ff909ef91bf2a4ebad4daf7ae">CoreController</a>
+, <a class="el" href="class_core.html#af9cba21ff909ef91bf2a4ebad4daf7ae">Core</a>
 </li>
 <li>loadConfig()
 : <a class="el" href="class_core.html#abdaa11e402952f664e126c7097204733">Core</a>
@@ -353,8 +378,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_core_controller.html#a8da25279cb2f1b6c9b5aafb2bc831393">CoreController</a>
 </li>
 <li>loadModel()
-: <a class="el" href="class_core_controller.html#ab25941a477cf4f0f98439627cefbca08">CoreController</a>
-, <a class="el" href="class_core.html#ab25941a477cf4f0f98439627cefbca08">Core</a>
+: <a class="el" href="class_core.html#ab25941a477cf4f0f98439627cefbca08">Core</a>
+, <a class="el" href="class_core_controller.html#ab25941a477cf4f0f98439627cefbca08">CoreController</a>
 </li>
 <li>loadMVC()
 : <a class="el" href="class_core.html#ac6449e2b04a8adee7ff02056e85160e8">Core</a>
@@ -364,8 +389,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_core.html#a45a2dccc02668261cfe68a06fe683da4">Core</a>
 </li>
 <li>loadView()
-: <a class="el" href="class_core_controller.html#a0eb0e1e63fe9b1c603a5c5fda3192696">CoreController</a>
-, <a class="el" href="class_core.html#a0eb0e1e63fe9b1c603a5c5fda3192696">Core</a>
+: <a class="el" href="class_core.html#a0eb0e1e63fe9b1c603a5c5fda3192696">Core</a>
+, <a class="el" href="class_core_controller.html#a0eb0e1e63fe9b1c603a5c5fda3192696">CoreController</a>
 </li>
 </ul>
 
@@ -389,12 +414,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_n"></a>- n -</h3><ul>
 <li>numAffectedRows()
-: <a class="el" href="class_generic_d_b.html#a8fc2de2cb8e8947d2c71a6dfd6331745">GenericDB</a>
-, <a class="el" href="class_my_s_q_l.html#a8fc2de2cb8e8947d2c71a6dfd6331745">MySQL</a>
+: <a class="el" href="class_db_generic.html#a8fc2de2cb8e8947d2c71a6dfd6331745">DbGeneric</a>
+, <a class="el" href="class_db_mysql.html#a8fc2de2cb8e8947d2c71a6dfd6331745">DbMysql</a>
+, <a class="el" href="class_db_pdo__mysql.html#a8fc2de2cb8e8947d2c71a6dfd6331745">DbPdo_mysql</a>
 </li>
 <li>numReturnedRows()
-: <a class="el" href="class_generic_d_b.html#a5b75074d750c7e69445268e7d278a96d">GenericDB</a>
-, <a class="el" href="class_my_s_q_l.html#a5b75074d750c7e69445268e7d278a96d">MySQL</a>
+: <a class="el" href="class_db_generic.html#a5b75074d750c7e69445268e7d278a96d">DbGeneric</a>
+, <a class="el" href="class_db_mysql.html#a5b75074d750c7e69445268e7d278a96d">DbMysql</a>
+, <a class="el" href="class_db_pdo__mysql.html#a5b75074d750c7e69445268e7d278a96d">DbPdo_mysql</a>
 </li>
 </ul>
 
@@ -411,7 +438,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
 <li>redirectIfNotAuthenticated()
-: <a class="el" href="class_authentication.html#af259b198e57d38aed227638a4cd1d42e">Authentication</a>
+: <a class="el" href="class_lib_authentication.html#af259b198e57d38aed227638a4cd1d42e">LibAuthentication</a>
 </li>
 <li>replaceNonAlphaNumerics()
 : <a class="el" href="class_core_validator.html#adaf660074730e88210fe2d4731938652">CoreValidator</a>
@@ -430,8 +457,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_html.html#a3fa36717fedce1058e47efb8e4094f05">Html</a>
 </li>
 <li>selectArray()
-: <a class="el" href="class_my_s_q_l.html#a2df8487867011d4c37eef5e9fb543bae">MySQL</a>
-, <a class="el" href="class_generic_d_b.html#a2df8487867011d4c37eef5e9fb543bae">GenericDB</a>
+: <a class="el" href="class_db_mysql.html#a2df8487867011d4c37eef5e9fb543bae">DbMysql</a>
+, <a class="el" href="class_db_pdo__mysql.html#a2df8487867011d4c37eef5e9fb543bae">DbPdo_mysql</a>
+, <a class="el" href="class_db_generic.html#a2df8487867011d4c37eef5e9fb543bae">DbGeneric</a>
+</li>
+<li>selectArrayQuery()
+: <a class="el" href="class_db_mysql__query__builder.html#a56275cac135f5d7303e0677525b05c34">DbMysql_query_builder</a>
 </li>
 <li>sendToView()
 : <a class="el" href="class_core_form.html#aeda64fd46926abe5fdf70d6bbc8900c3">CoreForm</a>
@@ -443,8 +474,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_core_form.html#ac6ad8bdd681892a6f4b67923874fd38d">CoreForm</a>
 </li>
 <li>setError()
-: <a class="el" href="class_generic_d_b.html#a72b3035d4887e285a87b389f114c0563">GenericDB</a>
-, <a class="el" href="class_my_s_q_l.html#a72b3035d4887e285a87b389f114c0563">MySQL</a>
+: <a class="el" href="class_db_generic.html#a72b3035d4887e285a87b389f114c0563">DbGeneric</a>
+, <a class="el" href="class_db_mysql.html#a72b3035d4887e285a87b389f114c0563">DbMysql</a>
+, <a class="el" href="class_db_pdo__mysql.html#a72b3035d4887e285a87b389f114c0563">DbPdo_mysql</a>
 </li>
 <li>setSessData()
 : <a class="el" href="class_core_controller.html#ac5996fbd4894415433f7974c061b6ef0">CoreController</a>
@@ -459,6 +491,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>sidebar()
 : <a class="el" href="class_template.html#ac588dd5f4716e1e53c380dc05d9d96e9">Template</a>
 </li>
+<li>startBody()
+: <a class="el" href="class_html.html#ab8e8c47ea1a5df86db753df28cc294da">Html</a>
+</li>
 </ul>
 
 
@@ -470,7 +505,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_html.html#adacd575a4c22b9953e783d3be88e91c7">Html</a>
 </li>
 <li>time_sqlTime2unix()
-: <a class="el" href="class_my_s_q_l.html#a0bc39bf9fff8a4f800f0aa412594e5c5">MySQL</a>
+: <a class="el" href="class_db_mysql.html#a0bc39bf9fff8a4f800f0aa412594e5c5">DbMysql</a>
 </li>
 <li>toggleDiv()
 : <a class="el" href="class_html.html#a16f584dbbe6e3abd7fb5205ece2f97f8">Html</a>
@@ -490,10 +525,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_core_model.html#aa5172ba077cad609e9b35ef4ae2cee27">CoreModel</a>
 </li>
 <li>updateArray()
-: <a class="el" href="class_generic_d_b.html#a07a7ce5df8176fc0a751e4c44273e7a2">GenericDB</a>
+: <a class="el" href="class_db_generic.html#a07a7ce5df8176fc0a751e4c44273e7a2">DbGeneric</a>
+, <a class="el" href="class_db_mysql.html#a07a7ce5df8176fc0a751e4c44273e7a2">DbMysql</a>
+, <a class="el" href="class_db_pdo__mysql.html#a07a7ce5df8176fc0a751e4c44273e7a2">DbPdo_mysql</a>
+</li>
+<li>updateArrayQuery()
+: <a class="el" href="class_db_mysql__query__builder.html#a26c1e2127bf0885849349e8a6da6889d">DbMysql_query_builder</a>
 </li>
 <li>upload()
-: <a class="el" href="class_files.html#a160ae63d11b56d3190b172facb43a343">Files</a>
+: <a class="el" href="class_lib_files.html#a160ae63d11b56d3190b172facb43a343">LibFiles</a>
 </li>
 </ul>
 
@@ -507,7 +547,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="footer">Generated on Thu Jan 5 2012 22:00:14 for PHPizza by&#160;
+      <li class="footer">Generated on Wed Feb 8 2012 18:18:08 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>

@@ -37,19 +37,6 @@ class CoreModel {
     
     //{
     
-    /**
-     * Handy function to insert some data in database along with a "password" field. 
-     * Password field will be stored encrypted in your database.
-     * @param mixed $data - key-value pair of "database column name" as key & "data to insert" as value.
-     * @param string $passwordColumn - name of database column where password will be stored
-     * @param string $passwordValue - data to insert in password column.
-     * @return type 
-     */
-    
-    public function insertWithPassword($data,$passwordColumn,$passwordValue){
-        $this->db->data = $data;
-        return $this->db->insertArray($passwordColumn, $passwordValue);
-    }
     
     /**
      * Handy function to insert some data in database
@@ -164,6 +151,27 @@ class CoreModel {
 
 
     //}
+    
+    /**
+     * @name Retriving rows from database
+     */
+    
+    //@{
+    
+    /**
+     * \brief Return the next row from database, after executing selectArray()
+     * You should use this function in your model classes, to make your application datbase-independant.
+     * \see You can alternatively call \code $this->db->fetch() \endcode in you models. See DbGeneric::fetch()
+     * @param type $resource - does not do anything. Kept for possible future use.
+     * @return array - Associative array, where key is the column of database & value is value for that column.
+     */
+    
+    public function fetch($resource=null){
+        return call_user_func_array($this->db->fetchCallback, array($this->db->fetchArg1));
+    }
+
+
+    //@}
 }
 
 ?>

@@ -26,8 +26,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.1.5 Beta</span></div>
-   <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework for Professional PHP Programmers</div>
+   <div id="projectname">PHPizza&#160;<span id="projectnumber">1.2.1 Beta</span></div>
+   <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework written in PHP</div>
   </td>
  </tr>
  </tbody>
@@ -215,10 +215,10 @@ Private Attributes</h2></td></tr>
 <li>Creating web forms easily, withtout writing any HTML: within your Controller</li>
 <li>Send object of a form to View class</li>
 <li>Process submission of a form, &amp; perform validation</li>
-<li>If validation fails, automatically generate Error messages &amp; re-present form to user, keeping user provided data intact. </li>
+<li>If validation fails, automatically generate <a class="el" href="class_error.html">Error</a> messages &amp; re-present form to user, keeping user provided data intact. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00029">29</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="class_2core_2form_8php_source.html#l00029">29</a> of file <a class="el" href="class_2core_2form_8php_source.html">form.php</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a2dbc5baa6b594a250153c161b2ed0177"></a><!-- doxytag: member="CoreForm::__construct" ref="a2dbc5baa6b594a250153c161b2ed0177" args="($ob, $core)" -->
 <div class="memitem">
@@ -253,7 +253,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00078">78</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="class_2core_2form_8php_source.html#l00078">78</a> of file <a class="el" href="class_2core_2form_8php_source.html">form.php</a>.</p>
 
 </div>
 </div>
@@ -314,7 +314,7 @@ Private Attributes</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00296">296</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="class_2core_2form_8php_source.html#l00296">296</a> of file <a class="el" href="class_2core_2form_8php_source.html">form.php</a>.</p>
 
 </div>
 </div>
@@ -338,7 +338,7 @@ Private Attributes</h2></td></tr>
 </ul>
 <dl class="return"><dt><b>Returns:</b></dt><dd>none </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00095">95</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="class_2core_2form_8php_source.html#l00095">95</a> of file <a class="el" href="class_2core_2form_8php_source.html">form.php</a>.</p>
 
 </div>
 </div>
@@ -367,7 +367,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | validated user submitted data </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00184">184</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="class_2core_2form_8php_source.html#l00184">184</a> of file <a class="el" href="class_2core_2form_8php_source.html">form.php</a>.</p>
 
 </div>
 </div>
@@ -389,7 +389,7 @@ Private Attributes</h2></td></tr>
 <p>Call this function within your constructor to get VALIDATED user-submitted value of <b>all</b> form elements. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>array | key-value array where key is the "name" attribute of the element &amp; value is the user-submitted valid data. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00263">263</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="class_2core_2form_8php_source.html#l00263">263</a> of file <a class="el" href="class_2core_2form_8php_source.html">form.php</a>.</p>
 
 </div>
 </div>
@@ -416,7 +416,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string Display-name of the element. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00274">274</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="class_2core_2form_8php_source.html#l00274">274</a> of file <a class="el" href="class_2core_2form_8php_source.html">form.php</a>.</p>
 
 </div>
 </div>
@@ -434,9 +434,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Returns errors (if any) created while validating the form.</p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>string | Error string. Generated only if form submission failed. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string | <a class="el" href="class_error.html">Error</a> string. Generated only if form submission failed. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00201">201</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="class_2core_2form_8php_source.html#l00201">201</a> of file <a class="el" href="class_2core_2form_8php_source.html">form.php</a>.</p>
 
 </div>
 </div>
@@ -469,7 +469,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00128">128</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="class_2core_2form_8php_source.html#l00128">128</a> of file <a class="el" href="class_2core_2form_8php_source.html">form.php</a>.</p>
 
 </div>
 </div>
@@ -520,7 +520,7 @@ Private Attributes</h2></td></tr>
 <p>Validation functions are located in <a class="el" href="class_core_validator.html" title="Validates user-submitted inputs.">CoreValidator</a> (in core/class directory) &amp; <a class="el" href="class_validator.html" title="Your custom validation functions.">Validator</a> (in custom/class directory) classes. You can define your own validation functions in <a class="el" href="class_validator.html" title="Your custom validation functions.">Validator</a> class.</p>
 <p>You can get complete examples in Login &amp; Registration class (see source code: Login::createElements() Registration::createElements() ). Also, see tutorials. </p>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00235">235</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="class_2core_2form_8php_source.html#l00235">235</a> of file <a class="el" href="class_2core_2form_8php_source.html">form.php</a>.</p>
 
 </div>
 </div>
@@ -543,19 +543,19 @@ Private Attributes</h2></td></tr>
 <p>Validation functions are applied one after another on each element of the form.</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>bool - true if all validation tests were successful. False otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="_core_form_8php_source.html#l00157">157</a> of file <a class="el" href="_core_form_8php_source.html">CoreForm.php</a>.</p>
+<p>Definition at line <a class="el" href="class_2core_2form_8php_source.html#l00157">157</a> of file <a class="el" href="class_2core_2form_8php_source.html">form.php</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/var/www/phpizza/core/class/<a class="el" href="_core_form_8php_source.html">CoreForm.php</a></li>
+<li>/var/www/phpizza/core/class/core/<a class="el" href="class_2core_2form_8php_source.html">form.php</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_core_form.html">CoreForm</a>      </li>
-      <li class="footer">Generated on Thu Jan 5 2012 22:00:14 for PHPizza by&#160;
+      <li class="footer">Generated on Wed Feb 8 2012 18:18:08 for PHPizza by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
     </ul>
