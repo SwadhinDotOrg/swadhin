@@ -8,18 +8,23 @@
 abstract class DbGeneric {
 
     public $table = "";  ///< Name of the table (schema) on which db operation will take place
+    
     public $data = null;   ///<  Associative array of Data to insert/update
     public $encryptedData = null;  ///< Associative array of Data. Key is column-name & Value is data to insert encrypting using $this->encryptionFunction in that column.
+    
     public $identifier = null; ///< Associative array of identifier to be used after WHERE clause (i.e. $identifier["username"] => "giga" is for WHILE `username` = 'giga')
     public $encryptedIdentifier = null;     ///< ///< Associative array of identifier to be used after WHERE clause. Values will be encrypted using $this->encryptionFunction
     public $tableJoinIdentifier = null;
+    
     public $select = null;  ///<    Array, entries denote which columns will be selected in selectArray()
     public $encryptionFunction = "SHA"; ///< Name of the encryption function to apply on $valueToEncrypt in insertArray()
+    
     public $errorNo;    ///<    Error number, if error occurs
     public $errorMsg;   ///<    Descriptive error message, if occurs
     public $query = ""; ///<    Generated query (including $this->rest)
     public $rest = "";   ///<  Additional query to append after $query
     public $joiner = "AND"; ///<    joiner (AND/OR) for WHERE clause. Possible values: "AND" "OR"
+    
     public $returnPointer = true;  ///<     Return pointer/single data from "select" operations. If set to false, only a single row of database will be returned in the form of an associative array.  
     public $returnInsertID = true;  ///< Boolean, whether returns "Insert ID" for select command. 
     public $connection = null;    ///<    Connection identifier after successful database connection
@@ -85,7 +90,22 @@ abstract class DbGeneric {
     //@}
 
     // utility
+    
+    /**
+     * @name Utility Functions
+     */
 
+    //@{
+    
+    /**
+     * Escapes safely given string. Anything you are passing using $this->rest should by escaped by you 
+     * by calling this function. This is very important security issue to prevent SQL Injection
+     * 
+     * @param string $textToEscape - this string will be escaped.
+     * @return string - escaped string.
+     */
+    abstract public function escape($textToEscape);
+    
     /**
      * Clears class variables/sets to default values. 
      */
@@ -100,6 +120,8 @@ abstract class DbGeneric {
         $this->query = "";
         $this->returnInsertID = true;
     }
+    
+    //@}
 
     // Status Related
 

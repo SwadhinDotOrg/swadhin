@@ -61,7 +61,7 @@ abstract class DbMysql_query_builder extends DbGeneric {
             $this->query .= ' WHERE ';
             $where = array();
             foreach ($this->identifier as $k => $v) {
-                $where[] = '`$k` = \'' . call_user_func_array($this->escapeCallback, array($v)) . '\'';
+                $where[] = '`' . $k . '` = \'' . call_user_func_array($this->escapeCallback, array($v)) . '\'';
             }
             $this->query .= implode(' ' . $this->joiner . ' ', $where);
         }
@@ -95,8 +95,17 @@ abstract class DbMysql_query_builder extends DbGeneric {
             $this->query .= implode($partialQuery, ' ' . $this->joiner . ' ');
         }
 
+        if ($this->encryptedIdentifier) {
+            $this->query .= ( $this->identifier) ? ($this->joiner . ' ') : (' WHERE ');
+            $partialQuery = '';
+            foreach ($this->encryptedIdentifier as $key => $i) {
+                $partialQuery[] = $key . ' = ' . $this->encryptionFunction . '(\'' . call_user_func_array($this->escapeCallback, array($i)) . '\')';
+            }
+            $this->query .= implode($partialQuery, ' ' . $this->joiner . ' ');
+        }
+
         if ($this->tableJoinIdentifier) {
-            if ($this->identifier) {
+            if ($this->identifier || $this->encryptedIdentifier) {
                 $this->query .= ' ' . $this->joiner . ' ';
             } else {
                 $this->query .= ' WHERE ';
@@ -142,9 +151,69 @@ abstract class DbMysql_query_builder extends DbGeneric {
     }
 
     /**
-     * @name Functions for Internal use
+     * @name Prepared Statement Query Buillders
      */
     //@{
+
+    /**
+     * 
+     */
+    public function prepareInsertQuery() {
+        $fields = $values = array();
+
+        foreach ($this->data as $key) {
+            $fields[] = '`' . $key . '`';
+            $values[] = '?';
+        }
+
+        $fields = implode(",", $fields);
+        $values = implode(",", $values);
+
+        $this->query = 'INSERT INTO `' . $this->table . '` (' . $fields . ') VALUES (' . $values . ')';
+    }
+
+    /**
+     * 
+     */
+    public function prepareSelectQuery() {
+        $this->query = 'SELECT ';
+        if (!$this->select) {
+            $this->query .= '*';
+        } else {
+            $this->query .= implode($this->select, ', ');
+        }
+        if (is_array($this->table)) {
+            $tables = implode(', ', $this->table);
+            $this->query .= ' FROM ' . $tables;
+        } else {
+            $this->query .= " FROM `" . $this->table . "`";
+        }
+
+        if ($this->identifier) {
+            $this->query .= ' WHERE ';
+            $partialQuery = '';
+            foreach ($this->identifier as $key) {
+                $partialQuery[] = '`' . $key . '` = ?';
+            }
+            $this->query .= implode($partialQuery, ' ' . $this->joiner . ' ');
+        }
+
+        if ($this->tableJoinIdentifier) {
+            if ($this->identifier || $this->encryptedIdentifier) {
+                $this->query .= ' ' . $this->joiner . ' ';
+            } else {
+                $this->query .= ' WHERE ';
+            }
+            $partialQuery = '';
+            foreach ($this->tableJoinIdentifier as $key => $i) {
+                $partialQuery[] = $key . ' = ' . call_user_func_array($this->escapeCallback, array($i)) . '';
+            }
+            $this->query .= implode($partialQuery, ' ' . $this->joiner . ' ');
+        }
+        if ($this->rest)
+            $this->query .= ' ' . $this->rest;
+    }
+
     //@}
 }
 

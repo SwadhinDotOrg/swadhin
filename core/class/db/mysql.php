@@ -164,5 +164,9 @@ class DbMysql extends DbMysql_query_builder{
         mysql_query("SET AUTOCOMMIT=1");
     }
     
+    public function escape($textToEscape) {
+        return mysql_real_escape_string($textToEscape);
+    }
+    
 }
 ?>

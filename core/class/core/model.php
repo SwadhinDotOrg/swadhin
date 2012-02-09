@@ -9,11 +9,13 @@
 class CoreModel {
     
     /**
-     * @var $core Core
+     * @var Core
      */
     public $core;
     
-    /** @var $db DbGeneric */
+    /**
+     * @var DbGeneric
+     */
     
     public $db;       ///<    object for database
     

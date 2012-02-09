@@ -6,10 +6,14 @@
 class DbPdo_mysql extends DbMysql_query_builder {
 
     /**
-     *
-     * @var $this->connection PDO 
+     * @var PDO
      */
-//    public $connection = null;
+    public $connection = null;
+    
+    /**
+     * @var PDOStatement 
+     */
+    public $statement = null;
 
     public $persitent = true;               ///< Set true for persitent connection
     public $fetchStyle = PDO::FETCH_ASSOC;  ///< How "select" queries will return rows from database. \see http://www.php.net/manual/en/pdostatement.fetch.php
@@ -77,11 +81,10 @@ class DbPdo_mysql extends DbMysql_query_builder {
         $this->deleteArrayQuery();
         return $this->affectedRows = $this->connection->exec($this->query);
     }
-    
+
     public function fetch() {
         return $this->statement->fetch($this->fetchStyle);
     }
-
 
     public function numAffectedRows() {
         return $this->affectedRows;
@@ -91,6 +94,78 @@ class DbPdo_mysql extends DbMysql_query_builder {
         return $this->affectedRows;
     }
 
+    /**
+     * @name Prepared Statement Functionality
+     */
+    //@{
+
+    /**
+     * \brief INSERT operation using Prepared Statement.
+     * The only difference with insertArray() is that, this time you need to pass an <b>one-dimentional array</b>
+     * instead of associative-array to $this->data. You should only pass a simple array of desired <i>column</i>'s names.
+     * \see Learn about prepared statements: http://www.php.net/manual/en/pdo.prepared-statements.php
+     */
+    public function prepareInsert() {
+        $this->prepareInsertQuery();
+        $this->statement = $this->connection->prepare($this->query);
+//        $this->debug(true);
+        return $this->statement;
+    }
+    
+    /**
+     * \brief SELECT operation using Prepared Statement
+     * The only difference with selectArray() is: in this function you need to pass an <b>one-dimentional array</b> 
+     * instead of associative-array to $this->identifier. You should only pass a simple array of desired <i>column</i>'s names.
+     * \see Learn about prepared statements: http://www.php.net/manual/en/pdo.prepared-statements.php
+     */
+    
+    public function prepareSelect(){
+        $this->prepareSelectQuery();
+        $this->statement = $this->connection->prepare($this->query);
+//        $this->debug(true);
+        return $this->statement;
+    }
+    
+    /**
+     * \brief Executes the prepared statement: $this->statement
+     * @param array $inputs - One-dimentional array of values with as many elements as there are bound parameters in the SQL statement being executed.
+     * @return bool - true in success, false otherwise.
+     */
+    
+    public function execute($inputs=null){
+        return $this->statement->execute($inputs);
+    }
+
+    //@}
+
+    /**
+     * @name Overriding parent's methods
+     */
+    
+    //@{
+
+    /**
+     * Clears class variables/sets to default values. 
+     */
+    public function clear() {
+        $this->select = null;
+        $this->data = null;
+        $this->identifier = null;
+        $this->tableJoinIdentifier = null;
+        $this->rest = "";
+        $this->returnPointer = true;
+        $this->joiner = "AND";
+        $this->query = "";
+        $this->returnInsertID = true;
+        $this->statement = null;
+        $this->fetchArg1 = PDO::FETCH_ASSOC;
+    }
+
+    //@}
+    
+    public function escape($textToEscape) {
+        return $this->connection->quote($textToEscape);
+    }
 }
 
 ?>
