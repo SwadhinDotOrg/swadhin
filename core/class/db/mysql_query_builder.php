@@ -214,6 +214,33 @@ abstract class DbMysql_query_builder extends DbGeneric {
             $this->query .= ' ' . $this->rest;
     }
 
+    
+    /**
+     * 
+     */
+    
+    public function prepareUpdateQuery() {
+        $fields = $values = array();
+        $this->query = 'UPDATE `' . $this->table . '` SET ';
+
+        foreach ($this->data as $key) {
+            $this->query .= '`' . $key . '` = ?, ';
+        }
+
+        $this->query = substr($this->query, 0, strlen($this->query) - 2);
+
+        if ($this->identifier) {
+            $this->query .= ' WHERE ';
+            $where = array();
+            foreach ($this->identifier as $k) {
+                $where[] = '`' . $k . '` = ?';
+            }
+            $this->query .= implode(' ' . $this->joiner . ' ', $where);
+        }
+
+        $this->query .= ' ' . $this->rest;
+    }
+
     //@}
 }
 

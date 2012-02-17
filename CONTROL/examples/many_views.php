@@ -8,9 +8,9 @@ class Controller extends CoreController{
     }
     
     function index(){
-        echo anchor("many_views/test1", "Load VIEW/index.php view");
+        echo anchor("examples/many_views/test1", "Load VIEW/index.php view");
         echo "<br />";
-        echo anchor("many_views/test2", "Load VIEW/sample/demo1.php view");
+        echo anchor("examples/many_views/test2", "Load VIEW/sample/demo1.php view");
     }
     
     function test1(){
@@ -27,9 +27,7 @@ class Controller extends CoreController{
         
         $this->data("mainContent","<h1>This content was set from test2 function!</h1>");
         // Load the view
-        $this->loadView("sample/demo1");
+        $this->loadView("examples/sample/demo1");
     }
 }
-
-?>
 

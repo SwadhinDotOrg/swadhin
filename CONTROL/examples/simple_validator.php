@@ -11,9 +11,9 @@ class Controller extends CoreController{
             echo $this->getMsg();
         ?>
         <ul>
-            <li><a href="<?php echo url('simple_validator/test'); ?>">Invalid example (user did not submit desired value): page redirects to this page</a></li>
-            <li><a href="<?php echo url('simple_validator/test?noRedirect=yes'); ?>">Invalid example (user did not submit desired value): page does not redirect</a></li>
-            <li><a href="<?php echo url('simple_validator/test?id=something'); ?>">Valid Example. Value passed is: &quot;something&quot;</a></li>
+            <li><a href="<?php echo url('examples/simple_validator/test'); ?>">Invalid example (user did not submit desired value): page redirects to this page</a></li>
+            <li><a href="<?php echo url('examples/simple_validator/test?noRedirect=yes'); ?>">Invalid example (user did not submit desired value): page does not redirect</a></li>
+            <li><a href="<?php echo url('examples/simple_validator/test?id=something'); ?>">Valid Example. Value passed is: &quot;something&quot;</a></li>
 
             
         </ul>
@@ -39,10 +39,8 @@ class Controller extends CoreController{
         
         echo "<br />ID is: &quot;$id&quot; | noRedirect Is: &quot;$noRedirect&quot;";
         
-        echo '<hr />' . anchor('simple_validator', 'Back');
+        echo '<hr />' . anchor('examples/simple_validator', 'Back');
        
     }
     
 }
-
-?>

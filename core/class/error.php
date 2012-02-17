@@ -4,21 +4,23 @@
  * Error & Exception Handler
  */
 class Error {
-
+    
     public function exceptionHandler($e) {
         $errorMsg = 'Uncaught Exception ' . $e->getCode() . ': <b style="color:red;">' . $e->getMessage() . '</b>
             <br /> 
             in <i>' . $e->getFile() . ' (Line ' . $e->getLine() . ')</i>';
-        
-        $this->output('Uncaught Exception', $errorMsg);
+        if(DEBUG_MODE)
+            $this->output('Uncaught Exception', $errorMsg);
+        header ('Location: static/error');
     }
 
     public function errorHandler($errno, $errstr, $errfile, $errline) {
         $errorMsg = 'Error ' . $errno . ': <b style="color:red;">' . $errstr . '</b> 
             <br />
             in <i>' . $errfile . ' (Line ' . $errline . ') </i>';
-        
-        $this->output('Error', $errorMsg);
+        if(DEBUG_MODE)
+            $this->output('Error', $errorMsg);
+        header ('Location: static/error');
     }
 
     public function output($title, $msg) {
@@ -47,5 +49,3 @@ class Error {
     }
 
 }
-
-?>

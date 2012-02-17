@@ -20,7 +20,7 @@ class Controller extends CoreController{
     public function __construct($core) {
         // Call parent's constructor. 
         parent::__construct($core);
-        if(! ($this->form = $this->loadForm('Login')))
+        if(! ($this->form = $this->loadForm('ExamplesLogin')))
             $this->funcs->kill("Cannot load form");
     }
     
@@ -55,5 +55,3 @@ class Controller extends CoreController{
         
     }
 }
-
-?>

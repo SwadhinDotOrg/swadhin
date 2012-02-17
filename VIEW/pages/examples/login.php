@@ -28,9 +28,6 @@ class View extends Template{
 //        }
 //        echo $this->loginForm;
         // Or, use following function to do all these!
-        echo $this->form("Login");
+        echo $this->form("ExamplesLogin");
     }
 }
-
-
-?>

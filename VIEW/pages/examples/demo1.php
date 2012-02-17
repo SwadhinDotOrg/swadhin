@@ -38,5 +38,3 @@ class View extends Template{
                 echo "parameter passed via get method: " . $_REQUEST['id'];
     }
 }
-
-?>

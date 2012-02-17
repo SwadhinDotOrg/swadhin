@@ -7,11 +7,7 @@ class Controller extends CoreController{
     }
     
     function index(){
-        $mc = new MaliciousClass();
+        $mc = new Malicious();
         $mc->getDbInfo();
     }
 }
-
-
-
-?>

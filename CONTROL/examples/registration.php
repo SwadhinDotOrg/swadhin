@@ -19,7 +19,7 @@ class Controller extends CoreController{
     function __construct($core) {
         // Call parent's constructor. 
         parent::__construct($core);
-        $this->form = $this->loadForm("Registration");
+        $this->form = $this->loadForm('ExamplesRegistration');
     }
     
     function index(){
@@ -33,7 +33,7 @@ class Controller extends CoreController{
         if($this->form->validate()){
             // form valid. Do some database work!
             // Load the model 
-            $model = $this->loadModel('UserModel');
+            $model = $this->loadModel('ExamplesUser_model');
             
             $userSubmittedData = $this->form->getAll(); // Get user submissions
             // Construct the data array to insert in database
@@ -63,5 +63,3 @@ class Controller extends CoreController{
         $this->index();
     }
 }
-
-?>

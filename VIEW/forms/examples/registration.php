@@ -12,12 +12,12 @@
  *
  * ****** ****** ****** ****** ****** ***** */
 
-class Registration extends CoreForm {
+class ExamplesRegistration extends CoreForm {
     public function __construct($core) {
         // MUST call parent's constructor
         parent::__construct($this, $core);
         // URL where form processing will be done!
-        $this->action = url('registration/submit');
+        $this->action = url('examples/registration/submit');
         // Do some CSS tweaking!
         $this->submitButtonText = "Register!";
         $this->tableCellSpacing = "10px";
@@ -51,4 +51,3 @@ class Registration extends CoreForm {
         $this->setElements($elements);
     }
 }
-?>

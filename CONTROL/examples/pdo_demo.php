@@ -10,7 +10,7 @@ class Controller extends CoreController{
     
     function __construct($core) {
         parent::__construct($core);
-        $this->model = $this->loadModel('UserModel_prepared');
+        $this->model = $this->loadModel('ExamplesModel_prepared');
     }
     
     function index(){
@@ -30,6 +30,9 @@ class Controller extends CoreController{
         $this->model->randomInsert();
         $this->index();
     }
+    
+    function update(){
+        $this->model->updateDate();
+        $this->index();
+    }
 }
-
-?>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * \brief Driver for PDO with MySQL
+ * \brief Driver for PDO with MySQL/MySQLi
  */
 class DbPdo_mysql extends DbMysql_query_builder {
 
@@ -9,7 +9,7 @@ class DbPdo_mysql extends DbMysql_query_builder {
      * @var PDO
      */
     public $connection = null;
-    
+    public $pdoDriver = 'mysql';               ///< Can be "mysql" or "mysqli"
     /**
      * @var PDOStatement 
      */
@@ -29,7 +29,7 @@ class DbPdo_mysql extends DbMysql_query_builder {
     }
 
     public function connect($dbConfig) {
-        $this->connection = new PDO('mysql:host=' . $dbConfig['host'] . ';dbname=' . $dbConfig['database'], $dbConfig['username'], $dbConfig['password'], array(
+        $this->connection = new PDO($this->pdoDriver . ':host=' . $dbConfig['host'] . ';dbname=' . $dbConfig['database'], $dbConfig['username'], $dbConfig['password'], array(
                     PDO::ATTR_PERSISTENT => $this->persitent,
                     pdo::ATTR_ERRMODE => pdo::ERRMODE_EXCEPTION
                 ));
@@ -126,6 +126,13 @@ class DbPdo_mysql extends DbMysql_query_builder {
         return $this->statement;
     }
     
+    public function prepareUpdate(){
+        $this->prepareUpdateQuery();
+        $this->statement = $this->connection->prepare($this->query);
+//        $this->debug(true);
+        return $this->statement;
+    }
+    
     /**
      * \brief Executes the prepared statement: $this->statement
      * @param array $inputs - One-dimentional array of values with as many elements as there are bound parameters in the SQL statement being executed.
@@ -167,5 +174,3 @@ class DbPdo_mysql extends DbMysql_query_builder {
         return $this->connection->quote($textToEscape);
     }
 }
-
-?>

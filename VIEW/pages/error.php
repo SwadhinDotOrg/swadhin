@@ -1,5 +1,4 @@
 <?php
-
 /* * ***** ****** ****** ****** ****** ******
  *
  * Author       :   Shafiul Azam
@@ -11,30 +10,29 @@
  *
  * ****** ****** ****** ****** ****** ***** */
 
+class View extends Template {
 
-
-class View extends Template{
     public function __construct($core) {
         // Must call parent's constructor
         parent::__construct($core);
         // Set titles & other attributes here
-        $this->title = "Demo 1 passing param";
+        // For demonstration, we're using the value set by the controller
+        //  Get the instance
+        $this->setStatic();
+        $this->heading = "Oops! Something went wrong... | PHPizza";
     }
-    
+
     public function mainContent() {
-           //  Got instance of core
         // This function must be implemented!
         // now follows html:
         ?>
-                    <ul>
-                        <li>This is a nested view, under the &QUOT;sample&quot; folder</li>
-                        <li>You can nest it as deep as you want</li>
-                    </ul>
-                    <br />
-                    
+        <h1 style="color:red;">Oops! Something went wrong!</h1>
+        <br /><br />
+        Something unexpected occurred, maybe the page does not exist anymore. 
+        <br /><br />
+        We are extremely sorry for the inconveniences. We have logged the 
+        error and technical team will response to it. 
         <?php
-            echo $this->mainContent;    // This mainContent variable was set from Controller. :P
     }
-}
 
-?>
+}

@@ -6,11 +6,10 @@ class Controller extends CoreController{
     }
     
     function index(){
-        $this->data('title', 'PlainClean Theme');
-        // Change the template
-        $this->template('plainclean');
-        $this->loadView('hello');
+        echo 'Hello!';
+    }
+    
+    function world(){
+        $this->loadView();
     }
 }
-
-?>

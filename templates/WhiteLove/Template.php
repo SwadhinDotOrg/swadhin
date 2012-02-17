@@ -39,7 +39,6 @@ abstract class Template extends CoreView {
         // Set some other parameters
         $this->defaultCssArray = array('style', 'msg_styles');
 //        $this->defaultJsArray = array('jquery/jquery_latest');
-        
         // a dummy headline
         $this->heading = "A dummy headline";
     }
@@ -93,10 +92,10 @@ abstract class Template extends CoreView {
                 break;
             case 'right':
                 // print general links
-                $i = $this->core->loadBlock('General_links');
+                $i = $this->core->loadBlock('ExamplesGeneral_links');
                 echo $i->get();
                 // print links to forms
-                $i = $this->core->loadBlock('ExternalLinks');
+                $i = $this->core->loadBlock('ExamplesExternal_links');
                 echo $i->get();
                 break;
         }
@@ -108,6 +107,7 @@ abstract class Template extends CoreView {
      */
     public function footer() {
         ?>
+        <br />
         <div id="footer">
             <a href="http://www.templatesold.com/" target="_blank">Website Templates</a> by <a href="http://www.free-css-templates.com/" target="_blank">Free CSS Templates</a>
         </div>
@@ -116,4 +116,3 @@ abstract class Template extends CoreView {
 
     //@}
 }
-?>

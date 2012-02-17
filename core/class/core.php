@@ -560,13 +560,6 @@ class Core {
      */
     public function fatal($msg, $triggerError=true) {
         throw new Exception($msg);
-//        if ($triggerError) {
-//            trigger_error($msg, E_USER_ERROR);
-//        }
-//        echo '<html><head><title>Fatal Framework Error</title></head><body>';
-//        echo Html::msgbox($msg, MSGBOX_ERROR);
-//        echo '</body></html>';
-        exit();
     }
 
     /**
@@ -590,5 +583,3 @@ class Core {
     }
 
 }
-
-?>

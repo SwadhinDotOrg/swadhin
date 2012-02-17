@@ -20,7 +20,7 @@
  */
 
 
-class UserModel extends CoreModel{
+class ExamplesUser_model extends CoreModel{
     
     /**
      * Constructor must call parent's constructor
@@ -53,5 +53,3 @@ class UserModel extends CoreModel{
     }
     
 }
-
-?>

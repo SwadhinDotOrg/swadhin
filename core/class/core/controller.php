@@ -5,8 +5,20 @@
  */
 class CoreController {
 
+    /**
+     *
+     * @var Core
+     */
     public $core = null;   ///< A reference to the $core variable
+    /**
+     *
+     * @var Funcs
+     */
     public $funcs = null;
+    /**
+     *
+     * @var Validator
+     */
     public $validate = null;
 
     /**
@@ -55,7 +67,7 @@ class CoreController {
      */
     public function loadForm($formName) {
         // Now include particular form
-        $classPath = FORMS_DIR . $formName. '.php';
+        $classPath = FORMS_DIR . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $formName)) . '.php';
         require $classPath;
         $var = new $formName($this->core);
         return $var;
@@ -196,5 +208,3 @@ class CoreController {
     }
 
 }
-
-?>

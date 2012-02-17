@@ -7,7 +7,7 @@ class View extends Template{
     
     function mainContent() {
         
-        echo '<h3>Demonstrations Using PDO (mysql implementation)</h3>';
+        echo '<h3>Prepared Statements demonstration using PDO (mysql implementation)</h3>';
         echo '<br />';
         echo Html::li(array(
             anchor('examples/pdo_demo/select', 'Select Operation'),
@@ -22,5 +22,3 @@ class View extends Template{
         echo '</table>';
     }
 }
-
-?>

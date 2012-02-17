@@ -6,4 +6,3 @@ class CoreException extends Exception{
     }
 }
 
-?>
