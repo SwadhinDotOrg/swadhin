@@ -14,7 +14,6 @@ class DbPdo_mysql extends DbMysql_query_builder {
      * @var PDOStatement 
      */
     public $statement = null;
-
     public $persitent = true;               ///< Set true for persitent connection
     public $fetchStyle = PDO::FETCH_ASSOC;  ///< How "select" queries will return rows from database. \see http://www.php.net/manual/en/pdostatement.fetch.php
     protected $affectedRows = null;
@@ -42,14 +41,18 @@ class DbPdo_mysql extends DbMysql_query_builder {
     }
 
     public function insertArray() {
-        $this->insertArrayQuery();
-//        $this->debug(true);
-        $this->affectedRows = $this->connection->exec($this->query);
+        try {
+            $this->insertArrayQuery();
+            $this->affectedRows = $this->connection->exec($this->query);
 
-        if ($this->affectedRows === false)
-            return false;
+            if ($this->affectedRows === false)
+                return false;
 
-        return ($this->returnInsertID) ? ($this->connection->lastInsertId()) : (true);
+            return ($this->returnInsertID) ? ($this->connection->lastInsertId()) : (true);
+        } catch (Exception $e) {
+            $this->setError();
+            throw new DbException($this->errorNo, $this->errorMsg, $this->query);
+        }
     }
 
     public function updateArray() {
@@ -59,19 +62,24 @@ class DbPdo_mysql extends DbMysql_query_builder {
     }
 
     public function selectArray() {
-        $this->selectArrayQuery();
-        $this->statement = $this->connection->query($this->query);
-        if ($this->statement === false)
-            throw new Exception('[PHPizza] Error occured in SELECTing from database');
+        try {
+            $this->selectArrayQuery();
+            $this->statement = $this->connection->query($this->query);
+            if ($this->statement === false)
+                throw new Exception('[PHPizza] Error occured in SELECTing from database');
 
-        // Set fetch callbacks
-        $this->fetchCallback = array($this->statement, 'fetch');
-        $this->fetchArg1 = $this->fetchStyle;
+            // Set fetch callbacks
+            $this->fetchCallback = array($this->statement, 'fetch');
+            $this->fetchArg1 = $this->fetchStyle;
 
-        if ($this->returnPointer)
-            return $this->statement;
-        else
-            return $this->statement->fetch($this->fetchStyle);
+            if ($this->returnPointer)
+                return $this->statement;
+            else
+                return $this->statement->fetch($this->fetchStyle);
+        } catch (Exception $e) {
+            $this->setError();
+            throw new DbException($this->errorNo, $this->errorMsg, $this->query);
+        }
     }
 
     public function deleteArray() {
@@ -111,35 +119,33 @@ class DbPdo_mysql extends DbMysql_query_builder {
 //        $this->debug(true);
         return $this->statement;
     }
-    
+
     /**
      * \brief SELECT operation using Prepared Statement
      * The only difference with selectArray() is: in this function you need to pass an <b>one-dimentional array</b> 
      * instead of associative-array to $this->identifier. You should only pass a simple array of desired <i>column</i>'s names.
      * \see Learn about prepared statements: http://www.php.net/manual/en/pdo.prepared-statements.php
      */
-    
-    public function prepareSelect(){
+    public function prepareSelect() {
         $this->prepareSelectQuery();
         $this->statement = $this->connection->prepare($this->query);
 //        $this->debug(true);
         return $this->statement;
     }
-    
-    public function prepareUpdate(){
+
+    public function prepareUpdate() {
         $this->prepareUpdateQuery();
         $this->statement = $this->connection->prepare($this->query);
 //        $this->debug(true);
         return $this->statement;
     }
-    
+
     /**
      * \brief Executes the prepared statement: $this->statement
      * @param array $inputs - One-dimentional array of values with as many elements as there are bound parameters in the SQL statement being executed.
      * @return bool - true in success, false otherwise.
      */
-    
-    public function execute($inputs=null){
+    public function execute($inputs=null) {
         return $this->statement->execute($inputs);
     }
 
@@ -148,7 +154,6 @@ class DbPdo_mysql extends DbMysql_query_builder {
     /**
      * @name Overriding parent's methods
      */
-    
     //@{
 
     /**
@@ -169,8 +174,9 @@ class DbPdo_mysql extends DbMysql_query_builder {
     }
 
     //@}
-    
+
     public function escape($textToEscape) {
         return $this->connection->quote($textToEscape);
     }
+
 }

@@ -116,10 +116,10 @@ class CoreModel {
     }
 
     /**
-     * Returns a pointer to array. You should use mysql_fetch_array() 
+     * Returns a pointer to array. You should use DbGeneric::fetch() to get associative-array for each row. 
      * @param type $identifierArr
      * @param type $selectArr
-     * @return type 
+     * @return array - Associative-array. 
      */
 
     public function getAll($identifierArr = null, $selectArr = null){
@@ -130,10 +130,10 @@ class CoreModel {
     }
     
     /**
-     * Only the first row. Returns key-value pair array of data.
+     * Only the first row. Returns Associative-array of data of first row only.
      * @param type $identifierArr
      * @param type $selectArr
-     * @return type 
+     * @return array - Associative-array. 
      */
     
     public function get($identifierArr = null, $selectArr = null){

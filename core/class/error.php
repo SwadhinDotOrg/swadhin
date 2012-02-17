@@ -9,6 +9,12 @@ class Error {
         $errorMsg = 'Uncaught Exception ' . $e->getCode() . ': <b style="color:red;">' . $e->getMessage() . '</b>
             <br /> 
             in <i>' . $e->getFile() . ' (Line ' . $e->getLine() . ')</i>';
+        if(isset($e->query)){
+            $errorMsg .= '<br /><br />';
+            $errorMsg .= '<div style="background:yellow; padding:5px;">';
+            $errorMsg .= 'Database Query: <b>' . $e->query . '</b>';
+            $errorMsg .= '</div>';
+        }
         if(DEBUG_MODE)
             $this->output('Uncaught Exception', $errorMsg);
         header ('Location: static/error');
