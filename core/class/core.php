@@ -3,8 +3,9 @@
 // Helper Functions
 require CORE_DIR . 'funcs/general.php';
 
-// Include Error Handler
+// Include some files Manually - since we haven't defined Autoloaders yet!
 require 'error.php';
+require 'html.php';
 
 /**
  * Initiates Pizza!

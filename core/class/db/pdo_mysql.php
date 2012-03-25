@@ -130,6 +130,9 @@ class DbPdo_mysql extends DbMysql_query_builder {
         $this->prepareSelectQuery();
         $this->statement = $this->connection->prepare($this->query);
 //        $this->debug(true);
+        // Set fetch callbacks
+        $this->fetchCallback = array($this->statement, 'fetch');
+        $this->fetchArg1 = $this->fetchStyle;
         return $this->statement;
     }
 
@@ -145,7 +148,7 @@ class DbPdo_mysql extends DbMysql_query_builder {
      * @param array $inputs - One-dimentional array of values with as many elements as there are bound parameters in the SQL statement being executed.
      * @return bool - true in success, false otherwise.
      */
-    public function execute($inputs=null) {
+    public function execute($inputs = null) {
         return $this->statement->execute($inputs);
     }
 
@@ -179,4 +182,22 @@ class DbPdo_mysql extends DbMysql_query_builder {
         return $this->connection->quote($textToEscape);
     }
 
+    /**
+     * @name Transaction 
+     */
+    //@{
+
+    public function startTransaction() {
+        return $this->connection->beginTransaction();
+    }
+
+    public function commit() {
+        return $this->connection->commit();
+    }
+
+    public function rollback() {
+        return $this->connection->rollBack();
+    }
+
+    //@}
 }

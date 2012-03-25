@@ -2,18 +2,6 @@
 
 // Constants
 
-define("FORM_RESULT", 0);
-define("FORM_ERROR_STRING", 1);
-define("FORM_HTML",2);
-
-// Constants for internal use
-
-define("PIZZA_FORM_DISPLAYNAME",0);
-define("PIZZA_FORM_VALIDATORS",1);
-define("PIZZA_FORM_HTML",2);
-define("PIZZA_FORM_HTML_FUNCNAME",3);
-define("PIZZA_FORM_HTML_FUNC_ARGS",4);
-
 /**
  * \brief Create, submit & validate web-forms easily! Your Forms should extend this class.
  * 
@@ -28,6 +16,14 @@ define("PIZZA_FORM_HTML_FUNC_ARGS",4);
 
 abstract class CoreForm{
     
+    // Constants for internal use
+    const DISPLAYNAME = 0;  
+    const VALIDATORS = 1;
+    const HTML = 2;
+    const HTML_FUNCNAME = 3;
+    const HTML_FUNC_ARGS = 4;
+    
+    // Member Variables
 
     public $action = '';    ///<    Form attribute "action"
     public $method = 'post';    ///<    Form attribute "method"
@@ -103,10 +99,10 @@ abstract class CoreForm{
         foreach($this->elements as $elemName=>$content){
             // Get user-submitted, validated data
 //            echo '<br />For element: ' . $elemName . '<br />';
-            $argArr = $this->elements[$elemName][PIZZA_FORM_HTML_FUNC_ARGS];
+            $argArr = $this->elements[$elemName][self::HTML_FUNC_ARGS];
             $argArr[2] = $this->submittedData[$elemName];
-            $elemHTML = call_user_func_array(array("HTML",$content[PIZZA_FORM_HTML_FUNCNAME]), $argArr);
-            $this->formHtml .= Html::tr(array($content[PIZZA_FORM_DISPLAYNAME],$elemHTML)) . "\n";
+            $elemHTML = call_user_func_array(array("HTML",$content[self::HTML_FUNCNAME]), $argArr);
+            $this->formHtml .= Html::tr(array($content[CoreForm::DISPLAYNAME],$elemHTML)) . "\n";
         }
         $this->formHtml .= '</tbody></table><br />' . $this->arbritaryHTML . '<br />';
         $this->formHtml .= '<input id="'. $this->submitButtonId .'" class=html-form-submit type = "submit" value = "' . $this->submitButtonText . '" />';
@@ -132,8 +128,7 @@ abstract class CoreForm{
         // Set display names
         if(!$this->validate){
             foreach ($this->validators as $elemName=>$temp){
-                $this->elements[$elemName][PIZZA_FORM_DISPLAYNAME] = $temp[0];
-//                echo "|" . $temp[0] . "|<br />";
+                $this->elements[$elemName][CoreForm::DISPLAYNAME] = $temp[0];
             }
         }
             
@@ -159,7 +154,7 @@ abstract class CoreForm{
         $this->error = array();
         // Run validation
         foreach ($this->validators as $elemName=>$temp){
-            $this->elements[$elemName][PIZZA_FORM_DISPLAYNAME] = $temp[0];
+            $this->elements[$elemName][CoreForm::DISPLAYNAME] = $temp[0];
             if(isset ($temp[1]) && !empty ($temp[1])){
                 $this->submittedData[$elemName] = $this->doValidation($elemName,$temp[1]);
             }else{
@@ -236,14 +231,14 @@ abstract class CoreForm{
         foreach ($elem as $name=>$eArr){
             $arraySuffix = (strpos($name, "[]"))?("[]"):("");
             $name = str_replace("[]", "", $name);
-            $this->elements[$name][PIZZA_FORM_HTML_FUNCNAME] = $eArr[0];
+            $this->elements[$name][self::HTML_FUNCNAME] = $eArr[0];
             // arguments of HTML generating funcs
             if(isset ($eArr[1])){
                 array_unshift($eArr[1], $name . $arraySuffix); //  push $name at the beginning of the array
             }else{
                 $eArr[1] = array($name . $arraySuffix,null);    //  create a new array with only element $name in it
             }
-            $this->elements[$name][PIZZA_FORM_HTML_FUNC_ARGS] = $eArr[1];
+            $this->elements[$name][self::HTML_FUNC_ARGS] = $eArr[1];
             // Store developer provided value. This is available from $eArr[1][2]
             if(empty ($this->submittedData[$name])){
                 $this->submittedData[$name] = (empty($eArr[1][2]))?(""):($eArr[1][2]);
@@ -272,7 +267,7 @@ abstract class CoreForm{
      */
     
     public function getDisplayName($name){
-        return $this->elements[$name][PIZZA_FORM_DISPLAYNAME];
+        return $this->elements[$name][CoreForm::DISPLAYNAME];
     }
     
 
@@ -325,9 +320,9 @@ abstract class CoreForm{
         $error = $this->core->validate->exitIfInvalid(false, ", ");
         if(!empty($error)){
             if($this->noErrorFormatting)
-                $this->error[] = $this->elements[$name][PIZZA_FORM_DISPLAYNAME] . ' - ' . $error;
+                $this->error[] = $this->elements[$name][CoreForm::DISPLAYNAME] . ' - ' . $error;
             else
-                $this->error[] = '&quot;' . $this->elements[$name][PIZZA_FORM_DISPLAYNAME] . '&quot; ' . $error;
+                $this->error[] = '&quot;' . $this->elements[$name][CoreForm::DISPLAYNAME] . '&quot; ' . $error;
 
         }
         $this->submittedData[$name] = $this->core->validate->subject;    //  subject is now validated!
