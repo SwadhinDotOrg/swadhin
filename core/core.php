@@ -415,18 +415,16 @@ class Core {
     private function autoloadFromConfig() {
         // classes
         if (!empty(Config::$autoloads[Config::AUTOLOAD_CLASS])) {
-            foreach ($this->config->autoloads[Config::AUTOLOAD_CLASS] as $className) {
+            foreach (Config::$autoloads[Config::AUTOLOAD_CLASS] as $className) {
 //                require Config::$custom_classes_dir . 'class/' . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $className)) . '.php';
                 $this->autoloadedData[Config::AUTOLOAD_CLASS][$className] = new $className($this);
             }
         }
         // MODELS
         if (!empty(Config::$autoloads[Config::AUTOLOAD_MODEL])) {
-            // Load DB driver
-            $this->loadDatabaseDriver();
             $this->oneModelLoaded = true;
             // Include all models
-            foreach ($this->config->autoloads[Config::AUTOLOAD_MODEL] as $className) {
+            foreach (Config::$autoloads[Config::AUTOLOAD_MODEL] as $className) {
                 require Config::$models_dir . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $className)) . '.php';
                 $this->autoloadedData[Config::AUTOLOAD_MODEL][$className] = new $className($this);
             }

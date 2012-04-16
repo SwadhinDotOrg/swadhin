@@ -92,7 +92,7 @@ abstract class CoreForm{
         // Creates the HTML form and returns the HTML
         // Output HTML 
         $fileUploadCode = ($this->fileUpload)?("enctype='multipart/form-data'"):("");
-        $this->formHtml = '<form class="html-form ' . $this->class . '" ' . $fileUploadCode . ' method = "' . $this->method . '" action = "' . $this->action . '" target = "' . $this->target . '" onsubmit = "' . $this->onSubmit . '" id = "' . $this->id . '">';
+        $this->formHtml = '<form class="html-form ' . $this->class . '" ' . $fileUploadCode . ' method = "' . $this->method . '" action = "' . LibUrl::url($this->action) . '" target = "' . $this->target . '" onsubmit = "' . $this->onSubmit . '" id = "' . $this->id . '">';
         $this->formHtml .= '<table class="html-form-table" cellspacing = "' . $this->tableCellSpacing . '" cellpadding =  "' . $this->tableCellPadding . '"  border = "' . $this->tableBorder . '"><tbody>';
         // Loop through the components and print one component per row
 //        echo count($this->elements);

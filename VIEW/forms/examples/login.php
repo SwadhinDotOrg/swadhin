@@ -18,7 +18,7 @@ class ExamplesLogin extends CoreForm {
         // MUST call parent's constructor
         parent::__construct($this, $core);
         // Set form properties here.
-        $this->action = LibUrl::url("examples/login/submit");
+        $this->action = "examples/login/submit";
         $this->submitButtonText = "Log In!";
         $this->tableCellSpacing = "10px";
         

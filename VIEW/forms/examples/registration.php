@@ -17,7 +17,7 @@ class ExamplesRegistration extends CoreForm {
         // MUST call parent's constructor
         parent::__construct($this, $core);
         // URL where form processing will be done!
-        $this->action = LibUrl::url('examples/registration/submit');
+        $this->action = 'examples/registration/submit';
         // Do some CSS tweaking!
         $this->submitButtonText = "Register!";
         $this->tableCellSpacing = "10px";
