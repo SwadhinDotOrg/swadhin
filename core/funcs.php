@@ -96,7 +96,7 @@ class Funcs {
      * @param string $msg The %HTML message you want to get displayed
      * @param int $status see constants defined for parameter $type in messageExit() function
      */
-    public function setStatusMsg($msg, $status = MSGBOX_ERROR) {
+    public function setStatusMsg($msg, $status = Html::MSGBOX_ERROR) {
         // Safely start session fist
         if (!session_id())
             session_start();
@@ -132,9 +132,8 @@ class Funcs {
 
             $str = "";
             foreach ($dispMsg as $i => $dM) {
-//                echo "HI$i";
                 $str .= '<div align="center"><div class="dispMsg-wrapper" id = "displayMsg' . $i . '">';
-//                $str = '<div align="center"><div title = "Click to hide this notification" onclick = "$(this).fadeOut();" class="notification-wrapper" id = "displayM">'; // With jQuery's onclick - hide support
+                $str = '<div align="center"><div title = "Click to hide this notification" onclick = "$(this).fadeOut();" class="notification-wrapper" id = "displayM">'; // With jQuery's onclick - hide support
                 $str .= Html::msgbox($dM[0], $dM[1]);
                 $str .= '</div> <br />';
                 $str .= '<script>$("#displayM").fadeIn("slow");</script> </div>';

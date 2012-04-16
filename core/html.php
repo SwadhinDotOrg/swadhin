@@ -10,6 +10,11 @@
  */
 class Html {
 
+    const MSGBOX_INFO = 0;
+    const MSGBOX_SUCCESS = 1;
+    const MSGBOX_WARNING = 2;
+    const MSGBOX_ERROR = 3;
+
     public $title;      ///< Title of the document
     public $head;       ///< Any string you want to appear in the <head></head> section
     public $body;       ///< Any string you want to appear in the <body></body> section
@@ -33,6 +38,13 @@ class Html {
         return $str;
     }
 
+    /**
+     * Generates a complete %HTML Table
+     * @param array $data - is an array of rows of the table. Each row is in turn another array of columns of that row.
+     * @param array $attrArr - Associative array for %HTML attributes of the table
+     * @param boolean $insertTh - if set to true, assumes first row of $data contains heading.
+     * @return string Generated %HTML for that table.
+     */
     public static function table($data, $attrArr = null, $insertTh = true) {
         $attrText = '';
         if ($attrArr) {
@@ -56,10 +68,10 @@ class Html {
     }
 
     /**
-     * Generates html for lists - ordered or unordered
-     * @param array $items - 1 dimensional array of html strings- which are items of the list.
+     * Generates %HTML for lists - ordered or unordered
+     * @param array $items - Array elements are items of the list.
      * @param string $listType "ul" for Unordered (Bullet) list, "ol" for ordered (numbered) list.
-     * @param array $attrArr key-value array, key being the attribute and value being the value for that attribute
+     * @param array $attrArr Associative array: <i>key</i> contains the attribute and <i>value</i> contains the value for that attribute
      * @return Html | generated html 
      */
     public static function lists($items, $listType = "ul", $attrArr = null) {
@@ -82,32 +94,45 @@ class Html {
      * 
      * @param string $url - controller's location.
      * @param string $text -  text to display for this link
+     * @param boolean $isStatic - if set to true, assumes the $url is static link.
+     * @param array $attrArr Associative array: <i>key</i> contains the attribute and <i>value</i> contains the value for that attribute
      * @return string | generated html for the hyperlink tag
      * 
      * Example:
      * \code
      * // Say, you've a controller at "CONTROL/user/login" location.
-     * $link = anchor('user/login', 'Click here to Login!');
+     * $link = Html::anchor('user/login', 'Click here to Login!');
      * // $link will contain something like: 
      * <a href="http://example.com/user/login">Click here to Login!</a> 
      * // based on your URL related configuration.
      * \endcode
      */
-    static function anchor($url, $text) {
-        if (!preg_match('@^(https?|ftp)://@', $url))
-            $url = LibUrl::url($url);
+    static function anchor($url, $text, $isStatic = false, $attrArr = null) {
+        if ($isStatic) {
+            $url = LibUrl::url_static($url);
+        } else {
+            if (!preg_match('@^(https?|ftp)://@', $url))
+                $url = LibUrl::url($url);
+        }
+
         // Generate %HTML
-        return '<a href = "' . $url . '">' . $text . '</a>';
+        $attrText = "";
+        if ($attrArr) {
+            foreach ($attrArr as $k => $v)
+                $attrText .= "$k = '$v' ";
+        }
+        return '<a ' . $attrText .' href = "' . $url . '">' . $text . '</a>';
     }
 
     /**
      * %HTML <a> tag generator for static (VIEW only, no constructor) pages
+     * \warning This function will be removed in future versions! Use Html::anchor($url, $text, true) instead.
      * @param string $url "relative" URL of the path
      * @param string $text text to display for this link
      * @return string | generated html 
      */
     static function anchor_static($url, $text) {
-        return "<a href = '" . LibUrl::url_static($url) . "'>$text</a>";
+        return self::anchor($url, $text, true);
     }
 
     /**
@@ -259,10 +284,10 @@ class Html {
      * @param string $id ID attribute for the messagebox div
      * @return string | generated html
      */
-    public static function msgbox($message, $mode = MSGBOX_SUCCESS, $exit = false, $id = "") {
+    public static function msgbox($message, $mode = Html::MSGBOX_SUCCESS, $exit = false, $id = "") {
         // modes: 0: info, 1: success, 2: warning, 3: error
         $classes = array('msg_info', 'msg_success', 'msg_warning', 'msg_error');
-        $str = '<div id = "$id" class="' . $classes[$mode] . '" >' . $message . '</div>';
+        $str = '<div id = "' . $id . '" class="' . $classes[$mode] . '" >' . $message . '</div>';
         $str .= '<br />';
         return $str;
         if ($exit) {

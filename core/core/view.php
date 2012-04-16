@@ -18,7 +18,7 @@ class CoreView {
     public $template = ''; ///<    Name of the template. Do not modify if you're going to use the default theme specified in your config.php file.  
     public $__staticLoadAllowed = false;  ///<    If set to false (which is default) this VIEW can not be loaded statically (without loading any controller)
     public $defaultCssArray = null;  ///<    Array. Array elements are css filenames. These CSS files should be included to ALL %HTML pages of your project. These files should be put under your theme's "css" directory. Do not provide ".css" after filenames.
-    public $defaultJsArray = null;    ///<    Array. Array Elements are JavaScript filenames to be included to all the %HTML pages of your project. These files should reside under "client/js" directory. Do not provide ".js" after filenames.
+    public $defaultJsArray = array('jquery');    ///<    Array. Array Elements are JavaScript filenames to be included to all the %HTML pages of your project. These files should reside under "client/js" directory. Do not provide ".js" after filenames.
     public $includeDefaultCss = true;   ///<    If set true, filenames specified by $defaultCssArray are included to %HTML output of current page.
     public $includeDefaultJs = true;    ///<    If set true, filenames specified by $defaultJsArray are included to %HTML output of current page.
     // Reference to Core

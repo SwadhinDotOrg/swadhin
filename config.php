@@ -162,16 +162,3 @@ define('FORMS_DIR', VIEW_DIR . "forms/");   //  Directory where your HTML forms 
 define('THIRDPARTY_DIR', PROJECT_DIR . '3rdparty/');
 
 //@}
-
-
-// Other Constants
-
-// MsgBox Status related
-
-define('MSGBOX_INFO', 0);
-define('MSGBOX_SUCCESS', 1);
-define('MSGBOX_WARNING', 2);
-define('MSGBOX_ERROR', 3);
-
-
-?>
