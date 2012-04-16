@@ -7,11 +7,13 @@ class Bootstrap {
 
     public $sourceDir;      ///<    Directory where the project is located. It's the direcotry where index.php file was found.
 
-    /**
-     * @var Swadhin
-     */
+    /**  @var Swadhin */
     private $swadhin = null;
 
+    /**
+     * Constructor
+     * @param string $sourceDir 
+     */
     function __construct($sourceDir) {
         $this->sourceDir = $sourceDir;
     }
@@ -41,6 +43,7 @@ class Bootstrap {
         $this->init();
         // Bootstrap the framework
         $this->swadhin = new Swadhin($this->sourceDir);
+        $this->swadhin->requestedPage = $_GET['p'];
         $this->swadhin->start();
 
         // Run User-Defined Scripts
