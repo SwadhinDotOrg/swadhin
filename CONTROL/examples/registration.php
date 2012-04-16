@@ -55,7 +55,7 @@ class Controller extends CoreController{
                 // Set an error message
                 $this->msg("This username already exists (id) please choose a different username", Html::MSGBOX_WARNING);
             }else{
-                $this->msg('Congratulations, registration is successful! You are our user #' . $newUserId);
+                $this->msg('Congratulations, registration is successful! You are our user #' . $newUserId, Html::MSGBOX_SUCCESS);
             }
         }
         

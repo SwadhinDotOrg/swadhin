@@ -1,7 +1,5 @@
 <?php
 
-define('PRINT_TRACE_IN_TEXTAREA', true);
-
 /**
  * Error & Exception Handler
  */
@@ -17,7 +15,7 @@ class Error {
             $errorMsg .= 'Database Query: <b>' . $e->query . '</b>';
             $errorMsg .= '</div>';
         }
-        if(DEBUG_MODE)
+        if(Config::DEBUG_MODE)
             $this->output('Uncaught Exception', $errorMsg);
         header ('Location: static/error');
     }
@@ -43,7 +41,7 @@ class Error {
         
         echo '<br /><br />';
         
-        if(PRINT_TRACE_IN_TEXTAREA)
+        if(Config::PRINT_TRACE_IN_TEXTAREA)
             echo '<textarea style="background:#FFF380; color:blue;" cols="150" rows = "20">';
 
         if (function_exists('xdebug_print_function_stack')) {
@@ -53,7 +51,7 @@ class Error {
             debug_print_backtrace();
         }
 
-        if(PRINT_TRACE_IN_TEXTAREA)
+        if(Config::PRINT_TRACE_IN_TEXTAREA)
             echo '</textarea>';
 
         $html->done();

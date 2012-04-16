@@ -25,11 +25,6 @@ class Bootstrap {
         ini_set('display_errors', '1');
 
         //ini_set('xdebug.auto_trace', 1);
-
-        define('TESTING_PHPIZZA', false);    // Set true when Unit Testing PHPizza. Must be set to FALSE in all other cases!
-
-        if (TESTING_PHPIZZA && !session_id())
-            session_start();
     }
 
     private function postLoading() {
@@ -59,14 +54,16 @@ class Bootstrap {
     private function loadConstants() {
         // Load Configuarations
         require $this->sourceDir . '/config.php';
+        Config::initConfigurations();
         // Load user-specific constants
         require $this->sourceDir . '/userconfig.php';
+        User_config::initConfigurations();
     }
 
     private function setIncludePaths() {
         set_include_path(implode(PATH_SEPARATOR, array(
-                    realpath(CUSTOM_DIR),
-                    realpath(CORE_DIR),
+                    realpath(Config::$custom_classes_dir),
+                    realpath(Config::$core_classes_dir),
                     get_include_path(),
                 )));
     }

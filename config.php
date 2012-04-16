@@ -1,10 +1,5 @@
 <?php
 
-// Define some constants
-
-define('AUTOLOAD_MODEL','model');
-define('AUTOLOAD_CLASS', 'class');
-
 /**
  * Configuration
  * **************
@@ -22,7 +17,7 @@ class Config {
      * Database Configuration
      * @var mixed - Key-Value pair Array. 
      */
-    public $db = array(
+    static public $db = array(
         'driver' => 'pdo_mysql',            ///< Possible values: 'mysql' 'pdo_mysql'
         'host' => 'localhost',
         'username' => 'root',
@@ -39,7 +34,7 @@ class Config {
      * 
      * @var string
      */
-    public $base_url = 'http://localhost/swadhin/';
+    const BASE_URL = 'http://localhost/swadhin/';
 
     /**
      * Templating/Theming
@@ -50,7 +45,7 @@ class Config {
      * 
      * @var string
      */
-    public $site_theme = 'WhiteLove';
+    const SITE_THEME = 'WhiteLove';
 
     /**
      * Landing Page
@@ -62,7 +57,7 @@ class Config {
      * 
      * @var string
      */
-    public $landing_page = 'index';
+    const LANDING_PAGE = 'index';
 
     /**
      * Autoloads - These classes/files will be loaded automatically.
@@ -73,7 +68,7 @@ class Config {
      * 
      * @var mixed
      */
-    public $autoloads = array(
+    static public $autoloads = array(
         self::AUTOLOAD_CLASS => array(), ///< Custom Classes
         self::AUTOLOAD_MODEL => array(), ///< MODEL Classes
     );
@@ -88,7 +83,7 @@ class Config {
      * 
      * @var bool
      */
-    public $nice_url_enabled = false;
+    const NICE_URL_ENABLED = false;
 
     /**
      * Prints various information availabe for debugging. Must be set to false in a production server.
@@ -96,7 +91,7 @@ class Config {
      * 
      * @var bool 
      */
-    public $debug_mode = true;
+    const DEBUG_MODE = true;
 
     /**
      * URL Extention
@@ -110,55 +105,74 @@ class Config {
      * 
      * @var string
      */
-    public $url_extention = '';
+    const URL_EXTENTION = '';
     
 
     /**
-     * Default FunctionToCall
+     * Default Controller Function to call
      * 
      * This function will be called within your Controller class if not provided any.
      * 
      * @var string
      */
-    public $default_function_to_call = 'index';
+    const DEFAULT_CONTROLLER_FUNCTION = 'index';
+    
+    const TEST_MODE = false; 
 
+    const THEME_LAYOUT_FILE = 'index.php';
+    
+    const THEME_DIRECTORY = 'templates/';        ///< Location of the directory where site themes are found. Relative to $project_dir
+    const JS_DIRECTORY = 'client/js/';
+    const FILES_DIRECTORY = 'files/';
+    
+    const PRINT_TRACE_IN_TEXTAREA = true;       ///< Whether print function call stacks withing a textarea when showing error
     /*
      * ***********************************************
      * MODIFY ONLY IF YOU UNDERSTAND WHAT YOU'RE DOING!
      * ***********************************************
      */
     
+    public static $project_dir;
+    public static $core_classes_dir;
+    public static $custom_classes_dir;
+    public static $thirdparty_dir;
+    public static $themes_dir;
+    public static $files_dir;
+    
+    public static $themes_url;
+    public static $js_url;
+    public static $files_url;
+    
+    public static $views_dir;
+    public static $views_forms_dir;
+    public static $controllers_dir;
+    public static $models_dir;
+    
+    /**
+     * Initial Configurations
+     * You may change them to appropriate settings if necessary. However, the framework will work fine
+     * without any change in following function. 
+     */
+    public static function initConfigurations(){
+        // You are NOT supposed to change folloging line
+        self::$project_dir = dirname(__FILE__) . '/'; 
+        
+        // You can change it to appropriate location where "core" & "custom" directory is found.
+        self::$core_classes_dir = self::$project_dir . 'core/';
+        self::$custom_classes_dir = self::$project_dir . 'custom/';
+        
+        // You may leave following lines intact
+        self::$thirdparty_dir = self::$project_dir . '3rdparty/';
+        self::$themes_dir = self::$project_dir . self::THEME_DIRECTORY;
+        self::$files_dir = self::$project_dir . self::FILES_DIRECTORY;
+        
+        self::$themes_url = self::BASE_URL . self::THEME_DIRECTORY;
+        self::$js_url = self::BASE_URL . self::JS_DIRECTORY;
+        self::$files_url = self::BASE_URL . self::FILES_DIRECTORY;
+        
+        self::$views_dir = self::$project_dir . 'VIEW/';
+        self::$views_forms_dir = self::$views_dir . 'forms/';
+        self::$controllers_dir = self::$project_dir . 'CONTROL/';
+        self::$models_dir = self::$project_dir . 'MODEL/';
+    }
 }
-
-/**
- * Constants
- */
-//@{
-
-
-/**
- * System configuration : Never change following settings!
- */
-define('PROJECT_DIR', dirname(__FILE__) . '/');
-
-/**
- * Internal Paths
- * 
- * Do not change them. Modify only if you do understand what you are doing!
- */
-
-define('CORE_DIR', PROJECT_DIR . 'core/');
-// Or, you can mention full-path to core directory like:
-//define('CORE_DIR', '/var/www/htdocs/projects/gigamvc/core/');
-
-define('CUSTOM_DIR', PROJECT_DIR . 'custom/');
-
-
-
-define('VIEW_DIR', PROJECT_DIR . 'VIEW/');
-define('CONTROL_DIR', PROJECT_DIR .  'CONTROL/');
-define('MODEL_DIR', PROJECT_DIR . 'MODEL/');
-define('FORMS_DIR', VIEW_DIR . "forms/");   //  Directory where your HTML forms reside
-define('THIRDPARTY_DIR', PROJECT_DIR . '3rdparty/');
-
-//@}

@@ -66,7 +66,7 @@ abstract class Template extends CoreView {
      */
     public function header() {
         echo '
-            <h1><a href="' . LibUrl::url('index') . '"><i>' . APP_NAME . '</i></a></h1>
+            <h1><a href="' . LibUrl::url('index') . '"><i>' . User_config::APP_NAME . '</i></a></h1>
                 <h2>' . $this->heading . '</h2>
             ';
     }

@@ -41,11 +41,7 @@ class Core {
     // Load staus
     public $controllerLoaded = false;   ///<    Boolean, true if controller class loaded.
     public $viewLoaded = false;         ///<    Boolean, true if view class loaded.  
-    /**
-     *
-     * @var Config
-     */
-    private $config = null;
+
     // vars for internal use. Don't use/depend on any of these in your code
 
     public $coreDir;
@@ -66,9 +62,8 @@ class Core {
      */
     public function __construct($config) {
         $this->__version = "1.3.0 beta";
-        $this->config = $config;
-        // Acquire info from global configuration
-        $this->loadConfig();
+        // Acquire Database Configuration
+        $this->__dbconfig = Config::$db;
         // Create other members
         $this->funcs = new Funcs($this);
         $this->validate = new Validator($this);
@@ -77,35 +72,13 @@ class Core {
         // init some member vars
         $this->formData = array();
         // Set site template
-        $this->template = $this->config->site_theme;  //  Can load from DB too.
-        $this->templateFileName = "index.php";
+        $this->template = Config::SITE_THEME;  //  Can load from DB too.
+        $this->templateFileName = Config::THEME_LAYOUT_FILE;
         // Set up internal vars
-        $this->coreDir = CORE_DIR;
+        $this->coreDir = Config::$core_classes_dir;
     }
 
-    /**
-     * Load configurations/settings from global config.php
-     */
-    private function loadConfig() {
-        $this->__dbconfig = $this->config->db;
-        if (!TESTING_PHPIZZA)
-            $this->config->db = null;
 
-        // Generate some constants
-        define('BASE_URL', $this->config->base_url);
-
-        define('TEMPLATE_DIR', PROJECT_DIR . 'templates/');
-        define('TEMPLATE_URL', BASE_URL . 'templates/');    // Used for generateing CSS, JS, Images etc. locations
-        define('JS_URL', BASE_URL . 'client/js/');
-        define('FILES_DIR', PROJECT_DIR . 'files/');
-        define('FILES_URL', BASE_URL . 'files/');
-
-        define('SITE_THEME', $this->config->site_theme);
-        define('DEBUG_MODE', $this->config->debug_mode);
-        define('NICE_URL_ENABLED', $this->config->nice_url_enabled);
-        define('URL_EXTENTION', $this->config->url_extention);
-        define('LANDING_PAGE', $this->config->landing_page);
-    }
 
     /**
      * Returns current PHPizza Version
@@ -126,7 +99,7 @@ class Core {
      * @return object of newly loaded model.
      */
     public function loadModel($model) {
-        $filename = MODEL_DIR . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $model)) . '.php';
+        $filename = Config::$models_dir . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $model)) . '.php';
         require_once $filename;
         $tempVar = explode('/', $model);
         $className = end($tempVar);
@@ -142,8 +115,7 @@ class Core {
      */
     
     public function loadBlock($block) {
-//        require_once dirname(__FILE__) . "/../../" . CUSTOM_DIR . "/class/Blocks.php";
-        $filename = VIEW_DIR . 'blocks/' . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $block)) . '.php';
+        $filename = Config::$views_dir . 'blocks/' . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $block)) . '.php';
         require $filename;
         $tempVar = explode('/', $block);
         $className = end($tempVar);
@@ -158,15 +130,14 @@ class Core {
      * @param string $controller name of the controller class
      */
     private function loadController($controller) {
-        // Load this specific controller
-        $filename = CONTROL_DIR . $controller . '.php';
+        $filename = Config::$controllers_dir . $controller . '.php';
         $this->controllerLoaded = true;
         if (file_exists($filename)) {
             require $filename;
             // Also, generate the controller object & call "functionToCall"
-            $this->generateControllerObject();  // Controller Called!
+            $this->generateControllerObject();  // Controller object generated
         } else {
-            throw new Exception('Error 404 - Page Not Found!');
+            throw new Exception('Error 404 - Controller ' . $controller . ' Not Found!');
         }
     }
 
@@ -183,15 +154,15 @@ class Core {
             $view = $this->page;
         // Next, load template class from template folder
         $template = $this->template;
-        require TEMPLATE_DIR . $template . '/template.php';
+        require Config::$themes_dir . $template . '/template.php';
         // Load the specific VIEW class.
-        $filename = VIEW_DIR . 'pages/' . $view . '.php';
+        $filename = Config::$views_dir . 'pages/' . $view . '.php';
         $this->viewLoaded = true;
 //        die('requiring' . $filename);
         $requireResult = $this->safeRequire($filename);
         if ($this->isStatic && !$requireResult) {
 //            $this->viewLoaded = false;
-            $this->fatal('Error 404: This static page is currently unavailble!');
+            $this->fatal('Error: Could not load the static page.');
         }
     }
 
@@ -205,7 +176,7 @@ class Core {
      * @return bool true in success, false otherwise 
      */
     public function loadCustomClass($className) {
-        $classPath = CUSTOM_DIR . 'class/' . $className . '.php';
+        $classPath = Config::$custom_classes_dir . 'class/' . $className . '.php';
         return $this->safeRequireOnce($classPath);
     }
 
@@ -216,8 +187,8 @@ class Core {
      * @param string $driver name of the database driver, i.e MySQL
      */
     
-    public function loadDatabaseDriver() {
-    }
+//    public function loadDatabaseDriver() {
+//    }
 
     /* Template Related */
 
@@ -305,7 +276,7 @@ class Core {
      * @param string $str the string to echo.
      */
     public function debug($str) {
-        if (DEBUG_MODE)
+        if (Config::DEBUG_MODE)
             echo '<pre>' . $str . '</pre>';
     }
 
@@ -314,7 +285,7 @@ class Core {
     /**
      * Used to load the default controller.
      * 
-     * It also calls generateViewObject() followed by loadTemplate() to finish generating the page.
+     * It also calls generateViewObject() followed by loadTemplate() to completely generate %HTML output.
      * 
      * Warning:
      * - You should NEVER call this function! As this function is automatically called by the framework.
@@ -322,10 +293,7 @@ class Core {
      * @return None
      */
     public function loadMVC($page) {
-        // Automatic Model, View loading no longer supported!
         $this->findPage($page);
-        // Autoload Lang
-//        $this->loadLang();
         // Autoloading
         $this->autoloadFromConfig();
         // Load Controllers/Views
@@ -349,7 +317,7 @@ class Core {
     private function loadTemplate() {
         if ($this->viewLoaded) {
             $template = $this->template;
-            $templateIndex = TEMPLATE_DIR . $template . '/' . $this->templateFileName;
+            $templateIndex = Config::$themes_dir . $template . '/' . $this->templateFileName;
             require $templateIndex;
         }
     }
@@ -362,8 +330,7 @@ class Core {
         if ($this->viewLoaded) {
             $this->view = new View($this);
             // create a global instance
-            global $__viewInstance;
-            $__viewInstance = $this->view;
+            View::$instance = $this->view;
             // Check static permission
             if ($this->isStatic && !$this->view->__staticLoadAllowed) {
                 $this->fatal('Error: Loading this page statically is denied.');
@@ -397,7 +364,7 @@ class Core {
         if (method_exists($this->controller, $this->functionToCall))
             call_user_func(array($this->controller, $this->functionToCall));
         else {
-            $this->fatal('Error 404: Requested controller-method not found!');
+            $this->fatal('Error : Requested controller-method not found!');
         }
     }
 
@@ -415,7 +382,7 @@ class Core {
 
         if ($numSegments == 1 && $pageArr[0] != 'static') {
             $this->page = $URL;
-            $this->functionToCall = $this->config->default_function_to_call;
+            $this->functionToCall = Config::DEFAULT_CONTROLLER_FUNCTION;
         } else {
             // Handle static pages first.
             if ($pageArr[0] == 'static') {
@@ -426,10 +393,10 @@ class Core {
             } else {
                 // DYNAMIC
                 // Check if full path exists
-                $controllerPath = CONTROL_DIR . $URL . '.php';
+                $controllerPath = Config::$controllers_dir . $URL . '.php';
                 if (file_exists($controllerPath)) {
                     $this->page = $URL;
-                    $this->functionToCall = $this->config->default_function_to_call;
+                    $this->functionToCall = Config::DEFAULT_CONTROLLER_FUNCTION;
                 } else {
                     // Check later.
                     $this->functionToCall = $pageArr[$numSegments - 1];
@@ -447,20 +414,20 @@ class Core {
      */
     private function autoloadFromConfig() {
         // classes
-        if (!empty($this->config->autoloads[Config::AUTOLOAD_CLASS])) {
+        if (!empty(Config::$autoloads[Config::AUTOLOAD_CLASS])) {
             foreach ($this->config->autoloads[Config::AUTOLOAD_CLASS] as $className) {
-//                require CUSTOM_DIR . 'class/' . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $className)) . '.php';
+//                require Config::$custom_classes_dir . 'class/' . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $className)) . '.php';
                 $this->autoloadedData[Config::AUTOLOAD_CLASS][$className] = new $className($this);
             }
         }
         // MODELS
-        if (!empty($this->config->autoloads[Config::AUTOLOAD_MODEL])) {
+        if (!empty(Config::$autoloads[Config::AUTOLOAD_MODEL])) {
             // Load DB driver
             $this->loadDatabaseDriver();
             $this->oneModelLoaded = true;
             // Include all models
             foreach ($this->config->autoloads[Config::AUTOLOAD_MODEL] as $className) {
-                require MODEL_DIR . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $className)) . '.php';
+                require Config::$models_dir . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $className)) . '.php';
                 $this->autoloadedData[Config::AUTOLOAD_MODEL][$className] = new $className($this);
             }
         }

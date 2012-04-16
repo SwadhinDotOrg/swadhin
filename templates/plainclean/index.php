@@ -62,7 +62,7 @@ Released   : 20111024
             <?php $view->footer(); ?>
         </div>
         <div id="footer">
-            <p>Powered by PHPizza &bull; Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+            <p>Powered by Swadhin Framework &bull; Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
         </div>
         <!-- end #footer -->
     </body>

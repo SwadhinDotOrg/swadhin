@@ -23,12 +23,12 @@ class LibUrl {
      */
     static function url($url) {
         $urlArr = explode("?", $url, 2); // Split based on the query string
-        if (NICE_URL_ENABLED) {
+        if (Config::NICE_URL_ENABLED) {
             $queryString = (isset($urlArr[1])) ? ( "?" . $urlArr[1]) : ("");
-            return BASE_URL . $urlArr[0] . URL_EXTENTION . $queryString;
+            return Config::BASE_URL . $urlArr[0] . Config::URL_EXTENTION . $queryString;
         } else {
             $queryString = (isset($urlArr[1])) ? ( "&" . $urlArr[1]) : ("");
-            return BASE_URL . '?p=' . $urlArr[0] . $queryString;
+            return Config::BASE_URL . '?p=' . $urlArr[0] . $queryString;
         }
     }
 
@@ -41,12 +41,12 @@ class LibUrl {
      */
     static function url_static($url) {
         $urlArr = explode("?", $url, 2); // Split based on the query string
-        if (NICE_URL_ENABLED) {
+        if (Config::NICE_URL_ENABLED) {
             $queryString = (isset($urlArr[1])) ? ( "?" . $urlArr[1]) : ("");
-            return BASE_URL . 'static/' . $urlArr[0] . URL_EXTENTION . $queryString;
+            return Config::BASE_URL . 'static/' . $urlArr[0] . URL_EXTENTION . $queryString;
         } else {
             $queryString = (isset($urlArr[1])) ? ( "&" . $urlArr[1]) : ("");
-            return BASE_URL . '?p=static/' . $urlArr[0] . $queryString;
+            return Config::BASE_URL . '?p=static/' . $urlArr[0] . $queryString;
         }
     }
 
@@ -68,7 +68,7 @@ class LibUrl {
      */
     static function filePath($filePath) {
         // Returns absolute path for a file.
-        return FILES_URL . $filePath;
+        return Config::$files_url . $filePath;
     }
 
 }

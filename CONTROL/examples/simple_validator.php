@@ -23,9 +23,8 @@ class Controller extends CoreController{
     
     function test(){
         
-        $id = $this->validate->input('id');
-        $noRedirect = $this->validate->input('noRedirect',"",false);    //  Not required, uses a default value 
-        
+        $noRedirect = $this->validate->input('noRedirect','',false);    //  Not required, uses a default value 
+        $id = $this->validate->input('id', '', false);
         if($noRedirect == "yes"){
             // Don't exit, process within this page
             $errorMsg = $this->validate->exitIfInvalid(false);

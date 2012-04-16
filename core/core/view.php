@@ -12,20 +12,30 @@ class CoreView {
     public $icon = null;       ///<    Icon element of %HTML output.
     public $desc = 'Powered by Swadhin MVC Framework';   ///<    "Description" meta-tag of %HTML output.
     public $keys = 'swadhin';     ///<    "Keywords" meta-tag of %HTML output.
+    
     public $cssArray = null;    ///<    Array. Array elements are css filenames - must be available under your theme's "css" directory. Do not provide ".css" after filenames.
     public $externalCssArray = null;    ///< Array to include CSS files outside your theme's "css" directory. These files will be included as-is, keeping the path intact. Do not provide ".css" after filenames.
+    
     public $jsArray = null; ///<    Array. Array elements are JavaScript file names to be included to the %HTML output. These files should reside under "client/js" directory. Do not provide ".js" after filenames.
+    
     public $template = ''; ///<    Name of the template. Do not modify if you're going to use the default theme specified in your config.php file.  
     public $__staticLoadAllowed = false;  ///<    If set to false (which is default) this VIEW can not be loaded statically (without loading any controller)
+    
     public $defaultCssArray = null;  ///<    Array. Array elements are css filenames. These CSS files should be included to ALL %HTML pages of your project. These files should be put under your theme's "css" directory. Do not provide ".css" after filenames.
     public $defaultJsArray = array('jquery');    ///<    Array. Array Elements are JavaScript filenames to be included to all the %HTML pages of your project. These files should reside under "client/js" directory. Do not provide ".js" after filenames.
     public $includeDefaultCss = true;   ///<    If set true, filenames specified by $defaultCssArray are included to %HTML output of current page.
     public $includeDefaultJs = true;    ///<    If set true, filenames specified by $defaultJsArray are included to %HTML output of current page.
+    
     // Reference to Core
     private $core;   ///< A reference to $core
+    
+    static public $instance;    ///<    Instance to the object of View
+    
 
-    // Public & Private Methods
-
+    /**
+     * Constructor
+     * @param Core $core 
+     */
     public function __construct($core) {
         $this->core = $core;
     }
@@ -84,13 +94,13 @@ class CoreView {
         if ($this->includeDefaultCss && isset($this->defaultCssArray)) {
             foreach ($this->defaultCssArray as $css_i) {
                 $siteTheme = $this->template;
-                $html .= '<LINK href="' . TEMPLATE_URL . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
+                $html .= '<LINK href="' . Config::$themes_url . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
             }
         }
         // Print others
         if (isset($this->cssArray)) {
             foreach ($this->cssArray as $css_i) {
-                $html .= '<LINK href="' . TEMPLATE_URL . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
+                $html .= '<LINK href="' . Config::$themes_url . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
             }
         }
         // Print external CSS files
@@ -116,13 +126,13 @@ class CoreView {
         // Print Default
         if ($this->includeDefaultJs && isset($this->defaultJsArray)) {
             foreach ($this->defaultJsArray as $js_i) {
-                $html .= "<script src = '" . JS_URL . "$js_i.js'></script>";
+                $html .= "<script src = '" . Config::$js_url . "$js_i.js'></script>";
             }
         }
         // Print others
         if (isset($this->jsArray)) {
             foreach ($this->jsArray as $js_i) {
-                $html .= "<script src = '" . JS_URL . "$js_i.js'></script>";
+                $html .= "<script src = '" . Config::$js_url . "$js_i.js'></script>";
             }
         }
         return $html;
@@ -134,8 +144,7 @@ class CoreView {
      * Get an instance of view object, to use inside your template files
      */
     static function getInstance() {
-        global $__viewInstance;
-        return $__viewInstance;
+        return self::$instance;
     }
 
 }

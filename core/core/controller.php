@@ -67,7 +67,7 @@ class CoreController {
      */
     public function loadForm($formName) {
         // Now include particular form
-        $classPath = FORMS_DIR . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $formName)) . '.php';
+        $classPath = Config::$views_forms_dir . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $formName)) . '.php';
         require $classPath;
         $var = new $formName($this->core);
         return $var;
@@ -79,17 +79,7 @@ class CoreController {
      * @return bool true in success, false otherwise 
      */
     public function load3p($fileName) {
-        require_once PROJECT_DIR . '/' . THIRDPARTY_DIR . $fileName . '.php';
-    }
-
-    /**
-     *
-     * @param type $funcFile
-     * @return type 
-     */
-    public function loadCustomFunctions($funcFile) {
-        $classPath = CUSTOM_DIR . 'funcs/' . $funcFile. '.php';
-        return $this->safeRequireOnce($classPath);
+        require_once Config::$project_dir . '/' . THIRDPARTY_DIR . $fileName . '.php';
     }
 
     /**
@@ -98,7 +88,7 @@ class CoreController {
      * @param string $type - This can be any of 'custom' or 'model' or 'func'
      * @return object - instance of the autoloaded class if successful. FALSE otherwise 
      */
-    public function autoload($className, $type=AUTOLOAD_CUSTOM_CLASS) {
+    public function autoload($className, $type=Config::AUTOLOAD_CLASS) {
         return (isset($this->core->autoloadedData[$type][$className])) ? ($this->core->autoloadedData[$type][$className]) : (false);
     }
 
@@ -194,7 +184,7 @@ class CoreController {
      * @param string $str the string to echo.
      */
     public function debug($str) {
-        if (DEBUG_MODE)
+        if (Config::DEBUG_MODE)
             echo '<pre>' . $str . '</pre>';
     }
     

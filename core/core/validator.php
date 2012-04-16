@@ -79,9 +79,9 @@ class CoreValidator{
     public function input($data, $length="", $required = true, $defaultValue = "") {
         if ($required) {
             if (empty($_REQUEST["$data"])) {
-                $this->core->funcs->messageExit('Required field <b>' . $data . '</b> is empty!', MSGBOX_ERROR, $this->redirectURL);
+                $this->core->funcs->messageExit('Required field <b>' . $data . '</b> is empty!', Html::MSGBOX_ERROR, $this->redirectURL);
             } else if (!empty($length) && strlen($_REQUEST["$data"]) > $length) {
-                $this->core->funcs->messageExit('Required field <b>' . $data . '</b> is too large! (Max <b>' . $length . '</b> chars allowed).', MSGBOX_ERROR, $this->redirectURL);
+                $this->core->funcs->messageExit('Required field <b>' . $data . '</b> is too large! (Max <b>' . $length . '</b> chars allowed).', Html::MSGBOX_ERROR, $this->redirectURL);
             }
         }
         $return = (empty($_REQUEST[$data])) ? ($defaultValue) : (htmlspecialchars($_REQUEST["$data"]));
@@ -133,7 +133,7 @@ class CoreValidator{
         $this->errorArray = array();    //  Reset the error Array.
         if(!empty($errorString)){
             if($exit){
-                $this->core->funcs->messageExit($errorString, MSGBOX_ERROR, $this->redirectURL);
+                $this->core->funcs->messageExit($errorString, Html::MSGBOX_ERROR, $this->redirectURL);
             }
             return $errorString;
         }else{
