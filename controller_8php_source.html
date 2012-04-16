@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Swadhin: /media/sobkichu/xampp/www/phpizza/core/class/core/controller.php Source File</title>
+<title>Swadhin Framework: core/core/controller.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Swadhin&#160;<span id="projectnumber">1.3.0 Beta</span></div>
+   <div id="projectname">Swadhin Framework&#160;<span id="projectnumber">1.3.0 Beta</span></div>
    <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -60,7 +60,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div>
@@ -113,82 +112,77 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00058"></a>00058 
 <a name="l00068"></a><a class="code" href="class_core_controller.html#a8da25279cb2f1b6c9b5aafb2bc831393">00068</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a8da25279cb2f1b6c9b5aafb2bc831393">loadForm</a>($formName) {
 <a name="l00069"></a>00069         <span class="comment">// Now include particular form</span>
-<a name="l00070"></a>00070         $classPath = FORMS_DIR . strtolower(preg_replace(<span class="stringliteral">&#39;/([a-z])([A-Z])/&#39;</span>, <span class="stringliteral">&#39;$1/$2&#39;</span>, $formName)) . <span class="stringliteral">&#39;.php&#39;</span>;
+<a name="l00070"></a>00070         $classPath = Config::$views_forms_dir . strtolower(preg_replace(<span class="stringliteral">&#39;/([a-z])([A-Z])/&#39;</span>, <span class="stringliteral">&#39;$1/$2&#39;</span>, $formName)) . <span class="stringliteral">&#39;.php&#39;</span>;
 <a name="l00071"></a>00071         require $classPath;
 <a name="l00072"></a>00072         $var = <span class="keyword">new</span> $formName($this-&gt;core);
 <a name="l00073"></a>00073         <span class="keywordflow">return</span> $var;
 <a name="l00074"></a>00074     }
 <a name="l00075"></a>00075 
 <a name="l00081"></a><a class="code" href="class_core_controller.html#a4b5eef38ddaeac8b0a208e29bf3d81d4">00081</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a4b5eef38ddaeac8b0a208e29bf3d81d4">load3p</a>($fileName) {
-<a name="l00082"></a>00082         require_once PROJECT_DIR . <span class="charliteral">&#39;/&#39;</span> . THIRDPARTY_DIR . $fileName . <span class="stringliteral">&#39;.php&#39;</span>;
+<a name="l00082"></a>00082         require_once Config::$project_dir . <span class="charliteral">&#39;/&#39;</span> . THIRDPARTY_DIR . $fileName . <span class="stringliteral">&#39;.php&#39;</span>;
 <a name="l00083"></a>00083     }
 <a name="l00084"></a>00084 
-<a name="l00090"></a><a class="code" href="class_core_controller.html#a52ffc849ccd16b8298d527d9e3957c7e">00090</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a52ffc849ccd16b8298d527d9e3957c7e">loadCustomFunctions</a>($funcFile) {
-<a name="l00091"></a>00091         $classPath = CUSTOM_DIR . <span class="stringliteral">&#39;funcs/&#39;</span> . $funcFile. <span class="stringliteral">&#39;.php&#39;</span>;
-<a name="l00092"></a>00092         <span class="keywordflow">return</span> $this-&gt;safeRequireOnce($classPath);
+<a name="l00091"></a><a class="code" href="class_core_controller.html#a32904c01e549f0b9d05adfd675bc1aaa">00091</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a32904c01e549f0b9d05adfd675bc1aaa">autoload</a>($className, $type=Config::AUTOLOAD_CLASS) {
+<a name="l00092"></a>00092         <span class="keywordflow">return</span> (isset($this-&gt;core-&gt;autoloadedData[$type][$className])) ? ($this-&gt;core-&gt;autoloadedData[$type][$className]) : (<span class="keyword">false</span>);
 <a name="l00093"></a>00093     }
 <a name="l00094"></a>00094 
-<a name="l00101"></a><a class="code" href="class_core_controller.html#a4664339838cbc76590f9b4408db9db8b">00101</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a4664339838cbc76590f9b4408db9db8b">autoload</a>($className, $type=AUTOLOAD_CUSTOM_CLASS) {
-<a name="l00102"></a>00102         <span class="keywordflow">return</span> (isset($this-&gt;core-&gt;autoloadedData[$type][$className])) ? ($this-&gt;core-&gt;autoloadedData[$type][$className]) : (<span class="keyword">false</span>);
-<a name="l00103"></a>00103     }
-<a name="l00104"></a>00104 
-<a name="l00105"></a>00105     <span class="comment">// Data passing across controller-view </span>
-<a name="l00106"></a>00106 
-<a name="l00118"></a><a class="code" href="class_core_controller.html#a80ead7297ebca630947637eae8a14911">00118</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a80ead7297ebca630947637eae8a14911">data</a>($id, $data) {
-<a name="l00119"></a>00119         $this-&gt;core-&gt;cData[$id] = $data;
-<a name="l00120"></a>00120     }
-<a name="l00121"></a>00121 
-<a name="l00125"></a><a class="code" href="class_core_controller.html#a26c94070d54f67718894239dcaba8815">00125</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a26c94070d54f67718894239dcaba8815">msg</a>($msg, $status=<span class="stringliteral">&#39;&#39;</span>) {
-<a name="l00126"></a>00126         $this-&gt;funcs-&gt;setStatusMsg($msg, $status);
-<a name="l00127"></a>00127     }
+<a name="l00095"></a>00095     <span class="comment">// Data passing across controller-view </span>
+<a name="l00096"></a>00096 
+<a name="l00108"></a><a class="code" href="class_core_controller.html#a80ead7297ebca630947637eae8a14911">00108</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a80ead7297ebca630947637eae8a14911">data</a>($id, $data) {
+<a name="l00109"></a>00109         $this-&gt;core-&gt;cData[$id] = $data;
+<a name="l00110"></a>00110     }
+<a name="l00111"></a>00111 
+<a name="l00115"></a><a class="code" href="class_core_controller.html#a26c94070d54f67718894239dcaba8815">00115</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a26c94070d54f67718894239dcaba8815">msg</a>($msg, $status=<span class="stringliteral">&#39;&#39;</span>) {
+<a name="l00116"></a>00116         $this-&gt;funcs-&gt;setStatusMsg($msg, $status);
+<a name="l00117"></a>00117     }
+<a name="l00118"></a>00118     
+<a name="l00119"></a>00119     
+<a name="l00124"></a><a class="code" href="class_core_controller.html#a177bc4ecf4167a98368da00df884413b">00124</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a177bc4ecf4167a98368da00df884413b">getMsg</a>(){
+<a name="l00125"></a>00125         <span class="keywordflow">return</span> $this-&gt;funcs-&gt;getStatusMsg();
+<a name="l00126"></a>00126     }
+<a name="l00127"></a>00127 
 <a name="l00128"></a>00128     
-<a name="l00129"></a>00129     
-<a name="l00134"></a><a class="code" href="class_core_controller.html#a177bc4ecf4167a98368da00df884413b">00134</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a177bc4ecf4167a98368da00df884413b">getMsg</a>(){
-<a name="l00135"></a>00135         <span class="keywordflow">return</span> $this-&gt;funcs-&gt;getStatusMsg();
-<a name="l00136"></a>00136     }
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138     
-<a name="l00139"></a>00139 
-<a name="l00143"></a><a class="code" href="class_core_controller.html#a373975490ccec46fe505ccaf6ec45818">00143</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a373975490ccec46fe505ccaf6ec45818">kill</a>($msg=<span class="stringliteral">&#39;&#39;</span>, $type=MSGBOX_ERROR, $redirectURL=<span class="stringliteral">&#39;&#39;</span>) {
-<a name="l00144"></a>00144         $this-&gt;funcs-&gt;messageExit($msg, $type, $redirectURL);
-<a name="l00145"></a>00145     }
-<a name="l00146"></a>00146     
-<a name="l00147"></a>00147     
-<a name="l00161"></a>00161     
-<a name="l00165"></a><a class="code" href="class_core_controller.html#ac5996fbd4894415433f7974c061b6ef0">00165</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#ac5996fbd4894415433f7974c061b6ef0">setSessData</a>($id, $data) {
-<a name="l00166"></a>00166         $_SESSION[$id] = $data;
-<a name="l00167"></a>00167     }
-<a name="l00168"></a>00168     
-<a name="l00173"></a><a class="code" href="class_core_controller.html#a2b489a3966ab840caf10cc1ec6648679">00173</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a2b489a3966ab840caf10cc1ec6648679">getSessData</a>($id) {
-<a name="l00174"></a>00174         <span class="keywordflow">if</span> (isset($_SESSION[$id]))
-<a name="l00175"></a>00175             <span class="keywordflow">return</span> $_SESSION[$id];
-<a name="l00176"></a>00176         <span class="keywordflow">else</span>
-<a name="l00177"></a>00177             <span class="keywordflow">return</span> null;
-<a name="l00178"></a>00178     }
+<a name="l00129"></a>00129 
+<a name="l00133"></a><a class="code" href="class_core_controller.html#a373975490ccec46fe505ccaf6ec45818">00133</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a373975490ccec46fe505ccaf6ec45818">kill</a>($msg=<span class="stringliteral">&#39;&#39;</span>, $type=MSGBOX_ERROR, $redirectURL=<span class="stringliteral">&#39;&#39;</span>) {
+<a name="l00134"></a>00134         $this-&gt;funcs-&gt;messageExit($msg, $type, $redirectURL);
+<a name="l00135"></a>00135     }
+<a name="l00136"></a>00136     
+<a name="l00137"></a>00137     
+<a name="l00151"></a>00151     
+<a name="l00155"></a><a class="code" href="class_core_controller.html#ac5996fbd4894415433f7974c061b6ef0">00155</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#ac5996fbd4894415433f7974c061b6ef0">setSessData</a>($id, $data) {
+<a name="l00156"></a>00156         $_SESSION[$id] = $data;
+<a name="l00157"></a>00157     }
+<a name="l00158"></a>00158     
+<a name="l00163"></a><a class="code" href="class_core_controller.html#a2b489a3966ab840caf10cc1ec6648679">00163</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a2b489a3966ab840caf10cc1ec6648679">getSessData</a>($id) {
+<a name="l00164"></a>00164         <span class="keywordflow">if</span> (isset($_SESSION[$id]))
+<a name="l00165"></a>00165             <span class="keywordflow">return</span> $_SESSION[$id];
+<a name="l00166"></a>00166         <span class="keywordflow">else</span>
+<a name="l00167"></a>00167             <span class="keywordflow">return</span> null;
+<a name="l00168"></a>00168     }
+<a name="l00169"></a>00169     
+<a name="l00174"></a><a class="code" href="class_core_controller.html#a790179e0d3a2188d8135ad6976453275">00174</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a790179e0d3a2188d8135ad6976453275">unsetSessData</a>($id){
+<a name="l00175"></a>00175         unset($_SESSION[$id]);
+<a name="l00176"></a>00176     }
+<a name="l00177"></a>00177     
 <a name="l00179"></a>00179     
-<a name="l00184"></a><a class="code" href="class_core_controller.html#a790179e0d3a2188d8135ad6976453275">00184</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a790179e0d3a2188d8135ad6976453275">unsetSessData</a>($id){
-<a name="l00185"></a>00185         unset($_SESSION[$id]);
-<a name="l00186"></a>00186     }
-<a name="l00187"></a>00187     
-<a name="l00189"></a>00189     
+<a name="l00180"></a>00180     
+<a name="l00181"></a>00181 
+<a name="l00186"></a><a class="code" href="class_core_controller.html#a3a56d16c16a5bea2ad3076829e652078">00186</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a3a56d16c16a5bea2ad3076829e652078">debug</a>($str) {
+<a name="l00187"></a>00187         <span class="keywordflow">if</span> (Config::DEBUG_MODE)
+<a name="l00188"></a>00188             echo <span class="stringliteral">&#39;&lt;pre&gt;&#39;</span> . $str . <span class="stringliteral">&#39;&lt;/pre&gt;&#39;</span>;
+<a name="l00189"></a>00189     }
 <a name="l00190"></a>00190     
-<a name="l00191"></a>00191 
-<a name="l00196"></a><a class="code" href="class_core_controller.html#a3a56d16c16a5bea2ad3076829e652078">00196</a>     <span class="keyword">public</span> function <a class="code" href="class_core_controller.html#a3a56d16c16a5bea2ad3076829e652078">debug</a>($str) {
-<a name="l00197"></a>00197         <span class="keywordflow">if</span> (DEBUG_MODE)
-<a name="l00198"></a>00198             echo <span class="stringliteral">&#39;&lt;pre&gt;&#39;</span> . $str . <span class="stringliteral">&#39;&lt;/pre&gt;&#39;</span>;
-<a name="l00199"></a>00199     }
-<a name="l00200"></a>00200     
-<a name="l00206"></a><a class="code" href="class_core_controller.html#a0fd8a4f2b09362e7d22444abe351db0d">00206</a>     <span class="keyword">public</span> function <span class="keyword">template</span>($templateName){
-<a name="l00207"></a>00207         $this-&gt;core-&gt;template = $templateName;
-<a name="l00208"></a>00208     }
-<a name="l00209"></a>00209 
-<a name="l00210"></a>00210 }
+<a name="l00196"></a><a class="code" href="class_core_controller.html#a0fd8a4f2b09362e7d22444abe351db0d">00196</a>     <span class="keyword">public</span> function <span class="keyword">template</span>($templateName){
+<a name="l00197"></a>00197         $this-&gt;core-&gt;template = $templateName;
+<a name="l00198"></a>00198     }
+<a name="l00199"></a>00199 
+<a name="l00200"></a>00200 }
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>controller.php</b>      </li>
-      <li class="footer">Generated on Tue Apr 10 2012 14:06:58 for Swadhin by&#160;
+      <li class="footer">Generated on Mon Apr 16 2012 20:52:52 for Swadhin Framework by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -198,7 +192,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

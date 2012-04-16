@@ -1,8 +1,9 @@
 var NAVTREE =
 [
-  [ "Swadhin", "index.html", [
+  [ "Swadhin Framework", "index.html", [
     [ "Data Structures", "annotated.html", [
       [ "Blocks", "class_blocks.html", null ],
+      [ "Bootstrap", "class_bootstrap.html", null ],
       [ "Config", "class_config.html", null ],
       [ "Core", "class_core.html", null ],
       [ "CoreController", "class_core_controller.html", null ],
@@ -21,14 +22,18 @@ var NAVTREE =
       [ "Funcs", "class_funcs.html", null ],
       [ "Html", "class_html.html", null ],
       [ "LibAuthentication", "class_lib_authentication.html", null ],
+      [ "LibDebug", "class_lib_debug.html", null ],
       [ "LibFiles", "class_lib_files.html", null ],
-      [ "MaliciousClass", "class_malicious_class.html", null ],
-      [ "PHPizza", "class_p_h_pizza.html", null ],
+      [ "LibForm", "class_lib_form.html", null ],
+      [ "LibUrl", "class_lib_url.html", null ],
+      [ "Swadhin", "class_swadhin.html", null ],
       [ "Template", "class_template.html", null ],
+      [ "User_config", "class_user__config.html", null ],
       [ "Validator", "class_validator.html", null ]
     ] ],
     [ "Data Structure Index", "classes.html", null ],
     [ "Class Hierarchy", "hierarchy.html", [
+      [ "Bootstrap", "class_bootstrap.html", null ],
       [ "Config", "class_config.html", null ],
       [ "Core", "class_core.html", null ],
       [ "CoreController", "class_core_controller.html", null ],
@@ -56,66 +61,59 @@ var NAVTREE =
         [ "Blocks", "class_blocks.html", null ]
       ] ],
       [ "LibAuthentication", "class_lib_authentication.html", null ],
+      [ "LibDebug", "class_lib_debug.html", null ],
       [ "LibFiles", "class_lib_files.html", null ],
-      [ "MaliciousClass", "class_malicious_class.html", null ],
-      [ "PHPizza", "class_p_h_pizza.html", null ]
+      [ "LibForm", "class_lib_form.html", null ],
+      [ "LibUrl", "class_lib_url.html", null ],
+      [ "Swadhin", "class_swadhin.html", null ],
+      [ "User_config", "class_user__config.html", null ]
     ] ],
     [ "Data Fields", "functions.html", null ],
     [ "File List", "files.html", [
-      [ "/media/sobkichu/xampp/www/phpizza/config.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/index.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/phpinfo.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/post_script.php", "post__script_8php.html", null ],
-      [ "/media/sobkichu/xampp/www/phpizza/pre_script.php", "pre__script_8php.html", null ],
-      [ "/media/sobkichu/xampp/www/phpizza/userconfig.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/blocks.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/core.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/error.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/funcs.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/html.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/validator.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/core/controller.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/core/exception.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/core/form.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/core/model.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/core/validator.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/core/view.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/db/exception.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/db/generic.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/db/mysql.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/db/mysql_query_builder.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/db/pdo.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/db/pdo_mysql.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/lib/authentication.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/class/lib/files.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/funcs/form.php", "funcs_2form_8php.html", null ],
-      [ "/media/sobkichu/xampp/www/phpizza/core/funcs/general.php", "general_8php.html", null ],
-      [ "/media/sobkichu/xampp/www/phpizza/custom/class/malicious.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/templates/plainclean/index.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/templates/plainclean/template.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/templates/WhiteLove/index.php", null, null ],
-      [ "/media/sobkichu/xampp/www/phpizza/templates/WhiteLove/template.php", null, null ]
+      [ "bootstrap.php", null, null ],
+      [ "config.php", null, null ],
+      [ "index.php", null, null ],
+      [ "userconfig.php", null, null ],
+      [ "core/blocks.php", null, null ],
+      [ "core/core.php", null, null ],
+      [ "core/error.php", null, null ],
+      [ "core/funcs.php", null, null ],
+      [ "core/html.php", null, null ],
+      [ "core/swadhin.php", null, null ],
+      [ "core/validator.php", null, null ],
+      [ "core/core/controller.php", null, null ],
+      [ "core/core/exception.php", null, null ],
+      [ "core/core/form.php", null, null ],
+      [ "core/core/model.php", null, null ],
+      [ "core/core/validator.php", null, null ],
+      [ "core/core/view.php", null, null ],
+      [ "core/db/exception.php", null, null ],
+      [ "core/db/generic.php", null, null ],
+      [ "core/db/mysql.php", null, null ],
+      [ "core/db/mysql_query_builder.php", null, null ],
+      [ "core/db/pdo.php", null, null ],
+      [ "core/db/pdo_mysql.php", null, null ],
+      [ "core/lib/authentication.php", null, null ],
+      [ "core/lib/debug.php", null, null ],
+      [ "core/lib/files.php", null, null ],
+      [ "core/lib/form.php", null, null ],
+      [ "core/lib/url.php", null, null ],
+      [ "templates/plainclean/index.php", null, null ],
+      [ "templates/plainclean/template.php", null, null ],
+      [ "templates/WhiteLove/index.php", null, null ],
+      [ "templates/WhiteLove/template.php", null, null ]
     ] ],
     [ "Directories", "dirs.html", [
-      [ "phpizza", "dir_b99a9de45bdaa3c1e202f63676334944.html", [
-        [ "core", "dir_74c96714572a89d9ae7f5ff589ce1ee5.html", [
-          [ "class", "dir_08b5b22413e24777a9518a8a04d7c146.html", [
-            [ "core", "dir_8dcbeca0abb5d7f99f594d152100fb34.html", null ],
-            [ "db", "dir_492d96ba6ed54c07d4b152fb9924b56c.html", null ],
-            [ "lib", "dir_5843821a2e63e095482ed0fa8a108e17.html", null ]
-          ] ],
-          [ "funcs", "dir_241e319f6572a50f4ca06ffe2b991288.html", null ]
-        ] ],
-        [ "custom", "dir_9a88fed9cda65d5fbaf06c1f5bc685e8.html", [
-          [ "class", "dir_9cc7ad0c4ecb5dbeba1eb5b8073c6194.html", null ]
-        ] ],
-        [ "templates", "dir_567f129957e236e79f25544e0b88bf1d.html", [
-          [ "plainclean", "dir_ea4018750ea1ee03110f7125ddcf9f00.html", null ],
-          [ "WhiteLove", "dir_d30e5b697e6bc404a488b73da96fa2a0.html", null ]
-        ] ]
+      [ "core", "dir_d8eabd6007182fedd088f3a02f6c7d2d.html", [
+        [ "core", "dir_cdb29b942cadc7cbaf822e6ff7710af4.html", null ],
+        [ "db", "dir_e1324a211d0a23155611aff2275ebb59.html", null ],
+        [ "lib", "dir_589737913c4564314d04d7b8f2054bf2.html", null ]
+      ] ],
+      [ "templates", "dir_ab3859225b91877e6c63016efdf3d123.html", [
+        [ "plainclean", "dir_7c252eae3d27367230bac50e6dc06bb3.html", null ],
+        [ "WhiteLove", "dir_5941754e9c617a152ec16d0a40197b63.html", null ]
       ] ]
-    ] ],
-    [ "Globals", "globals.html", null ]
+    ] ]
   ] ]
 ];
 

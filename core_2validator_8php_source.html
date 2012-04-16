@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Swadhin: /media/sobkichu/xampp/www/phpizza/core/class/core/validator.php Source File</title>
+<title>Swadhin Framework: core/core/validator.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Swadhin&#160;<span id="projectnumber">1.3.0 Beta</span></div>
+   <div id="projectname">Swadhin Framework&#160;<span id="projectnumber">1.3.0 Beta</span></div>
    <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -60,7 +60,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div>
@@ -114,9 +113,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00079"></a><a class="code" href="class_core_validator.html#a8eedf2bc9ff4428f962497387a4e1e74">00079</a>     <span class="keyword">public</span> function <a class="code" href="class_core_validator.html#a8eedf2bc9ff4428f962497387a4e1e74">input</a>($data, $length=<span class="stringliteral">&quot;&quot;</span>, $required = <span class="keyword">true</span>, $defaultValue = <span class="stringliteral">&quot;&quot;</span>) {
 <a name="l00080"></a>00080         <span class="keywordflow">if</span> ($required) {
 <a name="l00081"></a>00081             <span class="keywordflow">if</span> (empty($_REQUEST[<span class="stringliteral">&quot;$data&quot;</span>])) {
-<a name="l00082"></a>00082                 $this-&gt;core-&gt;funcs-&gt;messageExit(<span class="stringliteral">&#39;Required field &lt;b&gt;&#39;</span> . $data . <span class="stringliteral">&#39;&lt;/b&gt; is empty!&#39;</span>, MSGBOX_ERROR, $this-&gt;redirectURL);
+<a name="l00082"></a>00082                 $this-&gt;core-&gt;funcs-&gt;messageExit(<span class="stringliteral">&#39;Required field &lt;b&gt;&#39;</span> . $data . <span class="stringliteral">&#39;&lt;/b&gt; is empty!&#39;</span>, Html::MSGBOX_ERROR, $this-&gt;redirectURL);
 <a name="l00083"></a>00083             } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!empty($length) &amp;&amp; strlen($_REQUEST[<span class="stringliteral">&quot;$data&quot;</span>]) &gt; $length) {
-<a name="l00084"></a>00084                 $this-&gt;core-&gt;funcs-&gt;messageExit(<span class="stringliteral">&#39;Required field &lt;b&gt;&#39;</span> . $data . <span class="stringliteral">&#39;&lt;/b&gt; is too large! (Max &lt;b&gt;&#39;</span> . $length . <span class="stringliteral">&#39;&lt;/b&gt; chars allowed).&#39;</span>, MSGBOX_ERROR, $this-&gt;redirectURL);
+<a name="l00084"></a>00084                 $this-&gt;core-&gt;funcs-&gt;messageExit(<span class="stringliteral">&#39;Required field &lt;b&gt;&#39;</span> . $data . <span class="stringliteral">&#39;&lt;/b&gt; is too large! (Max &lt;b&gt;&#39;</span> . $length . <span class="stringliteral">&#39;&lt;/b&gt; chars allowed).&#39;</span>, Html::MSGBOX_ERROR, $this-&gt;redirectURL);
 <a name="l00085"></a>00085             }
 <a name="l00086"></a>00086         }
 <a name="l00087"></a>00087         $return = (empty($_REQUEST[$data])) ? ($defaultValue) : (<a class="code" href="class_core_validator.html#af65dc5cb4a901389a9eac880f2d2c192">htmlspecialchars</a>($_REQUEST[<span class="stringliteral">&quot;$data&quot;</span>]));
@@ -137,7 +136,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00133"></a>00133         $this-&gt;errorArray = array();    <span class="comment">//  Reset the error Array.</span>
 <a name="l00134"></a>00134         <span class="keywordflow">if</span>(!empty($errorString)){
 <a name="l00135"></a>00135             <span class="keywordflow">if</span>($exit){
-<a name="l00136"></a>00136                 $this-&gt;core-&gt;funcs-&gt;messageExit($errorString, MSGBOX_ERROR, $this-&gt;redirectURL);
+<a name="l00136"></a>00136                 $this-&gt;core-&gt;funcs-&gt;messageExit($errorString, Html::MSGBOX_ERROR, $this-&gt;redirectURL);
 <a name="l00137"></a>00137             }
 <a name="l00138"></a>00138             <span class="keywordflow">return</span> $errorString;
 <a name="l00139"></a>00139         }<span class="keywordflow">else</span>{
@@ -266,7 +265,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><b>validator.php</b>      </li>
-      <li class="footer">Generated on Tue Apr 10 2012 14:06:58 for Swadhin by&#160;
+      <li class="footer">Generated on Mon Apr 16 2012 20:52:52 for Swadhin Framework by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -276,7 +275,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

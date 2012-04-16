@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Swadhin: CoreView Class Reference</title>
+<title>Swadhin Framework: CoreView Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Swadhin&#160;<span id="projectnumber">1.3.0 Beta</span></div>
+   <div id="projectname">Swadhin Framework&#160;<span id="projectnumber">1.3.0 Beta</span></div>
    <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -82,7 +82,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Data Fields</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
 <h1>CoreView Class Reference</h1>  </div>
@@ -104,8 +106,7 @@ Inheritance diagram for CoreView:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64585b415473be548941a9f4f12bb8ec"></a><!-- doxytag: member="CoreView::__construct" ref="a64585b415473be548941a9f4f12bb8ec" args="($core)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>__construct</b> ($core)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a64585b415473be548941a9f4f12bb8ec">__construct</a> ($core)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a958d75fe52959d8f2f900e2cf6182b3d">msg</a> ()</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a104d55caea420d7f942af0821f4ae45f">setStatic</a> ()</td></tr>
@@ -115,6 +116,9 @@ Public Member Functions</h2></td></tr>
 </div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#ae70910f9dec8b0cc224f8b995ba26969">printCss</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a37825cf69beabf04bb8e78955784eb5e">printJs</a> ()</td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#ac93fbec81f07e5d15f80db907e63dc10">getInstance</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada57e7bb7c152edad18fe2f166188691"></a><!-- doxytag: member="CoreView::$title" ref="ada57e7bb7c152edad18fe2f166188691" args="" -->
@@ -124,10 +128,10 @@ Data Fields</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#ac13ca58494b5ebc7e5f1ded33256c9e9">$icon</a> = null</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Icon element of HTML output. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31059b9e4d0c5af34df20da32232ea9a"></a><!-- doxytag: member="CoreView::$desc" ref="a31059b9e4d0c5af34df20da32232ea9a" args="" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a31059b9e4d0c5af34df20da32232ea9a">$desc</a> = 'Powered by <a class="el" href="class_p_h_pizza.html">PHPizza</a> MVC Framework'</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a31059b9e4d0c5af34df20da32232ea9a">$desc</a> = 'Powered by <a class="el" href="class_swadhin.html">Swadhin</a> MVC Framework'</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">"Description" meta-tag of HTML output. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af20635b6c08e03bfee9e3fc036fa80f3"></a><!-- doxytag: member="CoreView::$keys" ref="af20635b6c08e03bfee9e3fc036fa80f3" args="" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#af20635b6c08e03bfee9e3fc036fa80f3">$keys</a> = 'phpizza'</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#af20635b6c08e03bfee9e3fc036fa80f3">$keys</a> = 'swadhin'</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">"Keywords" meta-tag of HTML output. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b5695b172f2e0de9e1025d3df06df2d"></a><!-- doxytag: member="CoreView::$cssArray" ref="a6b5695b172f2e0de9e1025d3df06df2d" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a6b5695b172f2e0de9e1025d3df06df2d">$cssArray</a> = null</td></tr>
@@ -148,7 +152,7 @@ Data Fields</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#aacaacb2a73313f2f7e2fbc800b65f84e">$defaultCssArray</a> = null</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Array. Array elements are css filenames. These CSS files should be included to ALL HTML pages of your project. These files should be put under your theme's "css" directory. Do not provide ".css" after filenames. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab0271b7083e9b84871a1adcec98887d"></a><!-- doxytag: member="CoreView::$defaultJsArray" ref="aab0271b7083e9b84871a1adcec98887d" args="" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#aab0271b7083e9b84871a1adcec98887d">$defaultJsArray</a> = null</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#aab0271b7083e9b84871a1adcec98887d">$defaultJsArray</a> = array('jquery')</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Array. Array Elements are JavaScript filenames to be included to all the HTML pages of your project. These files should reside under "client/js" directory. Do not provide ".js" after filenames. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa48d46858ba4160660d87b8669697b4f"></a><!-- doxytag: member="CoreView::$includeDefaultCss" ref="aa48d46858ba4160660d87b8669697b4f" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#aa48d46858ba4160660d87b8669697b4f">$includeDefaultCss</a> = true</td></tr>
@@ -156,6 +160,11 @@ Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65043fbf000fbd4ec0a5feb3909ecd25"></a><!-- doxytag: member="CoreView::$includeDefaultJs" ref="a65043fbf000fbd4ec0a5feb3909ecd25" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#a65043fbf000fbd4ec0a5feb3909ecd25">$includeDefaultJs</a> = true</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">If set true, filenames specified by $defaultJsArray are included to HTML output of current page. <br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad9d7ce33ebb142b70e58b68052ca0ea8"></a><!-- doxytag: member="CoreView::$instance" ref="ad9d7ce33ebb142b70e58b68052ca0ea8" args="" -->
+static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core_view.html#ad9d7ce33ebb142b70e58b68052ca0ea8">$instance</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Instance to the object of View. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa432de3bacb7ced3632fa0ee0269ada3"></a><!-- doxytag: member="CoreView::$core" ref="aa432de3bacb7ced3632fa0ee0269ada3" args="" -->
@@ -166,8 +175,37 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>All view classes should extend this <a class="el" href="class_core_view.html" title="All view classes should extend this CoreView class!">CoreView</a> class! </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Shafiul Azam </dd></dl>
 
-<p>Definition at line <a class="el" href="view_8php_source.html#l00010">10</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
-</div><hr/><h2>Member Function Documentation</h2>
+<p>Definition at line <a class="el" href="view_8php_source.html#l00009">9</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a64585b415473be548941a9f4f12bb8ec"></a><!-- doxytag: member="CoreView::__construct" ref="a64585b415473be548941a9f4f12bb8ec" args="($core)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__construct </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>core</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Constructor </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype"><a class="el" href="class_core.html" title="The Most important class - makes the framework working!">Core</a></td><td class="paramname">$core</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="class_template.html#a64585b415473be548941a9f4f12bb8ec">Template</a>, and <a class="el" href="class_template.html#a64585b415473be548941a9f4f12bb8ec">Template</a>.</p>
+
+<p>Definition at line <a class="el" href="view_8php_source.html#l00039">39</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="ab885424c1d43ef4a1ad651e26aeb5930"></a><!-- doxytag: member="CoreView::form" ref="ab885424c1d43ef4a1ad651e26aeb5930" args="($formClassName)" -->
 <div class="memitem">
 <div class="memproto">
@@ -195,7 +233,26 @@ Private Attributes</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="view_8php_source.html#l00053">53</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
+<p>Definition at line <a class="el" href="view_8php_source.html#l00062">62</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac93fbec81f07e5d15f80db907e63dc10"></a><!-- doxytag: member="CoreView::getInstance" ref="ac93fbec81f07e5d15f80db907e63dc10" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static getInstance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Get an instance of view object, to use inside your template files </p>
+
+<p>Definition at line <a class="el" href="view_8php_source.html#l00146">146</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
 
 </div>
 </div>
@@ -214,7 +271,7 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Similar to <a class="el" href="class_funcs.html#aa32f642f1fea989b2e846406c897ea2c">Funcs::getStatusMsg()</a> </p>
 
-<p>Definition at line <a class="el" href="view_8php_source.html#l00062">62</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
+<p>Definition at line <a class="el" href="view_8php_source.html#l00071">71</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
 
 </div>
 </div>
@@ -238,7 +295,7 @@ Private Attributes</h2></td></tr>
 </ul>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated HTML </dd></dl>
 
-<p>Definition at line <a class="el" href="view_8php_source.html#l00082">82</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
+<p>Definition at line <a class="el" href="view_8php_source.html#l00091">91</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
 
 </div>
 </div>
@@ -262,7 +319,7 @@ Private Attributes</h2></td></tr>
 </ul>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string | generated HTML </dd></dl>
 
-<p>Definition at line <a class="el" href="view_8php_source.html#l00115">115</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
+<p>Definition at line <a class="el" href="view_8php_source.html#l00124">124</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
 
 </div>
 </div>
@@ -281,19 +338,19 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Functions to call from View classes Used to treat the view as a Static page - i.e. No controller is needed to view this page. You must call this function to make the view static </p>
 
-<p>Definition at line <a class="el" href="view_8php_source.html#l00043">43</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
+<p>Definition at line <a class="el" href="view_8php_source.html#l00052">52</a> of file <a class="el" href="view_8php_source.html">view.php</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/media/sobkichu/xampp/www/phpizza/core/class/core/<a class="el" href="view_8php_source.html">view.php</a></li>
+<li>core/core/<a class="el" href="view_8php_source.html">view.php</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_core_view.html">CoreView</a>      </li>
-      <li class="footer">Generated on Tue Apr 10 2012 14:06:59 for Swadhin by&#160;
+      <li class="footer">Generated on Mon Apr 16 2012 20:52:52 for Swadhin Framework by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -303,7 +360,7 @@ Private Attributes</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

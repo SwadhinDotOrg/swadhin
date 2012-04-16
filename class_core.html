@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Swadhin: Core Class Reference</title>
+<title>Swadhin Framework: Core Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Swadhin&#160;<span id="projectnumber">1.3.0 Beta</span></div>
+   <div id="projectname">Swadhin Framework&#160;<span id="projectnumber">1.3.0 Beta</span></div>
    <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -101,7 +101,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#af9cba21ff909ef91bf2a4ebad4daf7ae">loadBlock</a> ($block)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a0eb0e1e63fe9b1c603a5c5fda3192696">loadView</a> ($view='')</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a99fc050124b53e484d924fafc832b683">loadCustomClass</a> ($className)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a9197c45411d4447bac52fd4b0542e31f">loadDatabaseDriver</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a5f8cc6fff01d7d5b068edd4353e79f12">setData</a> ($id, $data)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#aaa8e59fa124cd71adf7c6ff59bb2de74">getData</a> ($id)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a7d8c18c09aa8e97a0547eadd88a20b7e">safeRequireOnce</a> ($filename)</td></tr>
@@ -109,7 +108,7 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>safeRequire</b> ($filename)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a1aeb4327df8770fb4e38e7baa4940062">fatal</a> ($msg, $triggerError=true)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#aceb656ee5135578ab3a9947252caa772">getDb</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#ad37a5193b147f6d1c1dd4e8f4e1a7c2b">autoload</a> ($className, $type='custom')</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a32904c01e549f0b9d05adfd675bc1aaa">autoload</a> ($className, $type=Config::AUTOLOAD_CLASS)</td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae769c5994d729265f11b85920819dd7b"></a><!-- doxytag: member="Core::$funcs" ref="ae769c5994d729265f11b85920819dd7b" args="" -->
@@ -160,12 +159,9 @@ Data Fields</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>$autoloadedData</b></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#abdaa11e402952f664e126c7097204733">loadConfig</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a5a5a4ee9b37745db873c776b38b2ddd5">loadController</a> ($controller)</td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49c7011be9c979d9174c52a8b83e5d8e"></a><!-- doxytag: member="Core::$config" ref="a49c7011be9c979d9174c52a8b83e5d8e" args="" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>$config</b> = null</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33f9c9be1ff284fa0867d00d14db21f5"></a><!-- doxytag: member="Core::$__version" ref="a33f9c9be1ff284fa0867d00d14db21f5" args="" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_core.html#a33f9c9be1ff284fa0867d00d14db21f5">$__version</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_core.html" title="The Most important class - makes the framework working!">Core</a> Version. <br/></td></tr>
@@ -196,7 +192,7 @@ Functions for Internal Use</h2></td></tr>
 <div class="textblock"><p>The Most important class - makes the framework working! </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Shafiul Azam This class contains everything you need. An object of this class, $core (global variable) is created for you. Within controllers, views &amp; templates, you can get access to this class by this code: global $core; In fact, this $core variable is the only thing you need. See it's member variables </dd></dl>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00077">77</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00011">11</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="acf2ad978657d47ceab41038dc7d95737"></a><!-- doxytag: member="Core::__construct" ref="acf2ad978657d47ceab41038dc7d95737" args="($config)" -->
 <div class="memitem">
@@ -225,12 +221,12 @@ Functions for Internal Use</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00133">133</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00063">63</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ad37a5193b147f6d1c1dd4e8f4e1a7c2b"></a><!-- doxytag: member="Core::autoload" ref="ad37a5193b147f6d1c1dd4e8f4e1a7c2b" args="($className, $type='custom')" -->
+<a class="anchor" id="a32904c01e549f0b9d05adfd675bc1aaa"></a><!-- doxytag: member="Core::autoload" ref="a32904c01e549f0b9d05adfd675bc1aaa" args="($className, $type=Config::AUTOLOAD_CLASS)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -244,7 +240,7 @@ Functions for Internal Use</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>type</em> = <code>'custom'</code>&#160;</td>
+          <td class="paramname"><em>type</em> = <code>Config::AUTOLOAD_CLASS</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -264,7 +260,7 @@ Functions for Internal Use</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>object - instance of the autoloaded class if successful. FALSE otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00582">582</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00464">464</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -283,7 +279,7 @@ Functions for Internal Use</h2></td></tr>
 <div class="memdoc">
 <p>array $PHPizza_autoload </p>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00514">514</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00415">415</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -309,7 +305,7 @@ Functions for Internal Use</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00373">373</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00278">278</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -345,7 +341,7 @@ Functions for Internal Use</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00562">562</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00444">444</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -375,7 +371,7 @@ Functions for Internal Use</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00478">478</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00379">379</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -397,7 +393,7 @@ Functions for Internal Use</h2></td></tr>
 <li>You should NEVER call this function! As this function is automatically called by the framework. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00461">461</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00362">362</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -419,7 +415,7 @@ Functions for Internal Use</h2></td></tr>
 <li>You should NEVER call this function! As this function is automatically called by the framework. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00427">427</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00329">329</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -448,7 +444,7 @@ Functions for Internal Use</h2></td></tr>
 <dd>
 bool false - if you provide invalid ID </dd></dl>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00323">323</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00228">228</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -468,7 +464,7 @@ bool false - if you provide invalid ID </dd></dl>
 <p>Returns an instance of Database driver object </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>object - implementation of GenericDB i.e. MySQL </dd></dl>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00570">570</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00452">452</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -485,10 +481,10 @@ bool false - if you provide invalid ID </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns current <a class="el" href="class_p_h_pizza.html">PHPizza</a> Version </p>
+<p>Returns current PHPizza Version </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string </dd></dl>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00180">180</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00087">87</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -515,26 +511,7 @@ bool false - if you provide invalid ID </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>object of newly created block. </dd></dl>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00210">210</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abdaa11e402952f664e126c7097204733"></a><!-- doxytag: member="Core::loadConfig" ref="abdaa11e402952f664e126c7097204733" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">loadConfig </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Load configurations/settings from global <a class="el" href="config_8php_source.html">config.php</a> </p>
-
-<p>Definition at line <a class="el" href="core_8php_source.html#l00155">155</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00117">117</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -563,7 +540,7 @@ bool false - if you provide invalid ID </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00226">226</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00132">132</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -591,33 +568,7 @@ bool false - if you provide invalid ID </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>bool true in success, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00273">273</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9197c45411d4447bac52fd4b0542e31f"></a><!-- doxytag: member="Core::loadDatabaseDriver" ref="a9197c45411d4447bac52fd4b0542e31f" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">loadDatabaseDriver </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Loads necessary model classes. Must be called before database functionality.</p>
-<p>Demo code is available at CustomModel class. So if your model class extends CustomModel, you do not need to call this function explicitly! </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$driver</td><td>name of the database driver, i.e MySQL </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="core_8php_source.html#l00285">285</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00178">178</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -645,7 +596,7 @@ bool false - if you provide invalid ID </dd></dl>
 <dl class="note"><dt><b>Note:</b></dt><dd>If your model class is located in "MODEL/camel/case/class.php" use "CamelCaseClass" as this argument. Class name should be also "CamelCaseClass" </dd></dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>object of newly loaded model. </dd></dl>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00194">194</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00101">101</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -664,7 +615,7 @@ bool false - if you provide invalid ID </dd></dl>
 </div>
 <div class="memdoc">
 <p>Used to load the default controller.</p>
-<p>It also calls <a class="el" href="class_core.html#a316c85d1fe5fa4bcbe9a1b1dfb063bb4">generateViewObject()</a> followed by <a class="el" href="class_core.html#a45a2dccc02668261cfe68a06fe683da4">loadTemplate()</a> to finish generating the page.</p>
+<p>It also calls <a class="el" href="class_core.html#a316c85d1fe5fa4bcbe9a1b1dfb063bb4">generateViewObject()</a> followed by <a class="el" href="class_core.html#a45a2dccc02668261cfe68a06fe683da4">loadTemplate()</a> to completely generate HTML output.</p>
 <p>Warning:</p>
 <ul>
 <li>You should NEVER call this function! As this function is automatically called by the framework. <dl><dt><b>Parameters:</b></dt><dd>
@@ -677,7 +628,7 @@ bool false - if you provide invalid ID </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00390">390</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00295">295</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -699,7 +650,7 @@ bool false - if you provide invalid ID </dd></dl>
 <li>You should NEVER call this function! As this function is internally called by the framework. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00415">415</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00317">317</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -730,7 +681,7 @@ bool false - if you provide invalid ID </dd></dl>
 <li>if you don't pass the parameter, default view for the page gets loaded. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00247">247</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00152">152</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -757,7 +708,7 @@ bool false - if you provide invalid ID </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>bool true if file found, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00335">335</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00240">240</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
@@ -785,10 +736,15 @@ bool false - if you provide invalid ID </dd></dl>
       </table>
 </div>
 <div class="memdoc">
-<p>Call this withing your Controller to set a different template, other than the Default one. This change will be valid only for the current "page"</p>
-<ul>
-<li>Call this function if you explicitly call loadView($view) <dl><dt><b>Parameters:</b></dt><dd>
+<p>Loads necessary model classes. Must be called before database functionality.</p>
+<p>Demo code is available at CustomModel class. So if your model class extends CustomModel, you do not need to call this function explicitly! </p>
+<dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$driver</td><td>name of the database driver, i.e MySQL Call this withing your Controller to set a different template, other than the Default one. This change will be valid only for the current "page"</p>
+<ul>
+<li>Call this function if you explicitly call loadView($view) </li>
+</ul>
+</td></tr>
     <tr><td class="paramtype">string</td><td class="paramname">$theme</td><td>name of the template </td></tr>
   </table>
   </dd>
@@ -802,22 +758,20 @@ bool false - if you provide invalid ID </dd></dl>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>None </dd></dl>
-</li>
-</ul>
 
-<p>Definition at line <a class="el" href="core_8php_source.html#l00312">312</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
+<p>Definition at line <a class="el" href="core_8php_source.html#l00217">217</a> of file <a class="el" href="core_8php_source.html">core.php</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/media/sobkichu/xampp/www/phpizza/core/class/<a class="el" href="core_8php_source.html">core.php</a></li>
+<li>core/<a class="el" href="core_8php_source.html">core.php</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_core.html">Core</a>      </li>
-      <li class="footer">Generated on Tue Apr 10 2012 14:06:59 for Swadhin by&#160;
+      <li class="footer">Generated on Mon Apr 16 2012 20:52:52 for Swadhin Framework by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -827,7 +781,7 @@ bool false - if you provide invalid ID </dd></dl>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

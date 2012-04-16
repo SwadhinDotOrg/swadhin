@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Swadhin: Funcs Class Reference</title>
+<title>Swadhin Framework: Funcs Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -26,7 +26,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Swadhin&#160;<span id="projectnumber">1.3.0 Beta</span></div>
+   <div id="projectname">Swadhin Framework&#160;<span id="projectnumber">1.3.0 Beta</span></div>
    <div id="projectbrief">Opensource, Fast, Secured & Devs-friendly MVC framework for Professional PHP Programmers</div>
   </td>
  </tr>
@@ -94,10 +94,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a64585b415473be548941a9f4f12bb8ec">__construct</a> ($core)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#ae4cf9ee75a7250af8477980e1bcec25a">messageExit</a> ($message, $type=MSGBOX_ERROR, $pageURL='')</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a0fbee3f78769c9fa36608ea7728d9714">setStatusMsg</a> ($msg, $status=MSGBOX_ERROR)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#ac769392d9b5b7580a1f44f393f74f798">messageExit</a> ($message, $type=Html::MSGBOX_ERROR, $pageURL= '')</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a9c73a6e2d9d986b07c6676f9431065d2">setStatusMsg</a> ($msg, $status=Html::MSGBOX_ERROR)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#aa32f642f1fea989b2e846406c897ea2c">getStatusMsg</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a2872c585b25af93c5f01c8d31e1bfcd1">date</a> ($unixTimestamp=null)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_funcs.html#a78fea201e0d1c81b9ca2e55984e1bde2">redirect</a> ($page= '', $byHeader=true)</td></tr>
 <tr><td colspan="2"><div class="groupHeader">PHP SESSION Related</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>If you are using any of theese functions, make sure you started Session first. Following code can safely start a PHP session: <br/>
 </p>
@@ -171,7 +172,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="funcs_8php_source.html#l00154">154</a> of file <a class="el" href="funcs_8php_source.html">funcs.php</a>.</p>
+<p>Definition at line <a class="el" href="funcs_8php_source.html#l00153">153</a> of file <a class="el" href="funcs_8php_source.html">funcs.php</a>.</p>
 
 </div>
 </div>
@@ -224,7 +225,7 @@ Private Attributes</h2></td></tr>
 <li>This function is called automtically! Do not call this function in your VIEW classes.</li>
 <li>Call this function in your template file. See <a class="el" href="templates_2_white_love_2index_8php_source.html">templates/WhiteLove/index.php</a> for example</li>
 </ul>
-<p>Get the HTML message set via <a class="el" href="class_funcs.html#a0fbee3f78769c9fa36608ea7728d9714">setStatusMsg()</a> - The function will do styling based on $status parameter of <a class="el" href="class_funcs.html#a0fbee3f78769c9fa36608ea7728d9714">setStatusMsg()</a> function</p>
+<p>Get the HTML message set via <a class="el" href="class_funcs.html#a9c73a6e2d9d986b07c6676f9431065d2">setStatusMsg()</a> - The function will do styling based on $status parameter of <a class="el" href="class_funcs.html#a9c73a6e2d9d986b07c6676f9431065d2">setStatusMsg()</a> function</p>
 <dl class="note"><dt><b>Note:</b></dt><dd>This function safely starts PHP Session - as status messages are passed using PHP Session.</dd></dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string Generated HTML if message exists, empty string otherwise. </dd></dl>
 
@@ -232,7 +233,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae4cf9ee75a7250af8477980e1bcec25a"></a><!-- doxytag: member="Funcs::messageExit" ref="ae4cf9ee75a7250af8477980e1bcec25a" args="($message, $type=MSGBOX_ERROR, $pageURL='')" -->
+<a class="anchor" id="ac769392d9b5b7580a1f44f393f74f798"></a><!-- doxytag: member="Funcs::messageExit" ref="ac769392d9b5b7580a1f44f393f74f798" args="($message, $type=Html::MSGBOX_ERROR, $pageURL= '')" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -246,7 +247,7 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>type</em> = <code>MSGBOX_ERROR</code>, </td>
+          <td class="paramname"><em>type</em> = <code>Html::MSGBOX_ERROR</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -280,6 +281,53 @@ Private Attributes</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="funcs_8php_source.html#l00033">33</a> of file <a class="el" href="funcs_8php_source.html">funcs.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a78fea201e0d1c81b9ca2e55984e1bde2"></a><!-- doxytag: member="Funcs::redirect" ref="a78fea201e0d1c81b9ca2e55984e1bde2" args="($page= '', $byHeader=true)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">redirect </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>page</em> = <code>''</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>byHeader</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Generates HTML to redirect to another page</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$page</td><td>URL to which the page will be redirected.</p>
+<ul>
+<li>If you leave this empty - the page will be redirected to LANDING_PAGE</li>
+<li>You can provide a controller's path or full (absolute) URL</li>
+</ul>
+</td></tr>
+    <tr><td class="paramtype">bool</td><td class="paramname">$byHeader</td><td>- if true, redirection done by HTML header. else, by javascript.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><pre class="fragment"> <span class="comment">// You do not need to use absolute URL, you can specify a controller&#39;s path as simply as:</span>
+ <a class="code" href="class_funcs.html#a78fea201e0d1c81b9ca2e55984e1bde2">redirect</a>(<span class="stringliteral">&#39;examples/registration&#39;</span>);
+ <span class="comment">// This should redirect to the example Registration page. Or, you can write:</span>
+ <a class="code" href="class_funcs.html#a78fea201e0d1c81b9ca2e55984e1bde2">redirect</a>(<span class="stringliteral">&#39;https://google.com&#39;</span>);  <span class="comment">// Example use of absolute URLs.</span>
+</pre></div><dl class="note"><dt><b>Note:</b></dt><dd>Execution of current page will terminate at the end of this function &amp; redirected page will be brought. </dd></dl>
+
+<p>Definition at line <a class="el" href="funcs_8php_source.html#l00175">175</a> of file <a class="el" href="funcs_8php_source.html">funcs.php</a>.</p>
 
 </div>
 </div>
@@ -320,7 +368,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0fbee3f78769c9fa36608ea7728d9714"></a><!-- doxytag: member="Funcs::setStatusMsg" ref="a0fbee3f78769c9fa36608ea7728d9714" args="($msg, $status=MSGBOX_ERROR)" -->
+<a class="anchor" id="a9c73a6e2d9d986b07c6676f9431065d2"></a><!-- doxytag: member="Funcs::setStatusMsg" ref="a9c73a6e2d9d986b07c6676f9431065d2" args="($msg, $status=Html::MSGBOX_ERROR)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -334,7 +382,7 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>status</em> = <code>MSGBOX_ERROR</code>&#160;</td>
+          <td class="paramname"><em>status</em> = <code>Html::MSGBOX_ERROR</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -350,7 +398,7 @@ Private Attributes</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$msg</td><td>The HTML message you want to get displayed </td></tr>
-    <tr><td class="paramtype">int</td><td class="paramname">$status</td><td>see constants defined for parameter $type in <a class="el" href="class_funcs.html#ae4cf9ee75a7250af8477980e1bcec25a">messageExit()</a> function </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$status</td><td>see constants defined for parameter $type in <a class="el" href="class_funcs.html#ac769392d9b5b7580a1f44f393f74f798">messageExit()</a> function </td></tr>
   </table>
   </dd>
 </dl>
@@ -386,14 +434,14 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/media/sobkichu/xampp/www/phpizza/core/class/<a class="el" href="funcs_8php_source.html">funcs.php</a></li>
+<li>core/<a class="el" href="funcs_8php_source.html">funcs.php</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_funcs.html">Funcs</a>      </li>
-      <li class="footer">Generated on Tue Apr 10 2012 14:06:59 for Swadhin by&#160;
+      <li class="footer">Generated on Mon Apr 16 2012 20:52:52 for Swadhin Framework by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -403,7 +451,7 @@ Private Attributes</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
