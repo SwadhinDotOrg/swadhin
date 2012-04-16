@@ -22,7 +22,7 @@ class Controller extends CoreController{
     }
     
     public function index(){
-        $this->data('title',"PHPizza Running :-P");
+        $this->data('title', APP_NAME . " installed successfully");
         $this->loadView();
     }
     

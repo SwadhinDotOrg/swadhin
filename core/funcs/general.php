@@ -241,11 +241,11 @@ function getView(){
  *  - boolean false if $index is unset 
  */
 
-function arrVal($arr, $index){
+function arrVal($arr, $index, $returnValue=''){
     if(isset($arr[$index]))
         return $arr[$index];
     else
-        return '';
+        return $returnValue;
 }
 
 //@}

@@ -5,14 +5,13 @@
  * 
  * @author Shafiul Azam
  * 
- * 
  */
 class CoreView {
 
     public $title = null;   ///<    Title element of %HTML output.
     public $icon = null;       ///<    Icon element of %HTML output.
-    public $desc = 'Powered by PHPizza MVC Framework';   ///<    "Description" meta-tag of %HTML output.
-    public $keys = 'phpizza';     ///<    "Keywords" meta-tag of %HTML output.
+    public $desc = 'Powered by Swadhin MVC Framework';   ///<    "Description" meta-tag of %HTML output.
+    public $keys = 'swadhin';     ///<    "Keywords" meta-tag of %HTML output.
     public $cssArray = null;    ///<    Array. Array elements are css filenames - must be available under your theme's "css" directory. Do not provide ".css" after filenames.
     public $externalCssArray = null;    ///< Array to include CSS files outside your theme's "css" directory. These files will be included as-is, keeping the path intact. Do not provide ".css" after filenames.
     public $jsArray = null; ///<    Array. Array elements are JavaScript file names to be included to the %HTML output. These files should reside under "client/js" directory. Do not provide ".js" after filenames.

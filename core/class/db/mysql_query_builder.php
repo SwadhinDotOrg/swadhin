@@ -45,7 +45,7 @@ abstract class DbMysql_query_builder extends DbGeneric {
 
         foreach ($this->data as $key => $val) {
             $this->query .= '`' . $key . '` = ';
-            $this->query .= '\'' . mysql_real_escape_string($val) . '\', ';
+            $this->query .= '\'' . call_user_func_array($this->escapeCallback, array($val)) . '\', ';
         }
 
         if ($this->encryptedData) {

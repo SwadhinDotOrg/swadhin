@@ -17,7 +17,7 @@ class CoreModel {
      * @var DbGeneric
      */
     
-    public $db;       ///<    object for database
+    public $db;       ///<    object for database-implementation classes.
     
     /**
      * You should call this function as the first line within your MODEL class's constructor.

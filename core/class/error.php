@@ -1,5 +1,7 @@
 <?php
 
+define('PRINT_TRACE_IN_TEXTAREA', true);
+
 /**
  * Error & Exception Handler
  */
@@ -40,7 +42,9 @@ class Error {
         echo '</div>';
         
         echo '<br /><br />';
-//        echo '<textarea style="background:#FFF380; color:blue;" cols="150" rows = "20">';
+        
+        if(PRINT_TRACE_IN_TEXTAREA)
+            echo '<textarea style="background:#FFF380; color:blue;" cols="150" rows = "20">';
 
         if (function_exists('xdebug_print_function_stack')) {
             ini_set('xdebug.trace_format', 2);
@@ -49,7 +53,8 @@ class Error {
             debug_print_backtrace();
         }
 
-//        echo '</textarea>';
+        if(PRINT_TRACE_IN_TEXTAREA)
+            echo '</textarea>';
 
         $html->done();
     }
