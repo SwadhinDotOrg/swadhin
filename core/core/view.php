@@ -84,7 +84,7 @@ class CoreView {
         if ($this->includeDefaultCss && isset($this->defaultCssArray)) {
             foreach ($this->defaultCssArray as $css_i) {
                 $siteTheme = $this->template;
-                $html .= '<LINK href="'  . TEMPLATE_URL . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
+                $html .= '<LINK href="' . TEMPLATE_URL . $siteTheme . "/css/$css_i.css" . '" rel="stylesheet" type="text/css">';
             }
         }
         // Print others
@@ -129,6 +129,15 @@ class CoreView {
     }
 
     //@}
+
+    /**
+     * Get an instance of view object, to use inside your template files
+     */
+    static function getInstance() {
+        global $__viewInstance;
+        return $__viewInstance;
+    }
+
 }
 
 ?>

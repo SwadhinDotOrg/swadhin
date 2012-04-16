@@ -29,7 +29,7 @@ class View extends Template{
                     This view was loaded without any controller <br /><br />
                     To pass an parameter and get it in the view without the help of controller 
                     use get method. 
-                    <?php echo anchor_static("demo1?id=hello", "Example Here") ?>
+                    <?php echo Html::anchor_static("examples/demo1?id=hello", "Example Here") ?>
 <!--                    <a href="demo1.html?id=hello!">Example here</a>-->
                     <br />
                     

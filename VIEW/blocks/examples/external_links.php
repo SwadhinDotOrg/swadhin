@@ -1,17 +1,5 @@
 <?php
 
-/* * ***** ****** ****** ****** ****** ******
- *
- * Author       :   Shafiul Azam
- *              :   ishafiul@gmail.com
- *              :   Project Manager, 
- *              :   PROGmaatic Developer Network
- * Page         :
- * Description  :   
- * Last Updated :
- *
- * ****** ****** ****** ****** ****** ***** */
-
 /**
  * \brief project specific class: "%HTML Block" example.
  * 
@@ -20,8 +8,8 @@
  */
 
 class ExamplesExternal_links{
-    
-    private $block; ///< ///< An instance of the custom class "Blocks" - created in the constructor for your convenience.
+    /** @var Blocks */
+    private $block;         ///< An instance of the custom class "Blocks" - created in the constructor for your convenience.
     
     /**
      * Instantiate $block and build the block
@@ -31,8 +19,8 @@ class ExamplesExternal_links{
         $this->block = new Blocks("Help Links");
         // Construct the Block! First construct links...
         $linksArr = array(
-            anchor(BASE_URL . 'doc/html', "Class Documentation"),
-            anchor("http://pizzamvc.com", "Project Homepage")
+            Html::anchor('http://swadhindotorg.github.com/swadhin', 'Code Documentation'),
+            Html::anchor('http://swadhin.sf.net', "Project Homepage")
         );
         $this->block->items = $linksArr;
     }

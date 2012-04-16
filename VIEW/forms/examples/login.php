@@ -18,7 +18,7 @@ class ExamplesLogin extends CoreForm {
         // MUST call parent's constructor
         parent::__construct($this, $core);
         // Set form properties here.
-        $this->action = url("examples/login/submit");
+        $this->action = LibUrl::url("examples/login/submit");
         $this->submitButtonText = "Log In!";
         $this->tableCellSpacing = "10px";
         
@@ -38,9 +38,9 @@ class ExamplesLogin extends CoreForm {
         // Generate form elements
         $elements = array();
         
-        $elements['email'] = form_input();
-        $elements['passwd'] = form_password();
-        $elements['comment'] = form_textarea('Dummy Text', array('rows' => 5));
+        $elements['email'] = LibForm::input();
+        $elements['passwd'] = LibForm::password();
+        $elements['comment'] = LibForm::textarea('Dummy Text', array('rows' => 5));
         
         $this->setElements($elements);
     }

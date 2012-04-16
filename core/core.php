@@ -446,39 +446,22 @@ class Core {
      * @global array $PHPizza_autoload 
      */
     private function autoloadFromConfig() {
-
-        // General Funcions
-
-        if (isset($this->config->autoloads[AUTOLOAD_GENERAL_FUNCS])) {
-            foreach ($this->config->autoloads[AUTOLOAD_GENERAL_FUNCS] as $className) {
-                require CORE_DIR . 'funcs/' . $className . '.php';
-            }
-        }
-
-
-        // Custom Function
-        if (isset($this->config->autoloads[AUTOLOAD_CUSTOM_FUNCS])) {
-            foreach ($this->config->autoloads[AUTOLOAD_CUSTOM_FUNCS] as $className) {
-                require CUSTOM_DIR . 'funcs/' . $className . '.php';
-            }
-        }
-
-        // Custom classes
-        if (isset($this->config->autoloads[AUTOLOAD_CUSTOM_CLASS])) {
-            foreach ($this->config->autoloads[AUTOLOAD_CUSTOM_CLASS] as $className) {
-                require CUSTOM_DIR . 'class/' . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $className)) . '.php';
-                $this->autoloadedData['custom'][$className] = new $className($this);
+        // classes
+        if (!empty($this->config->autoloads[Config::AUTOLOAD_CLASS])) {
+            foreach ($this->config->autoloads[Config::AUTOLOAD_CLASS] as $className) {
+//                require CUSTOM_DIR . 'class/' . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $className)) . '.php';
+                $this->autoloadedData[Config::AUTOLOAD_CLASS][$className] = new $className($this);
             }
         }
         // MODELS
-        if (isset($this->config->autoloads[AUTOLOAD_MODEL])) {
+        if (!empty($this->config->autoloads[Config::AUTOLOAD_MODEL])) {
             // Load DB driver
             $this->loadDatabaseDriver();
             $this->oneModelLoaded = true;
             // Include all models
-            foreach ($this->config->autoloads[AUTOLOAD_MODEL] as $className) {
+            foreach ($this->config->autoloads[Config::AUTOLOAD_MODEL] as $className) {
                 require MODEL_DIR . strtolower(preg_replace('/([a-z])([A-Z])/', '$1/$2', $className)) . '.php';
-                $this->autoloadedData['model'][$className] = new $className($this);
+                $this->autoloadedData[Config::AUTOLOAD_MODEL][$className] = new $className($this);
             }
         }
     }
@@ -513,7 +496,7 @@ class Core {
      * @param string $type - This can be any of 'custom' or 'model' or 'func'
      * @return object - instance of the autoloaded class if successful. FALSE otherwise 
      */
-    public function autoload($className, $type='custom') {
+    public function autoload($className, $type = Config::AUTOLOAD_CLASS) {
         return (isset($this->autoloadedData[$type][$className])) ? ($this->autoloadedData[$type][$className]) : (false);
     }
 

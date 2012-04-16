@@ -17,7 +17,7 @@ class ExamplesRegistration extends CoreForm {
         // MUST call parent's constructor
         parent::__construct($this, $core);
         // URL where form processing will be done!
-        $this->action = url('examples/registration/submit');
+        $this->action = LibUrl::url('examples/registration/submit');
         // Do some CSS tweaking!
         $this->submitButtonText = "Register!";
         $this->tableCellSpacing = "10px";
@@ -36,17 +36,17 @@ class ExamplesRegistration extends CoreForm {
         
         $elements = array();
         
-        $elements['username'] = form_input();
-        $elements['passwd'] = form_password();
-        $elements['passwd2'] = form_password();
-        $elements['email'] = form_input();
+        $elements['username'] = LibForm::input();
+        $elements['passwd'] = LibForm::password();
+        $elements['passwd2'] = LibForm::password();
+        $elements['email'] = LibForm::input();
         
         $options = array(
             "male" => "Male",
             "female" => "Female"
         );
         
-        $elements['sex'] = form_dropdown($options, 'female');
+        $elements['sex'] = LibForm::dropdown($options, 'female');
         
         $this->setElements($elements);
     }

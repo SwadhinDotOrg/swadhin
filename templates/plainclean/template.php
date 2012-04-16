@@ -39,10 +39,10 @@ abstract class Template extends CoreView {
         $this->defaultJsArray = array();
 
         // Prepare the header menu
-        $this->headerMenu = Html::li(array(
-                    anchor(LANDING_PAGE, 'Home'),
-                    anchor('login', 'Log in'),
-                    anchor('registration', 'Registration')
+        $this->headerMenu = Html::lists(array(
+                    Html::anchor(LANDING_PAGE, 'Home'),
+                    Html::anchor('examples/login', 'Log in'),
+                    Html::anchor('examples/registration', 'Registration')
                 ));
     }
 

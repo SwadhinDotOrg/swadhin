@@ -28,7 +28,7 @@ class Swadhin {
     /**
      * Starts Swadhin Framework 
      */
-    public function start($page = null) {
+    public function start() {
         // Validate Request
         $this->validateRequest();
 
@@ -58,7 +58,7 @@ class Swadhin {
         // Create configurations
 
         if (!$this->config)
-            $this->config = Config::getInstance();
+            $this->config = new Config();
 
         // Create instance of Core
         $this->core = new Core($this->config);
@@ -74,8 +74,6 @@ class Swadhin {
         require 'core.php';
 //        require 'error.php';
 //        require 'html.php';
-        // Helper Functions
-        require CORE_DIR . 'funcs/general.php';
     }
 
     /**

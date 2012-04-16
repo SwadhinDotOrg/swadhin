@@ -8,9 +8,9 @@ class Controller extends CoreController{
     }
     
     function index(){
-        echo anchor("examples/many_views/test1", "Load VIEW/index.php view");
+        echo Html::anchor("examples/many_views/test1", "Load VIEW/index.php view");
         echo "<br />";
-        echo anchor("examples/many_views/test2", "Load VIEW/sample/demo1.php view");
+        echo Html::anchor("examples/many_views/test2", "Load VIEW/sample/demo1.php view");
     }
     
     function test1(){

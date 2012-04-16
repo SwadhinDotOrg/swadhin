@@ -30,12 +30,12 @@ class Funcs {
      *  - MSGBOX_ERROR  critical message
      * @param string $pageURL URL to which the page will be redirected
      */
-    public function messageExit($message, $type=MSGBOX_ERROR, $pageURL='') {
+    public function messageExit($message, $type = MSGBOX_ERROR, $pageURL = '') {
         if (empty($pageURL)) {
             $pageURL = (isset($_SERVER['HTTP_REFERER'])) ? ($_SERVER['HTTP_REFERER']) : ('');
         }
         $this->setStatusMsg($message, $type);
-        redirect($pageURL);
+        $this->redirect($pageURL);
     }
 
     /**
@@ -129,7 +129,7 @@ class Funcs {
         if (!session_id())
             session_start();
         if ($dispMsg = $this->getSessData('displayMessage')) {
-            
+
             $str = "";
             foreach ($dispMsg as $i => $dM) {
 //                echo "HI$i";
@@ -151,8 +151,36 @@ class Funcs {
      * Returns date formatted in human readable way. 
      * @param int $unixTimestamp | Leave empty to return current time
      */
-    public function date($unixTimestamp=null) {
+    public function date($unixTimestamp = null) {
         return date("j F Y, g:i a", $unixTimestamp);
+    }
+
+    /**
+     * Generates %HTML to redirect to another page
+     * 
+     * @param string $page  URL to which the page will be redirected. 
+     *  -  If you leave this empty - the page will be redirected to LANDING_PAGE
+     * 
+     * @param bool $byHeader  -  if true, redirection done by %HTML header. else, by javascript. 
+     * 
+     * \code
+     * // You should provide FULL URL, which means if you want to redirect to an internal page "path/to/redirect" , you should use: 
+     * redirect(url('path/to/redirect')); 
+     * // note the use of url() function to generate FULL URL!!
+     * \endcode
+     * 
+     * \note Execution of current page will terminate at the end of this function & redirected page will be brought.
+     */
+    function redirect($page = '', $byHeader = true) {
+        if (empty($page))
+            $page = LibUrl::url(LANDING_PAGE);
+
+        if ($byHeader) {
+            header('Location: ' . $page);
+        } else {
+            echo '<script>window.location = "$page";</script>';
+        }
+        exit();
     }
 
 }

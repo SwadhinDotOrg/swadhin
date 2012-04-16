@@ -45,7 +45,7 @@ class Controller extends CoreController{
             // Print all submitted values
             foreach($this->form->getAll() as $key=>$value)
                 echo "$key: $value <br />";
-            echo "<br />" . anchor("login", "&laquo; Back");
+            echo "<br />" . Html::anchor("login", "&laquo; Back");
             exit();
         }else{
             // You can uncomment following codes to MANUALLY pass error message.

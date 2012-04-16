@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <?php
         // Get Instance of Core 
-        $view = getView();
+        $view = View::getInstance();
         // Print Title
         echo "<title>" . $view->title . "</title>";
         // Print CSS

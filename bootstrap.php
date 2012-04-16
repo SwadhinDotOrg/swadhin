@@ -65,8 +65,8 @@ class Bootstrap {
 
     private function setIncludePaths() {
         set_include_path(implode(PATH_SEPARATOR, array(
-                    realpath(CUSTOM_DIR . 'class/'),
-                    realpath(CORE_DIR . 'class/'),
+                    realpath(CUSTOM_DIR),
+                    realpath(CORE_DIR),
                     get_include_path(),
                 )));
     }

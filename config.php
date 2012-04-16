@@ -3,9 +3,7 @@
 // Define some constants
 
 define('AUTOLOAD_MODEL','model');
-define('AUTOLOAD_GENERAL_FUNCS', 'generalfuncs');
-define('AUTOLOAD_CUSTOM_FUNCS', 'customfuncs');
-define('AUTOLOAD_CUSTOM_CLASS', 'custom');
+define('AUTOLOAD_CLASS', 'class');
 
 /**
  * Configuration
@@ -14,13 +12,17 @@ define('AUTOLOAD_CUSTOM_CLASS', 'custom');
  * or your base URL etc. 
  */
 class Config {
+    
+    // Autoload Indexes
+    
+    const AUTOLOAD_MODEL = 'model';
+    const AUTOLOAD_CLASS = 'class';
 
     /**
      * Database Configuration
      * @var mixed - Key-Value pair Array. 
      */
     public $db = array(
-//        'driver' => 'mysql',            ///< Possible values: 'mysql' 'pdo_mysql'
         'driver' => 'pdo_mysql',            ///< Possible values: 'mysql' 'pdo_mysql'
         'host' => 'localhost',
         'username' => 'root',
@@ -72,10 +74,8 @@ class Config {
      * @var mixed
      */
     public $autoloads = array(
-        AUTOLOAD_CUSTOM_CLASS => array(), ///< Custom Classes
-        AUTOLOAD_MODEL => array(), ///< MODEL Classes
-        AUTOLOAD_CUSTOM_FUNCS => array(),   ///< Custom Functions
-        AUTOLOAD_GENERAL_FUNCS => array('form') ///< General Functions
+        self::AUTOLOAD_CLASS => array(), ///< Custom Classes
+        self::AUTOLOAD_MODEL => array(), ///< MODEL Classes
     );
 
     /**
@@ -124,40 +124,10 @@ class Config {
 
     /*
      * ***********************************************
-     * DO NOT CHANGE ANYTHING BEYOND THIS POINT!
+     * MODIFY ONLY IF YOU UNDERSTAND WHAT YOU'RE DOING!
      * ***********************************************
      */
-    private static $instance;
-    private static $instanceCounter = 0;
-
-    /**
-     * Singleton Constructor
-     */
-    private function __construct() {
-        
-    }
     
-    /**
-     * Don't care this function. It allows only one instance of Config class for security issues. 
-     */
-
-    public static function getInstance() {
-        if (self::$instanceCounter === 0 || TESTING_PHPIZZA) {
-            self::$instanceCounter++;
-            self::$instance = new Config();
-            return self::$instance;
-        }
-        trigger_error('Access to Config class is denied!', E_USER_ERROR);
-    }
-
-    public function __clone() {
-        trigger_error('Clone is not allowed.', E_USER_ERROR);
-    }
-
-    public function __wakeup() {
-        trigger_error('Unserializing is not allowed.', E_USER_ERROR);
-    }
-
 }
 
 /**

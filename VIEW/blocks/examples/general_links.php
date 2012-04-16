@@ -31,23 +31,23 @@ class ExamplesGeneral_links{
         $this->block = new Blocks("Examples");
         // Construct the Block! First construct links...
         // Static links (nested)
-        $staticPages = $this->block->li(array(
-            anchor_static("examples/sample/demo2", "examples/sample/demo2"),
-            anchor_static("examples/demo1", "examples/demo1")
+        $staticPages = $this->block->lists(array(
+            Html::anchor_static("examples/sample/demo2", "examples/sample/demo2"),
+            Html::anchor_static("examples/demo1", "examples/demo1")
         ));
-        $generalPages = $this->block->li(array(
-            anchor("index", "home"),
-            anchor("examples/sample/demo1", "examples/sample/demo1"),
-            anchor("examples/simple_validator","Simple Validator"),
-            anchor("examples/many_views","Dynamic views")
+        $generalPages = $this->block->lists(array(
+            Html::anchor("index", "home"),
+            Html::anchor("examples/sample/demo1", "examples/sample/demo1"),
+            Html::anchor("examples/simple_validator","Simple Validator"),
+            Html::anchor("examples/many_views","Dynamic views")
         ));
-        $dbTests = $this->block->li(array(
-            anchor('examples/plainclean', 'Templates'),
-            anchor('examples/pdo_demo', 'DB Prepared test')
+        $dbTests = $this->block->lists(array(
+            Html::anchor('examples/plainclean', 'Templates'),
+            Html::anchor('examples/pdo_demo', 'DB Prepared test')
         ));
-        $formPages = $this->block->li(array(
-            anchor("examples/registration", "Registration"),
-            anchor("examples/login", "login"),
+        $formPages = $this->block->lists(array(
+            Html::anchor("examples/registration", "Registration"),
+            Html::anchor("examples/login", "login"),
         ));
         // Finally, set the items
         $this->block->items = array(

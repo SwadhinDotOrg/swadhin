@@ -52,7 +52,7 @@ class Blocks extends Html {
 //                $attr = (isset($this->attrs[$k]))?($this->attrs[$k]):('');
 //                $this->html .= "<li><a href = '$v'" . $attr . " >$k</a></li>\n";
 //            }
-            $this->html .= $this->li($this->items);
+            $this->html .= $this->lists($this->items);
         }
         $this->html .=  '</ul>';
         $this->html .= $this->postHTML . '</div>';

@@ -19,7 +19,7 @@ Released   : 20111024
 
         <?php
         // Get Instance of Core 
-        $view = getView();
+        $view = View::getInstance();
         // Print Title
         echo "<title>" . $view->title . "</title>";
         // Print CSS
