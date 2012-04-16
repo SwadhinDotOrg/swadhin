@@ -30,7 +30,7 @@ class Funcs {
      *  - MSGBOX_ERROR  critical message
      * @param string $pageURL URL to which the page will be redirected
      */
-    public function messageExit($message, $type = MSGBOX_ERROR, $pageURL = '') {
+    public function messageExit($message, $type = Html::MSGBOX_ERROR, $pageURL = '') {
         if (empty($pageURL)) {
             $pageURL = (isset($_SERVER['HTTP_REFERER'])) ? ($_SERVER['HTTP_REFERER']) : ('');
         }
@@ -158,22 +158,26 @@ class Funcs {
      * Generates %HTML to redirect to another page
      * 
      * @param string $page  URL to which the page will be redirected. 
-     *  -  If you leave this empty - the page will be redirected to LANDING_PAGE
+     *  -   If you leave this empty - the page will be redirected to LANDING_PAGE
+     *  -   You can provide a controller's path or full (absolute) URL
      * 
      * @param bool $byHeader  -  if true, redirection done by %HTML header. else, by javascript. 
      * 
      * \code
-     * // You should provide FULL URL, which means if you want to redirect to an internal page "path/to/redirect" , you should use: 
-     * redirect(url('path/to/redirect')); 
-     * // note the use of url() function to generate FULL URL!!
+     * // You do not need to use absolute URL, you can specify a controller's path as simply as:
+     * redirect('examples/registration');
+     * // This should redirect to the example Registration page. Or, you can write:
+     * redirect('https://google.com');  // Example use of absolute URLs.
      * \endcode
      * 
      * \note Execution of current page will terminate at the end of this function & redirected page will be brought.
      */
     function redirect($page = '', $byHeader = true) {
         if (empty($page))
-            $page = LibUrl::url(LANDING_PAGE);
-
+            $page = Config::BASE_URL;
+        else
+            $page = LibUrl::url ($page);
+        
         if ($byHeader) {
             header('Location: ' . $page);
         } else {

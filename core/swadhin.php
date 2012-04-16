@@ -97,9 +97,6 @@ class Swadhin {
      *  Validate Request made by the user 
      */
     private function validateRequest() {
-        if (!$this->requestedPage)
-            $this->requestedPage = Config::LANDING_PAGE;
-
         $this->requestedPage = rtrim($this->requestedPage, "/");
     }
 

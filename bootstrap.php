@@ -38,7 +38,12 @@ class Bootstrap {
         $this->init();
         // Bootstrap the framework
         $this->swadhin = new Swadhin($this->sourceDir);
-        $this->swadhin->requestedPage = $_GET['p'];
+
+        if (isset($_GET['p']))
+            $this->swadhin->requestedPage = $_GET['p'];
+        else
+            $this->swadhin->requestedPage = Config::LANDING_PAGE;
+
         $this->swadhin->start();
 
         // Run User-Defined Scripts

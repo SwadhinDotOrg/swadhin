@@ -7,18 +7,13 @@
  * or your base URL etc. 
  */
 class Config {
-    
-    // Autoload Indexes
-    
-    const AUTOLOAD_MODEL = 'model';
-    const AUTOLOAD_CLASS = 'class';
 
     /**
      * Database Configuration
      * @var mixed - Key-Value pair Array. 
      */
     static public $db = array(
-        'driver' => 'pdo_mysql',            ///< Possible values: 'mysql' 'pdo_mysql'
+        'driver' => 'pdo_mysql', ///< Possible values: 'mysql' 'pdo_mysql'
         'host' => 'localhost',
         'username' => 'root',
         'password' => '',
@@ -34,6 +29,7 @@ class Config {
      * 
      * @var string
      */
+
     const BASE_URL = 'http://localhost/swadhin/';
 
     /**
@@ -68,6 +64,10 @@ class Config {
      * 
      * @var mixed
      */
+    // Autoload Indexes
+    const AUTOLOAD_MODEL = 'model';
+    const AUTOLOAD_CLASS = 'class';
+
     static public $autoloads = array(
         self::AUTOLOAD_CLASS => array(), ///< Custom Classes
         self::AUTOLOAD_MODEL => array(), ///< MODEL Classes
@@ -83,6 +83,7 @@ class Config {
      * 
      * @var bool
      */
+
     const NICE_URL_ENABLED = false;
 
     /**
@@ -106,7 +107,7 @@ class Config {
      * @var string
      */
     const URL_EXTENTION = '';
-    
+
 
     /**
      * Default Controller Function to call
@@ -116,63 +117,59 @@ class Config {
      * @var string
      */
     const DEFAULT_CONTROLLER_FUNCTION = 'index';
-    
-    const TEST_MODE = false; 
-
+    const TEST_MODE = false;
     const THEME_LAYOUT_FILE = 'index.php';
-    
     const THEME_DIRECTORY = 'templates/';        ///< Location of the directory where site themes are found. Relative to $project_dir
     const JS_DIRECTORY = 'client/js/';
     const FILES_DIRECTORY = 'files/';
-    
     const PRINT_TRACE_IN_TEXTAREA = true;       ///< Whether print function call stacks withing a textarea when showing error
+
     /*
      * ***********************************************
      * MODIFY ONLY IF YOU UNDERSTAND WHAT YOU'RE DOING!
      * ***********************************************
      */
-    
+
     public static $project_dir;
     public static $core_classes_dir;
     public static $custom_classes_dir;
     public static $thirdparty_dir;
     public static $themes_dir;
     public static $files_dir;
-    
     public static $themes_url;
     public static $js_url;
     public static $files_url;
-    
     public static $views_dir;
     public static $views_forms_dir;
     public static $controllers_dir;
     public static $models_dir;
-    
+
     /**
      * Initial Configurations
      * You may change them to appropriate settings if necessary. However, the framework will work fine
      * without any change in following function. 
      */
-    public static function initConfigurations(){
+    public static function initConfigurations() {
         // You are NOT supposed to change folloging line
-        self::$project_dir = dirname(__FILE__) . '/'; 
-        
+        self::$project_dir = dirname(__FILE__) . '/';
+
         // You can change it to appropriate location where "core" & "custom" directory is found.
         self::$core_classes_dir = self::$project_dir . 'core/';
         self::$custom_classes_dir = self::$project_dir . 'custom/';
-        
+
         // You may leave following lines intact
         self::$thirdparty_dir = self::$project_dir . '3rdparty/';
         self::$themes_dir = self::$project_dir . self::THEME_DIRECTORY;
         self::$files_dir = self::$project_dir . self::FILES_DIRECTORY;
-        
+
         self::$themes_url = self::BASE_URL . self::THEME_DIRECTORY;
         self::$js_url = self::BASE_URL . self::JS_DIRECTORY;
         self::$files_url = self::BASE_URL . self::FILES_DIRECTORY;
-        
+
         self::$views_dir = self::$project_dir . 'VIEW/';
         self::$views_forms_dir = self::$views_dir . 'forms/';
         self::$controllers_dir = self::$project_dir . 'CONTROL/';
         self::$models_dir = self::$project_dir . 'MODEL/';
     }
+
 }
