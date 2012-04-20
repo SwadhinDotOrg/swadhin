@@ -194,7 +194,7 @@ class CoreController {
      */
     
     public function template($templateName){
-        $this->core->template = $templateName;
+        $this->core->themeName = $templateName;
     }
 
 }

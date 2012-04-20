@@ -10,61 +10,58 @@
  */
 class Core {
 
-    /**
-     * @var Funcs 
-     */
+    /** @var Funcs */
     public $funcs;  ///<    An object of class: Funcs
-    /**
-     *
-     * @var Validator
-     */
+    
+    /** @var Validator */
     public $validate;   ///<    An object of class:  Validator 
-    /**
-     *
-     * @var View
-     */
+    
+    /** @var View */
     public $view;   ///<    An object of class: CustomView
-    /**
-     *
-     * @var Controller
-     */
+    
+    /** @var Controller */
     public $controller; ///<    An object of class: Controller
+    
+    /** @var Loader */
+    public $loader;
+    
     public $page;   ///<    cotains "The Page" - see documentation for more details
-    public $functionToCall; ///<  contains the name of the function of constructor to call.
+    public $controllerFunctionToCall; ///<  contains the name of the function of constructor to call.
     public $formData;   ///<    Key-value Array for containing HTML strings for web forms
+    
     // Others
-    public $template;  ///<    Name of the template. This must be name of the template's folder under "templates" directory.
-    public $templateFileName;   ///< name of the file to load under this template's directory. Default value is "index.php". You can change it before calling loadView()
+    public $themeName;  ///<    Name of the template. This must be name of the template's folder under "templates" directory.
+    public $themeLayoutFile;   ///< name of the file to load under theme's directory. Default value is "index.php". You can change it before calling loadView()
+    
     public $data;  ///<    Key-value array for containing variables.
     public $cData; ///<    data passing from Controller to View class
     public $isStatic; ///< true if the page is static: no controller to load, view automatically called.
+    
     // Load staus
     public $controllerLoaded = false;   ///<    Boolean, true if controller class loaded.
-    public $viewLoaded = false;         ///<    Boolean, true if view class loaded.  
+    public $viewName = null;         ///<    Name of the view
 
     // vars for internal use. Don't use/depend on any of these in your code
-
     public $coreDir;
     public $autoloadedData;
     private $__version;                 ///< Core Version
     private $__dbconfig;                ///< Database Credentials
     // Internal
     private $oneModelLoaded = false;    ///< Whether CoreModel & DB driver already loaded
-
-    // constructor
+    
 
     /**
      * Constractor.
      * - Initializes member variables
-     * - Sets default template (in config/general.php )
-     * @param None
+     * 
      * @return None
      */
-    public function __construct($config) {
-        $this->__version = "1.3.0 beta";
+    public function __construct() {
+        $this->__version = "1.3.1 beta";
         // Acquire Database Configuration
         $this->__dbconfig = Config::$db;
         // Create other members
+        $this->loader = new Loader();
         $this->funcs = new Funcs($this);
         $this->validate = new Validator($this);
         // Set some default characteristics
@@ -72,8 +69,8 @@ class Core {
         // init some member vars
         $this->formData = array();
         // Set site template
-        $this->template = Config::SITE_THEME;  //  Can load from DB too.
-        $this->templateFileName = Config::THEME_LAYOUT_FILE;
+        $this->themeName = Config::SITE_THEME;  //  Can load from DB too.
+        $this->themeLayoutFile = Config::THEME_LAYOUT_FILE;
         // Set up internal vars
         $this->coreDir = Config::$core_classes_dir;
     }
@@ -152,17 +149,12 @@ class Core {
     public function loadView($view='') {
         if (empty($view))
             $view = $this->page;
-        // Next, load template class from template folder
-        $template = $this->template;
-        require Config::$themes_dir . $template . '/template.php';
-        // Load the specific VIEW class.
-        $filename = Config::$views_dir . 'pages/' . $view . '.php';
-        $this->viewLoaded = true;
-//        die('requiring' . $filename);
-        $requireResult = $this->safeRequire($filename);
-        if ($this->isStatic && !$requireResult) {
-//            $this->viewLoaded = false;
-            $this->fatal('Error: Could not load the static page.');
+        
+        $this->viewName = $view;
+        $loadResult = $this->loader->__loadView($view, $this->themeName);
+        
+        if ($this->isStatic && !$loadResult) {
+            throw new Exception('Error: Could not load the static page.');
         }
     }
 
@@ -177,34 +169,10 @@ class Core {
      */
     public function loadCustomClass($className) {
         $classPath = Config::$custom_classes_dir . 'class/' . $className . '.php';
-        return $this->safeRequireOnce($classPath);
+        return $this->loader->safelyLoadOnce($classPath);
     }
 
-    /**
-     * Loads necessary model classes. Must be called before database functionality.
-     * 
-     * Demo code is available at CustomModel class. So if your model class extends CustomModel, you do not need to call this function explicitly!
-     * @param string $driver name of the database driver, i.e MySQL
-     */
-    
-//    public function loadDatabaseDriver() {
-//    }
 
-    /* Template Related */
-
-
-    /**
-     * Call this withing your Controller to set a different template, other than the Default one.
-     * This change will be valid only for the current "page"
-     * - Call this function if you explicitly call loadView($view)
-     * @param string $theme name of the template
-     * @return None
-     */
-    
-//    public function setTemplate($theme){
-//        $this->template = $theme;
-//    }
-//    
     // Data passing across controller-view 
 
     /**
@@ -232,43 +200,12 @@ class Core {
             return false;
     }
 
-    /**
-     * This function is used to safely load a php file. you can use it instead of require_once()
-     * @param string $filename name of the file to load
-     * @return bool true if file found, false otherwise. 
-     */
-    public function safeRequireOnce($filename) {
-        if (file_exists($filename)) {
-            require_once $filename;
-            return true;
-        } else {
-//            $this->debug ("File $filename Not found!");
-            return false;
-        }
-    }
-
-    public function safeRequire($filename) {
-        if (file_exists($filename)) {
-            require $filename;
-            return true;
-        } else {
-//            $this->debug ("File $filename Not found!");
-            return false;
-        }
-    }
-
-    /**
-     * Locale - Multiple language support -  Not Implemented yet :-(
-     */
-//    private function loadLang() {
-//        if (defined('DEFAULT_LANG'))
-//            require_once PROJECT_DIR . 'lang/' . DEFAULT_LANG . '.php';
-//    }
-
-    /** @name Functions for Internal Use
+    /** 
+     * @name Functions for Internal Use
      * These functions are used internally by the framework.
      * - You should NEVER call these functions! As they are automatically called by the framework.
      */
+    
     //@{
 
     /**
@@ -304,53 +241,18 @@ class Core {
             // Load Controller.
             $this->loadController($this->page);
         }
-        // Create VIEW
-        $this->generateViewObject();
-        // Load Site Template
-        $this->loadTemplate();
-    }
-
-    /**
-     * Loads necessary files (mainly index.php) from templates/<SELECTED TEMPLATE> folder.
-     * - You should NEVER call this function! As this function is internally called by the framework. 
-     */
-    private function loadTemplate() {
-        if ($this->viewLoaded) {
-            $template = $this->template;
-            $templateIndex = Config::$themes_dir . $template . '/' . $this->templateFileName;
-            require $templateIndex;
-        }
-    }
-
-    /**
-     * Creates an object of the View class.
-     * - You should NEVER call this function! As this function is automatically called by the framework. 
-     */
-    private function generateViewObject() {
-        if ($this->viewLoaded) {
-            $this->view = new View($this);
-            // create a global instance
-            View::$instance = $this->view;
-            // Check static permission
-            if ($this->isStatic && !$this->view->__staticLoadAllowed) {
-                $this->fatal('Error: Loading this page statically is denied.');
-            }
-            // Set the template: important
-            $this->view->template = $this->template;
-            // Pass data set from controller
-            if (!empty($this->cData)) {
-                foreach ($this->cData as $varName => $varValue) {
-                    $this->view->$varName = $varValue;
-                }
-            }
-        } else {
-            // Check if controller loaded
-            if (!$this->controllerLoaded) {
-                // Invalid request. report 404
-                $this->fatal('Error 404 Page not found!');
-            }
-//            $this->debug("View Not Loaded");
-        }
+        
+        // Output Response
+        $response = new Response($this->viewName);
+        
+        $response->core = $this;    // Needed by Views
+        $response->viewIsStatic = $this->isStatic;
+        $response->controllerLoaded = $this->controllerLoaded;
+        
+        $response->themeName = $this->themeName;
+        $response->themeLayoutFile = $this->themeLayoutFile;
+        
+        $response->output();
     }
 
     // Controller related
@@ -361,8 +263,8 @@ class Core {
      */
     public function generateControllerObject() {
         $this->controller = new Controller($this);
-        if (method_exists($this->controller, $this->functionToCall))
-            call_user_func(array($this->controller, $this->functionToCall));
+        if (method_exists($this->controller, $this->controllerFunctionToCall))
+            call_user_func(array($this->controller, $this->controllerFunctionToCall));
         else {
             $this->fatal('Error : Requested controller-method not found!');
         }
@@ -382,7 +284,7 @@ class Core {
 
         if ($numSegments == 1 && $pageArr[0] != 'static') {
             $this->page = $URL;
-            $this->functionToCall = Config::DEFAULT_CONTROLLER_FUNCTION;
+            $this->controllerFunctionToCall = Config::DEFAULT_CONTROLLER_FUNCTION;
         } else {
             // Handle static pages first.
             if ($pageArr[0] == 'static') {
@@ -396,10 +298,10 @@ class Core {
                 $controllerPath = Config::$controllers_dir . $URL . '.php';
                 if (file_exists($controllerPath)) {
                     $this->page = $URL;
-                    $this->functionToCall = Config::DEFAULT_CONTROLLER_FUNCTION;
+                    $this->controllerFunctionToCall = Config::DEFAULT_CONTROLLER_FUNCTION;
                 } else {
                     // Check later.
-                    $this->functionToCall = $pageArr[$numSegments - 1];
+                    $this->controllerFunctionToCall = $pageArr[$numSegments - 1];
                     unset($pageArr[$numSegments - 1]);
                     $this->page = implode('/', $pageArr);
                 }
