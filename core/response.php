@@ -2,11 +2,14 @@
 
 class Response {
 
-    const RESPONSE_TYPE_NORMAL = 0;
-    const RESPONSE_TYPE_AJAX = 1;
+    const RESPONSE_TYPE_HTML = 0;
+    const RESPONSE_TYPE_JSON = 1;
+    const RESPONSE_TYPE_PLAINTEXT = 2;
+    const RESPONSE_TYPE_XML = 3;
     
-    public $core;       ///< Needed by Views
-    public $responseType;
+    public $core;                           ///< Reference to core Needed by Views
+    public $responseType;                   ///< Response type e.g. HTML/JSON/Plain Text etc.
+    
     public $themeName = null;
     public $themeLayoutFile = null;
     
@@ -17,13 +20,13 @@ class Response {
     /** @var Loader */
     public $loader = null;
     
-    private $response;
+    private $viewName;                      ///< Name (location) of the view to load
     public $error = null;
     
     private $outputStr = '';     ///< Final string that gets output
 
-    function __construct($response=null, $resonseType = self::RESPONSE_TYPE_NORMAL) {
-        $this->response = $response;
+    function __construct($viewName=null, $resonseType = self::RESPONSE_TYPE_HTML) {
+        $this->viewName = $viewName;
         $this->responseType = $resonseType;
         $this->loader = new Loader();
     }
@@ -34,14 +37,12 @@ class Response {
     function output() {
         try {
             // Special care for typical View Loading
-            if ($this->responseType == self::RESPONSE_TYPE_NORMAL) {
-                $this->generateViewObject();
-                if($this->response){
-                    ob_start();
-                    $this->loader->loadTemplate($this->themeName, $this->themeLayoutFile);
-                    $this->outputStr = ob_get_contents();
-                    ob_end_clean();
-                }
+            $this->generateViewObject();
+            if($this->viewName){
+                ob_start();
+                $this->loader->loadTemplate($this->themeName, $this->themeLayoutFile);
+                $this->outputStr = ob_get_contents();
+                ob_end_clean();
             }
             // actually sends output
             $this->sendHttpOutput();
@@ -65,7 +66,7 @@ class Response {
      * - You should NEVER call this function! As this function is automatically called by the framework. 
      */
     private function generateViewObject() {
-        if ($this->response) {
+        if ($this->viewName) {
             $viewOb = new View($this->core);
             // create a global instance
             View::$instance = $viewOb;

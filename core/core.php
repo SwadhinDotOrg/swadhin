@@ -47,6 +47,7 @@ class Core {
     // Internal
     private $oneModelLoaded = false;    ///< Whether CoreModel & DB driver already loaded
     
+    private $responseType = null;
 
     /**
      * Constractor.
@@ -144,10 +145,11 @@ class Core {
      * @param string $view name of the View class. This class must extend Template class & reside under VIEW/pages/ directory.
      *  - if you don't pass the parameter, default view for the page gets loaded.
      */
-    public function loadView($view='') {
+    public function loadView($view='', $responseType = Response::RESPONSE_TYPE_HTML) {
         if (empty($view))
             $view = $this->page;
         
+        $this->responseType = $responseType;
         $this->viewName = $view;
         $loadResult = $this->loader->__loadView($view, $this->themeName);
         
@@ -156,19 +158,6 @@ class Core {
         }
     }
 
-    /**
-     * Call this from your controller to load a class from custom/class directory. 
-     * 
-     * \note WARNING - YOU DO NOT NEED TO CALL ANYTHING TO LOAD A CUSTOM CLASS, 
-     * THEY ARE AUTOMATICALLY LOADED!
-     * 
-     * @param string $className name of the class. This class must reside in CUSTOM/class directory.
-     * @return bool true in success, false otherwise 
-     */
-    public function loadCustomClass($className) {
-        $classPath = Config::$custom_classes_dir . 'class/' . $className . '.php';
-        return $this->loader->safelyLoadOnce($classPath);
-    }
 
     /** 
      * @name Functions for Internal Use
@@ -213,7 +202,7 @@ class Core {
         }
         
         // Output Response
-        $response = new Response($this->viewName);
+        $response = new Response($this->viewName, $this->responseType);
         
         $response->core = $this;    // Needed by Views
         $response->viewIsStatic = $this->isStatic;

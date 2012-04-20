@@ -11,6 +11,7 @@ class Controller extends CoreController{
     function __construct($core) {
         parent::__construct($core);
         $this->model = $this->loadModel('ExamplesModel_prepared');
+        $this->data('title', 'PDO Testing');
     }
     
     function index(){
