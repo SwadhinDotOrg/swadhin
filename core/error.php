@@ -32,7 +32,7 @@ class Error {
     public function output($title, $msg) {
 
         $html = new Html();
-        $html->title = $title . ' | PHPizza';
+        $html->title = $title . ' | ' . User_config::APP_NAME;
         $html->startBody();
 
         echo '<div>';

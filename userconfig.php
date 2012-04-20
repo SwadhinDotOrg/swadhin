@@ -8,7 +8,7 @@
 
 class User_config{
     
-    const APP_NAME = 'Swadhin Framework';
+    const APP_NAME = 'Swadhin Framework';   ///<    Keep this constant, used throughout the site to display Site's name.
     
     /**
      * You may initialize static variables there (if any) 
