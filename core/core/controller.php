@@ -5,21 +5,16 @@
  */
 class CoreController {
 
-    /**
-     *
-     * @var Core
-     */
+    /** @var Core */
     public $core = null;   ///< A reference to the $core variable
-    /**
-     *
-     * @var Funcs
-     */
+    
+    /** @var Funcs */
     public $funcs = null;
-    /**
-     *
-     * @var Validator
-     */
+    
+    /** @var Validator */
     public $validate = null;
+    
+    public $__data = array();   ///< Variables to pass to View
 
     /**
      * Constructor
@@ -106,7 +101,7 @@ class CoreController {
      * @return None 
      */
     public function data($id, $data) {
-        $this->core->cData[$id] = $data;
+        $this->__data[$id] = $data;
     }
 
     /**

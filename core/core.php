@@ -33,8 +33,6 @@ class Core {
     public $themeName;  ///<    Name of the template. This must be name of the template's folder under "templates" directory.
     public $themeLayoutFile;   ///< name of the file to load under theme's directory. Default value is "index.php". You can change it before calling loadView()
     
-    public $data;  ///<    Key-value array for containing variables.
-    public $cData; ///<    data passing from Controller to View class
     public $isStatic; ///< true if the page is static: no controller to load, view automatically called.
     
     // Load staus
@@ -172,34 +170,6 @@ class Core {
         return $this->loader->safelyLoadOnce($classPath);
     }
 
-
-    // Data passing across controller-view 
-
-    /**
-     * Use this function within your controller to pass a variable to View.
-     * Within View, you can get the data by calling getData() , $id is the ID of the variable.
-     * @param string $id ID of the variable. You must use the same ID when you call getData() to retrie the variable
-     * @param variable $data The actual variable you want to pass.
-     * @return None 
-     */
-    public function setData($id, $data) {
-        $this->data[$id] = $data;
-    }
-
-    /**
-     * Use this function within your View to retrive the variable you passed within your controller.
-     * @param string $id ID you used when calling setData()
-     * @return variable you passed using setData() - if you provide valid ID
-     * @return bool false - if you provide invalid ID
-     */
-    
-    public function getData($id) {
-        if (isset($this->data[$id]))
-            return $this->data[$id];
-        else
-            return false;
-    }
-
     /** 
      * @name Functions for Internal Use
      * These functions are used internally by the framework.
@@ -248,6 +218,9 @@ class Core {
         $response->core = $this;    // Needed by Views
         $response->viewIsStatic = $this->isStatic;
         $response->controllerLoaded = $this->controllerLoaded;
+        
+        if($this->controllerLoaded)
+            $response->dataForView = $this->controller->__data;
         
         $response->themeName = $this->themeName;
         $response->themeLayoutFile = $this->themeLayoutFile;
